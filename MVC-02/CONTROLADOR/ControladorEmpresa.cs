@@ -9,11 +9,11 @@ namespace CONTROLADOR
 {
     public class ControladorEmpresa
     {
-        private static ControladorEmpresa _instancia;
+        private static ControladorEmpresa _instancia; //Una instancia del controlador
 
-        private ControladorEmpresa() { }
+        private ControladorEmpresa() { }    //Constructor privado
 
-
+        //Obtiene la instancia
         public static ControladorEmpresa GetInstancia()
         {
             if (_instancia == null)
@@ -50,7 +50,7 @@ namespace CONTROLADOR
         #endregion Clientes
 
         #region Empleados
-        
+
         /*public void AgregarEmpleado(Empleado empleado)
         {
             Empresa
@@ -60,8 +60,13 @@ namespace CONTROLADOR
 
         public Empresa GetEmpresa()
         {
-            //Devuelve la primera empresa (indice 1), osea la unica empresa
-            return EmpresaContext.GetInstancia().GetContainer.Empresa.First(x => x.Id == 1);
+            //Devuelve la primera empresa (indice 1), osea la unica empresa}
+            Empresa resultado = EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == 1);
+            if (resultado == null){
+                EmpresaContext.GetInstancia().GetContainer.Empresa.Add(new Empresa() { nombre = "franco se la come" });
+                EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+            }
+            return EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == 1);
         }
     }
 }

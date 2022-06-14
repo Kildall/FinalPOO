@@ -71,8 +71,12 @@ namespace VISTA
             ListarClientes();
         }
 
-        
-
-       
+        private void btnEliminarCliente_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = ClienteSeleccionado();
+     
+            ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
+            ListarClientes();
+        }
     }
 }
