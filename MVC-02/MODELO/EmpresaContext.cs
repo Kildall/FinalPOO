@@ -8,17 +8,18 @@ namespace MODELO
 {
     public class EmpresaContext
     {
-        private static EmpresaContext _instancia;
+        private static EmpresaContext _instancia;   //Conexion a la base de datos
 
-        private static EmpresaDBContainer _container;
+        private static EmpresaDBContainer _container; //Lo que esta dentro de la base de datos
         private EmpresaContext() { }
 
         public static EmpresaContext GetInstancia()
         {
             if (_instancia == null )
             {
-                _instancia = new EmpresaContext();
-                _container = new EmpresaDBContainer();
+                //Instancias de:
+                _instancia = new EmpresaContext(); //Del contexto
+                _container = new EmpresaDBContainer(); //Del contenedor
             }
             return _instancia;
         }
