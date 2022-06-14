@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EmpresaDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EmpresaDBStoreContainer">
+    <EntitySet Name="Clientes" EntityType="EmpresaDB.Store.Clientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Empresa" EntityType="EmpresaDB.Store.Empresa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Empleados" EntityType="EmpresaDB.Store.Empleados" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categorias" EntityType="EmpresaDB.Store.Categorias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmpleadoEmpleado" EntityType="EmpresaDB.Store.EmpleadoEmpleado" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="EmpresaCliente" Association="EmpresaDB.Store.EmpresaCliente">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Cliente" EntitySet="Clientes" />
+    </AssociationSet>
+    <AssociationSet Name="EmpresaEmpleado" Association="EmpresaDB.Store.EmpresaEmpleado">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Empleado" EntitySet="Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="EmpleadoCategoria" Association="EmpresaDB.Store.EmpleadoCategoria">
+      <End Role="Empleado" EntitySet="Empleados" />
+      <End Role="Categoria" EntitySet="Categorias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpleadoEmpleado_Empleado" Association="EmpresaDB.Store.FK_EmpleadoEmpleado_Empleado">
+      <End Role="Empleado" EntitySet="Empleados" />
+      <End Role="EmpleadoEmpleado" EntitySet="EmpleadoEmpleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpleadoEmpleado_Empleado1" Association="EmpresaDB.Store.FK_EmpleadoEmpleado_Empleado1">
+      <End Role="Empleado1" EntitySet="Empleados" />
+      <End Role="EmpleadoEmpleado" EntitySet="EmpleadoEmpleado" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="edad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empresa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="edad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="salario" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa_Id" Type="int" Nullable="false" />
+    <Property Name="Categoria_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmpleadoEmpleado">
+    <Key>
+      <PropertyRef Name="Subordinados_Id" />
+      <PropertyRef Name="Superior_Id" />
+    </Key>
+    <Property Name="Subordinados_Id" Type="int" Nullable="false" />
+    <Property Name="Superior_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="EmpresaCliente">
+    <End Role="Empresa" Type="EmpresaDB.Store.Empresa" Multiplicity="1" />
+    <End Role="Cliente" Type="EmpresaDB.Store.Clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmpresaEmpleado">
+    <End Role="Empresa" Type="EmpresaDB.Store.Empresa" Multiplicity="1" />
+    <End Role="Empleado" Type="EmpresaDB.Store.Empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmpleadoCategoria">
+    <End Role="Empleado" Type="EmpresaDB.Store.Empleados" Multiplicity="*" />
+    <End Role="Categoria" Type="EmpresaDB.Store.Categorias" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="Categoria_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpleadoEmpleado_Empleado">
+    <End Role="Empleado" Type="EmpresaDB.Store.Empleados" Multiplicity="1" />
+    <End Role="EmpleadoEmpleado" Type="EmpresaDB.Store.EmpleadoEmpleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmpleadoEmpleado">
+        <PropertyRef Name="Subordinados_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpleadoEmpleado_Empleado1">
+    <End Role="EmpleadoEmpleado" Type="EmpresaDB.Store.EmpleadoEmpleado" Multiplicity="*" />
+    <End Role="Empleado1" Type="EmpresaDB.Store.Empleados" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmpleadoEmpleado">
+        <PropertyRef Name="Superior_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EmpresaDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="EmpresaDBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="EmpresaDB.Cliente" />
+          <EntitySet Name="Empresa" EntityType="EmpresaDB.Empresa" />
+          <EntitySet Name="Empleados" EntityType="EmpresaDB.Empleado" />
+          <EntitySet Name="Categorias" EntityType="EmpresaDB.Categoria" />
+          <AssociationSet Name="EmpresaCliente" Association="EmpresaDB.EmpresaCliente">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="EmpresaEmpleado" Association="EmpresaDB.EmpresaEmpleado">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Empleado" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="EmpleadoCategoria" Association="EmpresaDB.EmpleadoCategoria">
+            <End Role="Empleado" EntitySet="Empleados" />
+            <End Role="Categoria" EntitySet="Categorias" />
+          </AssociationSet>
+          <AssociationSet Name="EmpleadoEmpleado" Association="EmpresaDB.EmpleadoEmpleado">
+            <End Role="Empleado" EntitySet="Empleados" />
+            <End Role="Empleado1" EntitySet="Empleados" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <Property Name="edad" Type="String" Nullable="false" />
+          <Property Name="telefono" Type="String" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="EmpresaDB.EmpresaCliente" FromRole="Cliente" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Empleados" Relationship="EmpresaDB.EmpresaEmpleado" FromRole="Empresa" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <Property Name="edad" Type="String" Nullable="false" />
+          <Property Name="salario" Type="String" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="EmpresaDB.EmpresaEmpleado" FromRole="Empleado" ToRole="Empresa" />
+          <NavigationProperty Name="Categoria" Relationship="EmpresaDB.EmpleadoCategoria" FromRole="Empleado" ToRole="Categoria" />
+          <NavigationProperty Name="Superior" Relationship="EmpresaDB.EmpleadoEmpleado" FromRole="Empleado" ToRole="Empleado1" />
+          <NavigationProperty Name="Subordinados" Relationship="EmpresaDB.EmpleadoEmpleado" FromRole="Empleado1" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Empleados" Relationship="EmpresaDB.EmpleadoCategoria" FromRole="Categoria" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="EmpresaCliente">
+          <End Type="EmpresaDB.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="EmpresaDB.Cliente" Role="Cliente" Multiplicity="*" />
+        </Association>
+        <Association Name="EmpresaEmpleado">
+          <End Type="EmpresaDB.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="EmpresaDB.Empleado" Role="Empleado" Multiplicity="*" />
+        </Association>
+        <Association Name="EmpleadoCategoria">
+          <End Type="EmpresaDB.Empleado" Role="Empleado" Multiplicity="*" />
+          <End Type="EmpresaDB.Categoria" Role="Categoria" Multiplicity="1" />
+        </Association>
+        <Association Name="EmpleadoEmpleado">
+          <End Type="EmpresaDB.Empleado" Role="Empleado" Multiplicity="*" />
+          <End Type="EmpresaDB.Empleado" Role="Empleado1" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmpresaDBStoreContainer" CdmEntityContainer="EmpresaDBContainer">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="IsTypeOf(EmpresaDB.Cliente)">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresa">
+      <EntityTypeMapping TypeName="IsTypeOf(EmpresaDB.Empresa)">
+        <MappingFragment StoreEntitySet="Empresa">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleados">
+      <EntityTypeMapping TypeName="IsTypeOf(EmpresaDB.Empleado)">
+        <MappingFragment StoreEntitySet="Empleados">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="salario" ColumnName="salario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="IsTypeOf(EmpresaDB.Categoria)">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="EmpresaCliente" TypeName="EmpresaDB.EmpresaCliente" StoreEntitySet="Clientes">
+      <EndProperty Name="Empresa">
+        <ScalarProperty Name="Id" ColumnName="Empresa_Id" />
+      </EndProperty>
+      <EndProperty Name="Cliente">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmpresaEmpleado" TypeName="EmpresaDB.EmpresaEmpleado" StoreEntitySet="Empleados">
+      <EndProperty Name="Empresa">
+        <ScalarProperty Name="Id" ColumnName="Empresa_Id" />
+      </EndProperty>
+      <EndProperty Name="Empleado">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmpleadoCategoria" TypeName="EmpresaDB.EmpleadoCategoria" StoreEntitySet="Empleados">
+      <EndProperty Name="Categoria">
+        <ScalarProperty Name="Id" ColumnName="Categoria_Id" />
+      </EndProperty>
+      <EndProperty Name="Empleado">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmpleadoEmpleado" TypeName="EmpresaDB.EmpleadoEmpleado" StoreEntitySet="EmpleadoEmpleado">
+      <EndProperty Name="Empleado">
+        <ScalarProperty Name="Id" ColumnName="Subordinados_Id" />
+      </EndProperty>
+      <EndProperty Name="Empleado1">
+        <ScalarProperty Name="Id" ColumnName="Superior_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
