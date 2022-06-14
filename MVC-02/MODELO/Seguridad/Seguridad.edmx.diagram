@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b4c83d5e1a345efb732bc7fc3f19799" Name="Diagram1" >
+        <EntityTypeShape EntityType="Seguridad.Formulario" Width="1.5" PointX="3.75" PointY="4" />
+        <EntityTypeShape EntityType="Seguridad.Permiso" Width="1.5" PointX="6.75" PointY="4" />
+        <EntityTypeShape EntityType="Seguridad.Perfil" Width="1.5" PointX="3.75" PointY="1.625" />
+        <EntityTypeShape EntityType="Seguridad.Usuario" Width="1.5" PointX="0.625" PointY="1.625" />
+        <AssociationConnector Association="Seguridad.UsuarioPerfil" />
+        <AssociationConnector Association="Seguridad.PerfilFormulario" />
+        <AssociationConnector Association="Seguridad.FormularioPermiso" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
