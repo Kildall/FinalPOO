@@ -22,7 +22,8 @@ namespace VISTA
             ListarClientes();
         }
 
-        private void ListarClientes()
+
+        private void ListarClientes() //Lista los clientes en el DataGridView
         {
             dvgClientes.DataSource = null;
             ListaClientes = ControladorEmpresa.GetInstancia().GetClientes();
@@ -30,7 +31,7 @@ namespace VISTA
             dvgClientes.Columns.Remove("Empresa");
         }
 
-        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        private void btnAgregarCliente_Click(object sender, EventArgs e)    //Agrega un cliente
         {
             Cliente cliente = new Cliente() //Construyo un cliente
             {

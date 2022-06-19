@@ -51,10 +51,34 @@ namespace CONTROLADOR
 
         #region Empleados
 
-        /*public void AgregarEmpleado(Empleado empleado)
+        public void AgregarEmpleado(Empleado empleado)
         {
-            Empresa
-        }*/
+            EmpresaContext.GetInstancia().GetContainer.Empleados.Add(empleado);
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+
+        public void ModificarEmpleado(Empleado empleado)
+        {
+            EmpresaContext.GetInstancia().GetContainer.Empleados.Add(empleado);
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+
+        public void EliminarEmpleado(Empleado empleado)
+        {
+            EmpresaContext.GetInstancia().GetContainer.Empleados.Remove(empleado);
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+
+        //Devuelve una lista de empleados
+        public List<Empleado> GetEmpleados()
+        {
+            return EmpresaContext.GetInstancia().GetContainer.Empleados.ToList();
+        }
+
+        public List<Categoria> GetCategorias()
+        {
+            return EmpresaContext.GetInstancia().GetContainer.Categorias.ToList();
+        }
 
         #endregion Empleados
 
