@@ -16,8 +16,9 @@ namespace VISTA
     {
         List<Empleado> ListaEmpleados = new List<Empleado>();
         List<Categoria> ListaCategorias = new List<Categoria>();
-        string categoriaSeleccionada;
+        int categoriaSeleccionada; //Indice
         int indiceEmpleado;
+        Categoria categoria = new Categoria();
 
 
         public EmpleadosComponent()
@@ -41,6 +42,7 @@ namespace VISTA
         {
             ListaCategorias = ControladorEmpresa.GetInstancia().GetCategorias();
 
+            cbxCategoria.Items.Clear();
             foreach (Categoria x in ListaCategorias)    // Agrego las categorias al ComboBox
             {
                 cbxCategoria.Items.Add(x);
@@ -51,7 +53,7 @@ namespace VISTA
         //Asigna la categoria seleccionada
         private void cbxCategoria_SelectionChangeCommitted(object sender, EventArgs e) 
         {
-            categoriaSeleccionada = cbxCategoria.SelectedItem.ToString();
+            categoriaSeleccionada = cbxCategoria.SelectedIndex;
         }
 
         //Asigna el empleado seleccionado en el dgv
@@ -78,12 +80,7 @@ namespace VISTA
                 salario = txtSalarioEmp.Text
             };
 
-            Categoria categoria = new Categoria() //Se construye una cactegoria (valor por referencia?)
-            {
-                nombre = categoriaSeleccionada
-            };
-
-            empleado.Categoria = categoria;
+            empleado.Categoria = ListaCategorias.ElementAt(categoriaSeleccionada);
 
             empleado.Empresa = ControladorEmpresa.GetInstancia().GetEmpresa(); //Asigna la Empresa al empleado            
             ControladorEmpresa.GetInstancia().AgregarEmpleado(empleado);
@@ -98,16 +95,13 @@ namespace VISTA
             empleado.edad = nudEdadEmp.Text;
             empleado.salario = txtSalarioEmp.Text;
 
-            Categoria categoria = new Categoria()
-            {
-                nombre = categoriaSeleccionada
-            };
-            empleado.Categoria = categoria;
+            empleado.Categoria = ListaCategorias.ElementAt(categoriaSeleccionada);
 
             ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado);
             ListarEmpleados();
         }
 
+        //ELIMINAR EMPLEADO
         private void btnEliminarEmpl_Click(object sender, EventArgs e)
         {
             Empleado empleado = EmpleadoSeleccionado();
@@ -115,9 +109,6 @@ namespace VISTA
             ControladorEmpresa.GetInstancia().EliminarEmpleado(empleado);
             ListarEmpleados();
         }
-
-        //ELIMINAR EMPLEADO
-
 
     }
 }

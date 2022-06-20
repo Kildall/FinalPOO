@@ -59,7 +59,6 @@ namespace CONTROLADOR
 
         public void ModificarEmpleado(Empleado empleado)
         {
-            EmpresaContext.GetInstancia().GetContainer.Empleados.Add(empleado);
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
