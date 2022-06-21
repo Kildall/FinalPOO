@@ -45,7 +45,7 @@ namespace VISTA
             cbxCategoria.Items.Clear();
             foreach (Categoria x in ListaCategorias)    // Agrego las categorias al ComboBox
             {
-                cbxCategoria.Items.Add(x);
+                cbxCategoria.Items.Add(x.nombre);
             }      
         }
 
@@ -110,5 +110,10 @@ namespace VISTA
             ListarEmpleados();
         }
 
+        private void dgvEmpleados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            frmJerarquia jerarquia = new frmJerarquia(ListaEmpleados[e.RowIndex]);
+            jerarquia.Show();
+        }
     }
 }
