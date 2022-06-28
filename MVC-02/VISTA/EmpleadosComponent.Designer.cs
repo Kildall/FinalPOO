@@ -90,11 +90,10 @@
             // cbxCategoria
             // 
             this.cbxCategoria.FormattingEnabled = true;
-            this.cbxCategoria.Location = new System.Drawing.Point(87, 144);
+            this.cbxCategoria.Location = new System.Drawing.Point(87, 149);
             this.cbxCategoria.Name = "cbxCategoria";
             this.cbxCategoria.Size = new System.Drawing.Size(148, 21);
             this.cbxCategoria.TabIndex = 12;
-            this.cbxCategoria.SelectionChangeCommitted += new System.EventHandler(this.cbxCategoria_SelectionChangeCommitted);
             // 
             // lblCategoria
             // 
@@ -155,14 +154,14 @@
             // 
             // txtSalarioEmp
             // 
-            this.txtSalarioEmp.Location = new System.Drawing.Point(87, 110);
+            this.txtSalarioEmp.Location = new System.Drawing.Point(87, 114);
             this.txtSalarioEmp.Name = "txtSalarioEmp";
             this.txtSalarioEmp.Size = new System.Drawing.Size(148, 20);
             this.txtSalarioEmp.TabIndex = 5;
             // 
             // nudEdadEmp
             // 
-            this.nudEdadEmp.Location = new System.Drawing.Point(87, 71);
+            this.nudEdadEmp.Location = new System.Drawing.Point(87, 76);
             this.nudEdadEmp.Maximum = new decimal(new int[] {
             120,
             0,
@@ -174,7 +173,7 @@
             // 
             // txtNombreEmp
             // 
-            this.txtNombreEmp.Location = new System.Drawing.Point(87, 35);
+            this.txtNombreEmp.Location = new System.Drawing.Point(87, 39);
             this.txtNombreEmp.Name = "txtNombreEmp";
             this.txtNombreEmp.Size = new System.Drawing.Size(210, 20);
             this.txtNombreEmp.TabIndex = 3;

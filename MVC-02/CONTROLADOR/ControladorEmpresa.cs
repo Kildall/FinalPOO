@@ -42,9 +42,13 @@ namespace CONTROLADOR
         }
 
         //Devuelve una lista de clientes (todos los que tiene la empresa)
-        public List<Cliente> GetClientes()
+        public List<ClienteDataGrid> GetClientes()
         {
-            return EmpresaContext.GetInstancia().GetContainer.Clientes.ToList();
+            List<ClienteDataGrid> listaClientes = new List<ClienteDataGrid>();
+            foreach (var cliente in EmpresaContext.GetInstancia().GetContainer.Clientes)
+                listaClientes.Add(new ClienteDataGrid(cliente));
+
+            return listaClientes;
         }
 
         #endregion Clientes
@@ -69,9 +73,13 @@ namespace CONTROLADOR
         }
 
         //Devuelve una lista de empleados
-        public List<Empleado> GetEmpleados()
+        public List<EmpleadoDataGrid> GetEmpleados()
         {
-            return EmpresaContext.GetInstancia().GetContainer.Empleados.ToList();
+            List<EmpleadoDataGrid> listaEmpleados = new List<EmpleadoDataGrid>();
+            foreach (var empleado in EmpresaContext.GetInstancia().GetContainer.Empleados) 
+                listaEmpleados.Add(new EmpleadoDataGrid(empleado));
+            
+            return listaEmpleados;
         }
 
         public List<Categoria> GetCategorias()

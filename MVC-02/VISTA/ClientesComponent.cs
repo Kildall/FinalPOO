@@ -14,7 +14,7 @@ namespace VISTA
 {
     public partial class ClientesComponent : UserControl
     {
-        private List<Cliente> ListaClientes = new List<Cliente>();
+        private List<ClienteDataGrid> ListaClientes = new List<ClienteDataGrid>();
         int indice;
         public ClientesComponent()
         {
@@ -28,7 +28,6 @@ namespace VISTA
             dvgClientes.DataSource = null;
             ListaClientes = ControladorEmpresa.GetInstancia().GetClientes();
             dvgClientes.DataSource = ListaClientes;
-            dvgClientes.Columns.Remove("Empresa");
         }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)    //Agrega un cliente
@@ -56,14 +55,14 @@ namespace VISTA
             }       
         }
 
-        private Cliente ClienteSeleccionado()
+        private ClienteDataGrid ClienteSeleccionado()
         {
             return ListaClientes.ElementAt(indice);
         }
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            Cliente cliente = ClienteSeleccionado();
+            Cliente cliente = ClienteSeleccionado().GetCliente();
             cliente.nombre = txtNombreCliente.Text;
             cliente.edad = nudEdadCliente.Text;
             cliente.telefono = txtTelCliente.Text;
@@ -74,7 +73,7 @@ namespace VISTA
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
-            Cliente cliente = ClienteSeleccionado();
+            Cliente cliente = ClienteSeleccionado().GetCliente();
      
             ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
             ListarClientes();

@@ -41,9 +41,9 @@
             this.lblLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.Location = new System.Drawing.Point(185, 9);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(163, 39);
+            this.lblLogin.Size = new System.Drawing.Size(188, 39);
             this.lblLogin.TabIndex = 0;
-            this.lblLogin.Text = "Welcome";
+            this.lblLogin.Text = "Bienvenido";
             // 
             // groupBox1
             // 
@@ -61,7 +61,7 @@
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(156, 50);
             this.btnRegister.TabIndex = 1;
-            this.btnRegister.Text = "Register";
+            this.btnRegister.Text = "Registrarse";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
@@ -83,7 +83,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblLogin);
             this.Name = "frmInicio";
-            this.Text = "frmLogin";
+            this.Text = "Inicio";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
