@@ -14,7 +14,7 @@ namespace VISTA
 {
     public partial class EmpleadosComponent : UserControl
     {
-        List<Empleado> ListaEmpleados = new List<Empleado>();
+        List<EmpleadoDataGrid> ListaEmpleados = new List<EmpleadoDataGrid>();
         List<Categoria> ListaCategorias = new List<Categoria>();
         int categoriaSeleccionada; //Indice
         int indiceEmpleado;
@@ -33,12 +33,10 @@ namespace VISTA
             dgvEmpleados.DataSource = null;
             ListaEmpleados = ControladorEmpresa.GetInstancia().GetEmpleados();
             dgvEmpleados.DataSource = ListaEmpleados;
-            dgvEmpleados.Columns.Remove("Empresa");
-            dgvEmpleados.Columns.Remove("Superior");
-            dgvEmpleados.Columns.Remove("Subordinados");
         }
 
-        public void MostrarCategorias() //Muestra las categorias en el ComboBox
+        //Muestra las categorias en el ComboBox
+        public void MostrarCategorias() 
         {
             ListaCategorias = ControladorEmpresa.GetInstancia().GetCategorias();
 
@@ -46,14 +44,7 @@ namespace VISTA
             foreach (Categoria x in ListaCategorias)    // Agrego las categorias al ComboBox
             {
                 cbxCategoria.Items.Add(x.nombre);
-            }      
-        }
-
-
-        //Asigna la categoria seleccionada
-        private void cbxCategoria_SelectionChangeCommitted(object sender, EventArgs e) 
-        {
-            categoriaSeleccionada = cbxCategoria.SelectedIndex;
+            }
         }
 
         //Asigna el empleado seleccionado en el dgv
@@ -65,7 +56,7 @@ namespace VISTA
             }
         }
 
-        public Empleado EmpleadoSeleccionado() //Devuelve el Empleado seleccionado en el dgv
+        public EmpleadoDataGrid EmpleadoSeleccionado() //Devuelve el Empleado seleccionado en el dgv
         {
             return ListaEmpleados.ElementAt(indiceEmpleado);
         }
@@ -90,12 +81,12 @@ namespace VISTA
         //MODIFICAR EMPLEADO
         private void btnModificarEmpl_Click(object sender, EventArgs e)
         {
-            Empleado empleado = EmpleadoSeleccionado();
+            Empleado empleado = EmpleadoSeleccionado().GetEmpleado();
             empleado.nombre = txtNombreEmp.Text;
             empleado.edad = nudEdadEmp.Text;
             empleado.salario = txtSalarioEmp.Text;
 
-            empleado.Categoria = ListaCategorias.ElementAt(categoriaSeleccionada);
+            empleado.Categoria = ListaCategorias.ElementAt(cbxCategoria.SelectedIndex);
 
             ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado);
             ListarEmpleados();
@@ -104,7 +95,7 @@ namespace VISTA
         //ELIMINAR EMPLEADO
         private void btnEliminarEmpl_Click(object sender, EventArgs e)
         {
-            Empleado empleado = EmpleadoSeleccionado();
+            Empleado empleado = EmpleadoSeleccionado().GetEmpleado();
 
             ControladorEmpresa.GetInstancia().EliminarEmpleado(empleado);
             ListarEmpleados();
@@ -112,7 +103,7 @@ namespace VISTA
 
         private void dgvEmpleados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmJerarquia jerarquia = new frmJerarquia(ListaEmpleados[e.RowIndex]);
+            frmJerarquia jerarquia = new frmJerarquia(ListaEmpleados[e.RowIndex].GetEmpleado());
             jerarquia.Show();
         }
     }

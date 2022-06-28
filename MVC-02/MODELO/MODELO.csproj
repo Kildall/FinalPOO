@@ -56,6 +56,8 @@
     <Compile Include="Categoria.cs">
       <DependentUpon>EmpresaDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClienteDataGrid.cs" />
+    <Compile Include="EmpleadoDataGrid.cs" />
     <Compile Include="EmpresaContext.cs" />
     <Compile Include="Cliente.cs">
       <DependentUpon>EmpresaDB.tt</DependentUpon>
@@ -118,6 +120,8 @@
       <LastGenOutput>EmpresaDB.cs</LastGenOutput>
       <DependentUpon>EmpresaDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Generar Bases de Datos.sql" />
+    <Content Include="Seguridad\Seguridad.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

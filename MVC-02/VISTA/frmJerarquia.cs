@@ -15,8 +15,8 @@ namespace VISTA
     public partial class frmJerarquia : Form
     {
         private Empleado _empleado;
-        List<Empleado> EmpleadosSuperiores;
-        List<Empleado> EmpleadosSubordinados;
+        List<EmpleadoDataGrid> EmpleadosSuperiores;
+        List<EmpleadoDataGrid> EmpleadosSubordinados;
 
 
         public frmJerarquia(Empleado empleado)
@@ -26,34 +26,43 @@ namespace VISTA
             ActualizarLista();
         }
 
+        private List<EmpleadoDataGrid> GetEmpleadosDataGrids(IEnumerable<Empleado> empleados)
+        {
+            List<EmpleadoDataGrid> listaEmpleados = new List<EmpleadoDataGrid>();
+            foreach (var empleado in empleados)
+                listaEmpleados.Add(new EmpleadoDataGrid(empleado));
+
+            return listaEmpleados;
+        }
+
         private void ActualizarLista()
         {
             dgvSubordinados.DataSource = null;
             dgvSuperiores.DataSource = null;
             lbEmpleadosSubordinados.DataSource = null;
             lbEmpleadosSuperiores.DataSource = null;
-            dgvSuperiores.DataSource = _empleado.Superior.ToList();
-            dgvSubordinados.DataSource = _empleado.Subordinados.ToList();
+            dgvSuperiores.DataSource = GetEmpleadosDataGrids(_empleado.Superior);
+            dgvSubordinados.DataSource = GetEmpleadosDataGrids(_empleado.Subordinados);
 
             EmpleadosSuperiores = ControladorEmpresa.GetInstancia().GetEmpleados()
                 .Where(x => 
-                !_empleado.Superior.Contains(x) && 
-                _empleado != x &&
-                !_empleado.Subordinados.Contains(x))
+                !_empleado.Superior.Contains(x.GetEmpleado()) && 
+                _empleado != x.GetEmpleado() &&
+                !_empleado.Subordinados.Contains(x.GetEmpleado()))
                 .ToList();
 
             EmpleadosSubordinados = ControladorEmpresa.GetInstancia().GetEmpleados()
                 .Where(x => 
-                !_empleado.Subordinados.Contains(x) &&
-                _empleado != x &&
-                !_empleado.Superior.Contains(x))
+                !_empleado.Subordinados.Contains(x.GetEmpleado()) &&
+                _empleado != x.GetEmpleado() &&
+                !_empleado.Superior.Contains(x.GetEmpleado()))
                 .ToList();
 
             //Lista de empleados en la seccion de subordinados, la lleno con los empleados que todavia no son subordinados de este caso
-            lbEmpleadosSubordinados.DataSource = EmpleadosSubordinados.Select(x => x.nombre).ToList();
+            lbEmpleadosSubordinados.DataSource = EmpleadosSubordinados.Select(x => x.Nombre).ToList();
 
             //Lista de empleados en la seccion de superiores, la lleno con los empleados que todavia no son superiores de este caso
-            lbEmpleadosSuperiores.DataSource = EmpleadosSuperiores.Select(x => x.nombre).ToList();
+            lbEmpleadosSuperiores.DataSource = EmpleadosSuperiores.Select(x => x.Nombre).ToList();
 
         }
 
@@ -61,7 +70,7 @@ namespace VISTA
         {
             if (lbEmpleadosSuperiores.SelectedItems.Count == 0 || lbEmpleadosSuperiores.SelectedItems[0] == null) return;
 
-            _empleado.Superior.Add(EmpleadosSuperiores[lbEmpleadosSuperiores.SelectedIndex]);
+            _empleado.Superior.Add(EmpleadosSuperiores[lbEmpleadosSuperiores.SelectedIndex].GetEmpleado());
             ControladorEmpresa.GetInstancia().ModificarEmpleado(_empleado);
             ActualizarLista();
         }
@@ -79,7 +88,7 @@ namespace VISTA
         {
             if (lbEmpleadosSubordinados.SelectedItems.Count == 0 || lbEmpleadosSubordinados.SelectedItems[0] == null) return;
 
-            _empleado.Subordinados.Add(EmpleadosSubordinados[lbEmpleadosSubordinados.SelectedIndex]);
+            _empleado.Subordinados.Add(EmpleadosSubordinados[lbEmpleadosSubordinados.SelectedIndex].GetEmpleado());
             ControladorEmpresa.GetInstancia().ModificarEmpleado(_empleado);
             ActualizarLista();
 
