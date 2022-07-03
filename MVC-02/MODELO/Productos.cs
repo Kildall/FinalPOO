@@ -7,21 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MODELO.Seguridad
+namespace MODELO
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Productos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Productos()
+        {
+            this.Ventas = new HashSet<Ventas>();
+        }
+    
         public int Id { get; set; }
         public string nombre { get; set; }
-        public string dni { get; set; }
-        public string apellido { get; set; }
-        public string mail { get; set; }
-        public string contraseña { get; set; }
-        public int empresa_id { get; set; }
+        public string cantidad { get; set; }
+        public string precio { get; set; }
     
-        public virtual Perfil Perfil { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ventas> Ventas { get; set; }
+        public virtual Empresa Empresa { get; set; }
     }
 }

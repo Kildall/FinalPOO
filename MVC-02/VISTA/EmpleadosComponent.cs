@@ -73,7 +73,7 @@ namespace VISTA
 
             empleado.Categoria = ListaCategorias.ElementAt(categoriaSeleccionada);
 
-            empleado.Empresa = ControladorEmpresa.GetInstancia().GetEmpresa(); //Asigna la Empresa al empleado            
+            empleado.Empresa = ControladorEmpresa.GetInstancia().GetEmpresaFromSession(); //Asigna la Empresa al empleado            
             ControladorEmpresa.GetInstancia().AgregarEmpleado(empleado);
             ListarEmpleados();
         }

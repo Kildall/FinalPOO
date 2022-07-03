@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CONTROLADOR;
 
 namespace VISTA
 {
@@ -15,8 +16,32 @@ namespace VISTA
         public frmMenu()
         {
             InitializeComponent();
-            panelMenu.Controls.Clear();
-            panelMenu.Controls.Add(new EmpleadosComponent());
+            switch (ControladorSeguridad.GetInstancia().usuarioLogueado.Perfil.nombre)
+            {
+                case "Empleado":
+                    //Deshabilitar o esconder todo menos clientes
+                    break;
+
+                case "Gerente":
+                    //Deshabilitar o esconder jerarquia
+                    break;
+
+                case "Cliente":
+                    //Deshabilitar o esconder todo menos productos
+                    break;
+
+                case "Dueño":
+                    //Mostrarle todo
+                    break;
+
+                case "Nadie":
+                    break;
+
+                default:
+                    throw new Exception("Perfil desconocido");
+            }
+            //panelMenu.Controls.Clear();
+            //panelMenu.Controls.Add(new EmpleadosComponent());
         }
 
         private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)

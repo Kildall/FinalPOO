@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CONTROLADOR;
 
 namespace VISTA
 {
@@ -19,6 +20,29 @@ namespace VISTA
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            int respuesta = ControladorSeguridad.GetInstancia().Login(tbEmail.Text, tbContraseña.Text);
+            switch (respuesta)
+            {
+                case 0:
+                    //Pasar al formulario correcto. (cerrar este y abrir el que corresponde)
+                    break;
+
+                case 20:
+                    //Mostrar error email no existe. (hay un label de error)
+                    break;
+
+                case 40:
+                    //Mostrar error contraseña incorrecta (hay un label de error)
+                    break;
+
+                default:
+                    throw new Exception("Codigo de respuesta invalido.");
+            }
 
         }
     }

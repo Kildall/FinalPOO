@@ -54,6 +54,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="empresa_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UsuarioSet">
     <Key>
@@ -65,6 +66,7 @@
     <Property Name="apellido" Type="nvarchar(max)" Nullable="false" />
     <Property Name="mail" Type="nvarchar(max)" Nullable="false" />
     <Property Name="contraseña" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="empresa_id" Type="int" Nullable="false" />
     <Property Name="Perfil_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PerfilFormulario">
@@ -191,6 +193,7 @@
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Usuarios" Relationship="Seguridad.UsuarioPerfil" FromRole="Perfil" ToRole="Usuario" />
           <NavigationProperty Name="Formularios" Relationship="Seguridad.PerfilFormulario" FromRole="Perfil" ToRole="Formulario" />
+          <Property Name="empresa_id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -203,6 +206,7 @@
           <Property Name="mail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="contraseña" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Perfil" Relationship="Seguridad.UsuarioPerfil" FromRole="Usuario" ToRole="Perfil" />
+          <Property Name="empresa_id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="UsuarioPerfil">
           <End Type="Seguridad.Usuario" Role="Usuario" Multiplicity="*" />
@@ -244,6 +248,7 @@
         <MappingFragment StoreEntitySet="PerfilSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="empresa_id" ColumnName="empresa_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -256,6 +261,7 @@
           <ScalarProperty Name="apellido" ColumnName="apellido" />
           <ScalarProperty Name="mail" ColumnName="mail" />
           <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="empresa_id" ColumnName="empresa_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -297,7 +303,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>

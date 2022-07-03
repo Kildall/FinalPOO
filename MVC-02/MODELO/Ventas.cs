@@ -12,27 +12,23 @@ namespace MODELO
     using System;
     using System.Collections.Generic;
     
-    public partial class Empresa
+    public partial class Ventas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empresa()
+        public Ventas()
         {
-            this.Empleados = new HashSet<Empleado>();
-            this.Categoria = new HashSet<Categoria>();
             this.Productos = new HashSet<Productos>();
-            this.Ventas = new HashSet<Ventas>();
+            this.Empleado = new HashSet<Empleado>();
         }
     
         public int Id { get; set; }
-        public string nombre { get; set; }
+        public string total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleado> Empleados { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Categoria> Categoria { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Productos> Productos { get; set; }
+        public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ventas> Ventas { get; set; }
+        public virtual ICollection<Empleado> Empleado { get; set; }
+        public virtual Empresa Empresa { get; set; }
     }
 }

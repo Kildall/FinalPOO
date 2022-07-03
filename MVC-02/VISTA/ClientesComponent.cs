@@ -40,7 +40,7 @@ namespace VISTA
             };
 
             //Asigna la empresa al cliente
-            cliente.Empresa = ControladorEmpresa.GetInstancia().GetEmpresa();
+            cliente.Empresa = ControladorEmpresa.GetInstancia().GetEmpresaFromSession();
 
             ControladorEmpresa.GetInstancia().AgregarCliente(cliente);
             ListarClientes();
