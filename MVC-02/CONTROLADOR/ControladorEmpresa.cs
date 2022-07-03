@@ -89,15 +89,25 @@ namespace CONTROLADOR
 
         #endregion Empleados
 
-        public Empresa GetEmpresa()
+
+
+        public List<EmpresaDataGrid> GetEmpresas()
         {
-            //Devuelve la primera empresa (indice 1), osea la unica empresa}
-            Empresa resultado = EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == 1);
-            if (resultado == null){
-                EmpresaContext.GetInstancia().GetContainer.Empresa.Add(new Empresa() { nombre = "franco se la come" });
-                EmpresaContext.GetInstancia().GetContainer.SaveChanges();
-            }
-            return EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == 1);
+            List<EmpresaDataGrid> listaEmpresas = new List<EmpresaDataGrid>();
+            foreach (var empresas in EmpresaContext.GetInstancia().GetContainer.Empresa)
+                listaEmpresas.Add(new EmpresaDataGrid(empresas));
+
+            return listaEmpresas;
+        }
+
+        public Empresa GetEmpresaFromSession()
+        {
+            return EmpresaContext.GetInstancia().GetContainer.Empresa.First(x => x.Id == ControladorSeguridad.GetInstancia().usuarioLogueado.empresa_id);
+        }
+
+        public Empresa GetEmpresaById(int id)
+        {
+            return EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == id);
         }
     }
 }

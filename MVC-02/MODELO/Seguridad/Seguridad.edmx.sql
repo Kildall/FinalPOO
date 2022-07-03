@@ -2,12 +2,11 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/26/2022 21:30:30
--- Generated from EDMX file: C:\Users\Pedro\Desktop\Programacion\POO\FinalPOO\MVC-02\MODELO\Seguridad\Seguridad.edmx
+-- Date Created: 07/03/2022 02:24:42
+-- Generated from EDMX file: C:\Users\Kildall\Desktop\Tets\FinalPOO\MVC-02\MODELO\Seguridad\Seguridad.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
-IF DB_ID('Seguridad') IS NULL EXECUTE(N'CREATE DATABASE Seguridad');
 GO
 USE [Seguridad];
 GO
@@ -79,7 +78,8 @@ GO
 -- Creating table 'PerfilSet'
 CREATE TABLE [dbo].[PerfilSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL
+    [nombre] nvarchar(max)  NOT NULL,
+    [empresa_id] int  NOT NULL
 );
 GO
 
@@ -91,6 +91,7 @@ CREATE TABLE [dbo].[UsuarioSet] (
     [apellido] nvarchar(max)  NOT NULL,
     [mail] nvarchar(max)  NOT NULL,
     [contraseña] nvarchar(max)  NOT NULL,
+    [empresa_id] int  NOT NULL,
     [Perfil_Id] int  NOT NULL
 );
 GO
