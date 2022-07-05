@@ -35,8 +35,8 @@
             this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelMenu = new System.Windows.Forms.Panel();
             this.perfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelMenu = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +89,7 @@
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
             this.productosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.productosToolStripMenuItem.Text = "Productos";
+            this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
@@ -97,19 +98,19 @@
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
-            // panelMenu
-            // 
-            this.panelMenu.Location = new System.Drawing.Point(0, 27);
-            this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(990, 529);
-            this.panelMenu.TabIndex = 1;
-            // 
             // perfilesToolStripMenuItem
             // 
             this.perfilesToolStripMenuItem.Name = "perfilesToolStripMenuItem";
             this.perfilesToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.perfilesToolStripMenuItem.Text = "Perfiles";
             this.perfilesToolStripMenuItem.Click += new System.EventHandler(this.perfilesToolStripMenuItem_Click);
+            // 
+            // panelMenu
+            // 
+            this.panelMenu.Location = new System.Drawing.Point(0, 27);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(990, 529);
+            this.panelMenu.TabIndex = 1;
             // 
             // frmMenu
             // 

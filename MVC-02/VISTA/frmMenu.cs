@@ -67,5 +67,11 @@ namespace VISTA
             panelMenu.Controls.Clear();
             panelMenu.Controls.Add(new PerfilesComponent());
         }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelMenu.Controls.Clear();
+            panelMenu.Controls.Add(new ProductosComponent());
+        }
     }
 }

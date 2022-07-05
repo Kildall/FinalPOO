@@ -13,6 +13,7 @@ namespace VISTA
 {
     public partial class frmLogin : Form
     {
+        public bool successLogin = false;
         public frmLogin()
         {
             InitializeComponent();
@@ -30,6 +31,9 @@ namespace VISTA
             {
                 case 0:
                     //Pasar al formulario correcto. (cerrar este y abrir el que corresponde)
+                    successLogin = true;
+                    this.Close();
+                    
                     break;
 
                 case 20:

@@ -12,6 +12,7 @@ namespace VISTA
 {
     public partial class frmInicio : Form
     {
+        public bool successLogin = false;
         public frmInicio()
         {
             InitializeComponent();
@@ -22,9 +23,23 @@ namespace VISTA
             frmLogin frmLogin = new frmLogin();
             frmLogin.Show();
             this.Hide();
-
             frmLogin.FormClosed += ShowInicio;
+            frmLogin.FormClosed += ShowMenu;
 
+
+        }
+
+        private void ShowMenu(object sender, EventArgs e)
+        {
+            //((frmLogin)sender).successLogin (otra forma menos intuitiva)
+            if ((sender as frmLogin).successLogin == true)
+            {
+                frmMenu frmMenu = new frmMenu();
+                frmMenu.Show();
+                successLogin = true;
+                this.Close();
+                
+            }
         }
 
         private void ShowInicio(object sender, EventArgs e)

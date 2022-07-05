@@ -14,9 +14,16 @@ namespace VISTA
         [STAThread]
         static void Main()
         {
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmInicio());
+            frmInicio frmInicio = new frmInicio();
+            Application.Run(frmInicio);
+            if (frmInicio.successLogin)
+            {
+                Application.Run(new frmMenu());
+            }
+
         }
     }
 }
