@@ -77,6 +77,7 @@
             this.jerarquiaToolStripMenuItem.Name = "jerarquiaToolStripMenuItem";
             this.jerarquiaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.jerarquiaToolStripMenuItem.Text = "Jerarquia";
+            this.jerarquiaToolStripMenuItem.Click += new System.EventHandler(this.jerarquiaToolStripMenuItem_Click);
             // 
             // ventasToolStripMenuItem
             // 

@@ -130,11 +130,11 @@
     <Compile Include="UsuariosComponent.Designer.cs">
       <DependentUpon>UsuariosComponent.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentasComponent.cs">
+    <Compile Include="JerarquiaComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="VentasComponent.Designer.cs">
-      <DependentUpon>VentasComponent.cs</DependentUpon>
+    <Compile Include="JerarquiaComponent.Designer.cs">
+      <DependentUpon>JerarquiaComponent.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ClientesComponent.resx">
       <DependentUpon>ClientesComponent.cs</DependentUpon>
@@ -180,6 +180,9 @@
     </Compile>
     <EmbeddedResource Include="UsuariosComponent.resx">
       <DependentUpon>UsuariosComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JerarquiaComponent.resx">
+      <DependentUpon>JerarquiaComponent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
