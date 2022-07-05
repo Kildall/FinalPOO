@@ -98,8 +98,32 @@
     <Compile Include="frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSeleccionarFormulario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarFormulario.Designer.cs">
+      <DependentUpon>frmSeleccionarFormulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeleccionarPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarPermisos.Designer.cs">
+      <DependentUpon>frmSeleccionarPermisos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilesComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PerfilesComponent.Designer.cs">
+      <DependentUpon>PerfilesComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuariosComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsuariosComponent.Designer.cs">
+      <DependentUpon>UsuariosComponent.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClientesComponent.resx">
       <DependentUpon>ClientesComponent.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +145,15 @@
     <EmbeddedResource Include="frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarFormulario.resx">
+      <DependentUpon>frmSeleccionarFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarPermisos.resx">
+      <DependentUpon>frmSeleccionarPermisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilesComponent.resx">
+      <DependentUpon>PerfilesComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -130,6 +163,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UsuariosComponent.resx">
+      <DependentUpon>UsuariosComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
