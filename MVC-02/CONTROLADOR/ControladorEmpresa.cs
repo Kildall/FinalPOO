@@ -102,12 +102,29 @@ namespace CONTROLADOR
 
         public Empresa GetEmpresaFromSession()
         {
-            return EmpresaContext.GetInstancia().GetContainer.Empresa.First(x => x.Id == ControladorSeguridad.GetInstancia().usuarioLogueado.empresa_id);
+            var empresa_id = ControladorSeguridad.GetInstancia().usuarioLogueado.empresa_id;
+            return EmpresaContext.GetInstancia().GetContainer.Empresa.First(x => x.Id == empresa_id);
+            
         }
 
         public Empresa GetEmpresaById(int id)
         {
             return EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<ProductoDataGrid> GetProductos()
+        {
+            List<ProductoDataGrid> listaProductos = new List<ProductoDataGrid>();
+            foreach(var producto in EmpresaContext.GetInstancia().GetContainer.Productos.ToList())
+                listaProductos.Add(new ProductoDataGrid(producto));
+
+            return listaProductos;
+        }
+
+        public void AgregarProducto(Productos producto)
+        {
+            EmpresaContext.GetInstancia().GetContainer.Productos.Add(producto);
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
     }
 }

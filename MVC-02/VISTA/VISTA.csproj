@@ -116,6 +116,12 @@
     <Compile Include="PerfilesComponent.Designer.cs">
       <DependentUpon>PerfilesComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductosComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductosComponent.Designer.cs">
+      <DependentUpon>ProductosComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuariosComponent.cs">
@@ -123,6 +129,12 @@
     </Compile>
     <Compile Include="UsuariosComponent.Designer.cs">
       <DependentUpon>UsuariosComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentasComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VentasComponent.Designer.cs">
+      <DependentUpon>VentasComponent.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ClientesComponent.resx">
       <DependentUpon>ClientesComponent.cs</DependentUpon>
@@ -153,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PerfilesComponent.resx">
       <DependentUpon>PerfilesComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductosComponent.resx">
+      <DependentUpon>ProductosComponent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

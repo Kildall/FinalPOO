@@ -84,6 +84,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmpresaDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ProductoDataGrid.cs" />
     <Compile Include="Productos.cs">
       <DependentUpon>EmpresaDB.tt</DependentUpon>
     </Compile>
