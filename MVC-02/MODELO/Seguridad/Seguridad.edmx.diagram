@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="Seguridad.Usuario" Width="1.5" PointX="0.625" PointY="1.625" />
         <AssociationConnector Association="Seguridad.UsuarioPerfil" />
         <AssociationConnector Association="Seguridad.PerfilFormulario" />
+        <AssociationConnector Association="Seguridad.PerfilPermiso" />
         <AssociationConnector Association="Seguridad.FormularioPermiso" />
       </Diagram>
     </edmx:Diagrams>

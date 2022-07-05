@@ -16,30 +16,30 @@ namespace VISTA
         public frmMenu()
         {
             InitializeComponent();
-            switch (ControladorSeguridad.GetInstancia().usuarioLogueado.Perfil.nombre)
-            {
-                case "Empleado":
-                    //Deshabilitar o esconder todo menos clientes
-                    break;
+            //switch (ControladorSeguridad.GetInstancia().usuarioLogueado.Perfil.nombre)
+            //{
+            //    case "Empleado":
+            //        //Deshabilitar o esconder todo menos clientes
+            //        break;
 
-                case "Gerente":
-                    //Deshabilitar o esconder jerarquia
-                    break;
+            //    case "Gerente":
+            //        //Deshabilitar o esconder jerarquia
+            //        break;
 
-                case "Cliente":
-                    //Deshabilitar o esconder todo menos productos
-                    break;
+            //    case "Cliente":
+            //        //Deshabilitar o esconder todo menos productos
+            //        break;
 
-                case "Dueño":
-                    //Mostrarle todo
-                    break;
+            //    case "Dueño":
+            //        //Mostrarle todo
+            //        break;
 
-                case "Nadie":
-                    break;
+            //    case "Nadie":
+            //        break;
 
-                default:
-                    throw new Exception("Perfil desconocido");
-            }
+            //    default:
+            //        throw new Exception("Perfil desconocido");
+            //}
             //panelMenu.Controls.Clear();
             //panelMenu.Controls.Add(new EmpleadosComponent());
         }
@@ -54,6 +54,18 @@ namespace VISTA
         {
             panelMenu.Controls.Clear();
             panelMenu.Controls.Add(new ClientesComponent());
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelMenu.Controls.Clear();
+            panelMenu.Controls.Add(new UsuariosComponent());
+        }
+
+        private void perfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelMenu.Controls.Clear();
+            panelMenu.Controls.Add(new PerfilesComponent());
         }
     }
 }

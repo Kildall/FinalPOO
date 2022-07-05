@@ -94,9 +94,11 @@
     <Compile Include="Seguridad\Perfil.cs">
       <DependentUpon>Seguridad.tt</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\PerfilDataGrid.cs" />
     <Compile Include="Seguridad\Permiso.cs">
       <DependentUpon>Seguridad.tt</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\PermisoDataGrid.cs" />
     <Compile Include="Seguridad\Seguridad.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -116,6 +118,7 @@
     <Compile Include="Seguridad\Usuario.cs">
       <DependentUpon>Seguridad.tt</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\UsuarioDataGrid.cs" />
     <Compile Include="Ventas.cs">
       <DependentUpon>EmpresaDB.tt</DependentUpon>
     </Compile>
