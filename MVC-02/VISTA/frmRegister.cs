@@ -41,15 +41,26 @@ namespace VISTA
             {
                 case 10:
                     //Error el mail ya existe (hay un label de error para esto)
+                    lblError.Text = "El mail ingresado ya existe.";
+                    lblError.Visible = true;
+                    tbEmail.BackColor = Color.Red;
                     break;
                 case 0:
                     //Mostrar mensaje de registro exitoso
+                    MessageBox.Show("El usuario se ha registrado correctamente.");
                     //Mandar a la pantalla de logueo o el menu de inicio
                     //(Para elegir registro o para loguearse, no hay diferencia para mi)
+                    this.Close();
+
                     break;
                 default:
                     throw new Exception("Codigo de respuesta invalido.");
             }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
