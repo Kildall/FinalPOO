@@ -32,8 +32,6 @@
             this.gbxEmpleados = new System.Windows.Forms.GroupBox();
             this.cbxCategoria = new System.Windows.Forms.ComboBox();
             this.lblCategoria = new System.Windows.Forms.Label();
-            this.btnMostarSub = new System.Windows.Forms.Button();
-            this.btnAgregarSub = new System.Windows.Forms.Button();
             this.btnEliminarEmpl = new System.Windows.Forms.Button();
             this.btnModificarEmpl = new System.Windows.Forms.Button();
             this.btnAgregarEmpl = new System.Windows.Forms.Button();
@@ -43,6 +41,7 @@
             this.lblSalario = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.gbxEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadEmp)).BeginInit();
@@ -67,10 +66,9 @@
             // 
             // gbxEmpleados
             // 
+            this.gbxEmpleados.Controls.Add(this.lbl1);
             this.gbxEmpleados.Controls.Add(this.cbxCategoria);
             this.gbxEmpleados.Controls.Add(this.lblCategoria);
-            this.gbxEmpleados.Controls.Add(this.btnMostarSub);
-            this.gbxEmpleados.Controls.Add(this.btnAgregarSub);
             this.gbxEmpleados.Controls.Add(this.btnEliminarEmpl);
             this.gbxEmpleados.Controls.Add(this.btnModificarEmpl);
             this.gbxEmpleados.Controls.Add(this.btnAgregarEmpl);
@@ -103,24 +101,6 @@
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 11;
             this.lblCategoria.Text = "Categoria";
-            // 
-            // btnMostarSub
-            // 
-            this.btnMostarSub.Location = new System.Drawing.Point(162, 241);
-            this.btnMostarSub.Name = "btnMostarSub";
-            this.btnMostarSub.Size = new System.Drawing.Size(93, 38);
-            this.btnMostarSub.TabIndex = 10;
-            this.btnMostarSub.Text = "Mostar Subordinados";
-            this.btnMostarSub.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregarSub
-            // 
-            this.btnAgregarSub.Location = new System.Drawing.Point(63, 241);
-            this.btnAgregarSub.Name = "btnAgregarSub";
-            this.btnAgregarSub.Size = new System.Drawing.Size(93, 38);
-            this.btnAgregarSub.TabIndex = 9;
-            this.btnAgregarSub.Text = "Agregar Subordinados";
-            this.btnAgregarSub.UseVisualStyleBackColor = true;
             // 
             // btnEliminarEmpl
             // 
@@ -205,6 +185,15 @@
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Location = new System.Drawing.Point(6, 259);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(306, 13);
+            this.lbl1.TabIndex = 13;
+            this.lbl1.Text = "*Haga doble clic en un empleado para modificar sus relaciones.";
+            // 
             // EmpleadosComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,8 +215,6 @@
         private System.Windows.Forms.DataGridView dgvEmpleados;
         private System.Windows.Forms.GroupBox gbxEmpleados;
         private System.Windows.Forms.Label lblCategoria;
-        private System.Windows.Forms.Button btnMostarSub;
-        private System.Windows.Forms.Button btnAgregarSub;
         private System.Windows.Forms.Button btnEliminarEmpl;
         private System.Windows.Forms.Button btnModificarEmpl;
         private System.Windows.Forms.Button btnAgregarEmpl;
@@ -238,5 +225,6 @@
         private System.Windows.Forms.Label lblEdad;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.ComboBox cbxCategoria;
+        private System.Windows.Forms.Label lbl1;
     }
 }

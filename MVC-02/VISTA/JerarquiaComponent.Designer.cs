@@ -34,17 +34,17 @@
             this.btnAgregarSuperior = new System.Windows.Forms.Button();
             this.dgvSuperiores = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbEmpleadosSuperiores = new System.Windows.Forms.ListBox();
+            this.lbEmpleados = new System.Windows.Forms.ListBox();
             this.btnEliminarSubordinado = new System.Windows.Forms.Button();
             this.btnAgregarSubordinado = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSubordinados = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvEmpleados = new System.Windows.Forms.DataGridView();
             this.lbl1 = new System.Windows.Forms.Label();
+            this.dgvEmpleados = new System.Windows.Forms.DataGridView();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuperiores)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSubordinados)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.SuspendLayout();
@@ -79,6 +79,7 @@
             this.btnEliminarSuperior.TabIndex = 2;
             this.btnEliminarSuperior.Text = "Eliminar Superior";
             this.btnEliminarSuperior.UseVisualStyleBackColor = true;
+            this.btnEliminarSuperior.Click += new System.EventHandler(this.btnEliminarSuperior_Click);
             // 
             // btnAgregarSuperior
             // 
@@ -88,6 +89,7 @@
             this.btnAgregarSuperior.TabIndex = 1;
             this.btnAgregarSuperior.Text = "Agregar Superior";
             this.btnAgregarSuperior.UseVisualStyleBackColor = true;
+            this.btnAgregarSuperior.Click += new System.EventHandler(this.btnAgregarSuperior_Click);
             // 
             // dgvSuperiores
             // 
@@ -100,24 +102,24 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox1.Controls.Add(this.lbEmpleadosSuperiores);
+            this.groupBox1.Controls.Add(this.lbEmpleados);
             this.groupBox1.Controls.Add(this.btnEliminarSubordinado);
             this.groupBox1.Controls.Add(this.btnAgregarSubordinado);
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dgvSubordinados);
             this.groupBox1.Location = new System.Drawing.Point(375, 273);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(601, 244);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Superior";
+            this.groupBox1.Text = "Subordinados";
             // 
-            // lbEmpleadosSuperiores
+            // lbEmpleados
             // 
-            this.lbEmpleadosSuperiores.FormattingEnabled = true;
-            this.lbEmpleadosSuperiores.Location = new System.Drawing.Point(54, 19);
-            this.lbEmpleadosSuperiores.Name = "lbEmpleadosSuperiores";
-            this.lbEmpleadosSuperiores.Size = new System.Drawing.Size(118, 186);
-            this.lbEmpleadosSuperiores.TabIndex = 6;
+            this.lbEmpleados.FormattingEnabled = true;
+            this.lbEmpleados.Location = new System.Drawing.Point(54, 19);
+            this.lbEmpleados.Name = "lbEmpleados";
+            this.lbEmpleados.Size = new System.Drawing.Size(118, 186);
+            this.lbEmpleados.TabIndex = 6;
             // 
             // btnEliminarSubordinado
             // 
@@ -125,8 +127,9 @@
             this.btnEliminarSubordinado.Name = "btnEliminarSubordinado";
             this.btnEliminarSubordinado.Size = new System.Drawing.Size(118, 23);
             this.btnEliminarSubordinado.TabIndex = 2;
-            this.btnEliminarSubordinado.Text = "Eliminar Superior";
+            this.btnEliminarSubordinado.Text = "EliminarSubordinado";
             this.btnEliminarSubordinado.UseVisualStyleBackColor = true;
+            this.btnEliminarSubordinado.Click += new System.EventHandler(this.btnEliminarSubordinado_Click);
             // 
             // btnAgregarSubordinado
             // 
@@ -134,16 +137,17 @@
             this.btnAgregarSubordinado.Name = "btnAgregarSubordinado";
             this.btnAgregarSubordinado.Size = new System.Drawing.Size(118, 23);
             this.btnAgregarSubordinado.TabIndex = 1;
-            this.btnAgregarSubordinado.Text = "Agregar Superior";
+            this.btnAgregarSubordinado.Text = "Agregar Subordinado";
             this.btnAgregarSubordinado.UseVisualStyleBackColor = true;
+            this.btnAgregarSubordinado.Click += new System.EventHandler(this.btnAgregarSubordinado_Click);
             // 
-            // dataGridView1
+            // dgvSubordinados
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(178, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(383, 186);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvSubordinados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSubordinados.Location = new System.Drawing.Point(178, 19);
+            this.dgvSubordinados.Name = "dgvSubordinados";
+            this.dgvSubordinados.Size = new System.Drawing.Size(383, 186);
+            this.dgvSubordinados.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -156,6 +160,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Empleados";
             // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Location = new System.Drawing.Point(6, 28);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(277, 13);
+            this.lbl1.TabIndex = 8;
+            this.lbl1.Text = "*Haga clic en un empleado para modificar sus relaciones.";
+            // 
             // dgvEmpleados
             // 
             this.dgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -163,15 +176,7 @@
             this.dgvEmpleados.Name = "dgvEmpleados";
             this.dgvEmpleados.Size = new System.Drawing.Size(344, 434);
             this.dgvEmpleados.TabIndex = 7;
-            // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(6, 28);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(270, 13);
-            this.lbl1.TabIndex = 8;
-            this.lbl1.Text = "*Seleccione un empleado para modificar sus relaciones.";
+            this.dgvEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellClick);
             // 
             // JerarquiaComponent
             // 
@@ -185,7 +190,7 @@
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuperiores)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSubordinados)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
@@ -201,10 +206,10 @@
         private System.Windows.Forms.Button btnAgregarSuperior;
         private System.Windows.Forms.DataGridView dgvSuperiores;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListBox lbEmpleadosSuperiores;
+        private System.Windows.Forms.ListBox lbEmpleados;
         private System.Windows.Forms.Button btnEliminarSubordinado;
         private System.Windows.Forms.Button btnAgregarSubordinado;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSubordinados;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvEmpleados;
         private System.Windows.Forms.Label lbl1;
