@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/12/2022 13:32:03
+-- Date Created: 07/12/2022 17:38:28
 -- Generated from EDMX file: C:\Users\Pedro\Desktop\Programacion\POO\FinalPOO\MVC-02\MODELO\EmpresaDB.edmx
 -- --------------------------------------------------
 
@@ -17,8 +17,11 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_CategoriaEmpresa]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Categorias] DROP CONSTRAINT [FK_CategoriaEmpresa];
+IF OBJECT_ID(N'[dbo].[FK_EmpresaCliente]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Clientes] DROP CONSTRAINT [FK_EmpresaCliente];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EmpresaEmpleado]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Empleados] DROP CONSTRAINT [FK_EmpresaEmpleado];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EmpleadoCategoria]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Empleados] DROP CONSTRAINT [FK_EmpleadoCategoria];
@@ -29,55 +32,46 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_EmpleadoEmpleado_Empleado1]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EmpleadoEmpleado] DROP CONSTRAINT [FK_EmpleadoEmpleado_Empleado1];
 GO
-IF OBJECT_ID(N'[dbo].[FK_EmpresaCliente]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Clientes] DROP CONSTRAINT [FK_EmpresaCliente];
-GO
-IF OBJECT_ID(N'[dbo].[FK_EmpresaEmpleado]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Empleados] DROP CONSTRAINT [FK_EmpresaEmpleado];
+IF OBJECT_ID(N'[dbo].[FK_CategoriaEmpresa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Categorias] DROP CONSTRAINT [FK_CategoriaEmpresa];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ProductosEmpresa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Productos] DROP CONSTRAINT [FK_ProductosEmpresa];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ProductosVentas_Productos]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ProductosVentas] DROP CONSTRAINT [FK_ProductosVentas_Productos];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ProductosVentas_Ventas]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ProductosVentas] DROP CONSTRAINT [FK_ProductosVentas_Ventas];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VentasCliente]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Ventas] DROP CONSTRAINT [FK_VentasCliente];
-GO
 IF OBJECT_ID(N'[dbo].[FK_VentasEmpresa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Ventas] DROP CONSTRAINT [FK_VentasEmpresa];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EmpleadoVentas]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Ventas] DROP CONSTRAINT [FK_EmpleadoVentas];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClienteVentas]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Ventas] DROP CONSTRAINT [FK_ClienteVentas];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Categorias];
-GO
 IF OBJECT_ID(N'[dbo].[Clientes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Clientes];
-GO
-IF OBJECT_ID(N'[dbo].[EmpleadoEmpleado]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[EmpleadoEmpleado];
-GO
-IF OBJECT_ID(N'[dbo].[Empleados]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Empleados];
 GO
 IF OBJECT_ID(N'[dbo].[Empresa]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Empresa];
 GO
+IF OBJECT_ID(N'[dbo].[Empleados]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Empleados];
+GO
+IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Categorias];
+GO
 IF OBJECT_ID(N'[dbo].[Productos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Productos];
 GO
-IF OBJECT_ID(N'[dbo].[ProductosVentas]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ProductosVentas];
-GO
 IF OBJECT_ID(N'[dbo].[Ventas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Ventas];
+GO
+IF OBJECT_ID(N'[dbo].[EmpleadoEmpleado]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EmpleadoEmpleado];
 GO
 
 -- --------------------------------------------------
@@ -134,9 +128,11 @@ GO
 CREATE TABLE [dbo].[Ventas] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [total] nvarchar(max)  NOT NULL,
+    [cantidad] nvarchar(max)  NOT NULL,
     [Empresa_Id] int  NOT NULL,
     [Empleado_Id] int  NOT NULL,
-    [Cliente_Id] int  NOT NULL
+    [Cliente_Id] int  NOT NULL,
+    [Productos_Id] int  NOT NULL
 );
 GO
 
@@ -144,13 +140,6 @@ GO
 CREATE TABLE [dbo].[EmpleadoEmpleado] (
     [Subordinados_Id] int  NOT NULL,
     [Superior_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'ProductosVentas'
-CREATE TABLE [dbo].[ProductosVentas] (
-    [Productos_Id] int  NOT NULL,
-    [Ventas_Id] int  NOT NULL
 );
 GO
 
@@ -198,12 +187,6 @@ GO
 ALTER TABLE [dbo].[EmpleadoEmpleado]
 ADD CONSTRAINT [PK_EmpleadoEmpleado]
     PRIMARY KEY CLUSTERED ([Subordinados_Id], [Superior_Id] ASC);
-GO
-
--- Creating primary key on [Productos_Id], [Ventas_Id] in table 'ProductosVentas'
-ALTER TABLE [dbo].[ProductosVentas]
-ADD CONSTRAINT [PK_ProductosVentas]
-    PRIMARY KEY CLUSTERED ([Productos_Id], [Ventas_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -279,30 +262,6 @@ ON [dbo].[EmpleadoEmpleado]
     ([Superior_Id]);
 GO
 
--- Creating foreign key on [Productos_Id] in table 'ProductosVentas'
-ALTER TABLE [dbo].[ProductosVentas]
-ADD CONSTRAINT [FK_ProductosVentas_Productos]
-    FOREIGN KEY ([Productos_Id])
-    REFERENCES [dbo].[Productos]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Ventas_Id] in table 'ProductosVentas'
-ALTER TABLE [dbo].[ProductosVentas]
-ADD CONSTRAINT [FK_ProductosVentas_Ventas]
-    FOREIGN KEY ([Ventas_Id])
-    REFERENCES [dbo].[Ventas]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ProductosVentas_Ventas'
-CREATE INDEX [IX_FK_ProductosVentas_Ventas]
-ON [dbo].[ProductosVentas]
-    ([Ventas_Id]);
-GO
-
 -- Creating foreign key on [Empresa_Id] in table 'Categorias'
 ALTER TABLE [dbo].[Categorias]
 ADD CONSTRAINT [FK_CategoriaEmpresa]
@@ -376,6 +335,21 @@ GO
 CREATE INDEX [IX_FK_ClienteVentas]
 ON [dbo].[Ventas]
     ([Cliente_Id]);
+GO
+
+-- Creating foreign key on [Productos_Id] in table 'Ventas'
+ALTER TABLE [dbo].[Ventas]
+ADD CONSTRAINT [FK_VentasProductos]
+    FOREIGN KEY ([Productos_Id])
+    REFERENCES [dbo].[Productos]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_VentasProductos'
+CREATE INDEX [IX_FK_VentasProductos]
+ON [dbo].[Ventas]
+    ([Productos_Id]);
 GO
 
 -- --------------------------------------------------

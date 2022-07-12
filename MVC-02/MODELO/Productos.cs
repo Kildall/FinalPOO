@@ -25,8 +25,8 @@ namespace MODELO
         public string cantidad { get; set; }
         public string precio { get; set; }
     
+        public virtual Empresa Empresa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ventas> Ventas { get; set; }
-        public virtual Empresa Empresa { get; set; }
     }
 }

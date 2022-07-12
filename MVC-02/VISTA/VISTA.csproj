@@ -98,6 +98,24 @@
     <Compile Include="frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSeleccionarEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarEmpleado.Designer.cs">
+      <DependentUpon>frmSeleccionarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeleccionarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarProducto.Designer.cs">
+      <DependentUpon>frmSeleccionarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeleccionarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarCliente.Designer.cs">
+      <DependentUpon>frmSeleccionarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSeleccionarFormulario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +180,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarEmpleado.resx">
+      <DependentUpon>frmSeleccionarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarProducto.resx">
+      <DependentUpon>frmSeleccionarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarCliente.resx">
+      <DependentUpon>frmSeleccionarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSeleccionarFormulario.resx">
       <DependentUpon>frmSeleccionarFormulario.cs</DependentUpon>

@@ -12,7 +12,7 @@ namespace MODELO.Seguridad
         private static SeguridadContainer _container;
 
         private SeguridadContext() { }
-        public static SeguridadContext GetInstance()
+        public static SeguridadContext GetInstancia()
         {
             if(_instance == null)
             {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MODELO
 {
-    internal class VentaDataGrid
+    public class VentaDataGrid
     {
-        private readonly Ventas _venta;
+        private Ventas _venta;
         public string Cliente { get; set; }
         public string Empleado { get; set; }
         public string Total { get; set; }
@@ -18,13 +18,24 @@ namespace MODELO
 
         public VentaDataGrid(Ventas venta)
         {
+            if (venta == null) return;
             _venta = venta;
             Cliente = venta.Cliente.nombre;
             Empleado = venta.Empleado.nombre;
             Total = venta.total.ToString();
-            Cantidad = venta.Productos.Count.ToString();
-            Producto = venta.Productos.ToList()[0].nombre;
+            Cantidad = venta.cantidad.ToString();
+            Producto = venta.Productos.nombre;
 
+        }
+
+        public VentaDataGrid()
+        {
+
+        }
+
+        public void CrearVenta()
+        {
+            _venta = new Ventas();
         }
 
         public Ventas GetVentas()

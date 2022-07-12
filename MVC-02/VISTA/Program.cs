@@ -14,7 +14,6 @@ namespace VISTA
         [STAThread]
         static void Main()
         {
-           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             frmInicio frmInicio = new frmInicio();

@@ -14,19 +14,13 @@ namespace MODELO
     
     public partial class Ventas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ventas()
-        {
-            this.Productos = new HashSet<Productos>();
-        }
-    
         public int Id { get; set; }
         public string total { get; set; }
+        public string cantidad { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Productos> Productos { get; set; }
         public virtual Empresa Empresa { get; set; }
         public virtual Empleado Empleado { get; set; }
         public virtual Cliente Cliente { get; set; }
+        public virtual Productos Productos { get; set; }
     }
 }

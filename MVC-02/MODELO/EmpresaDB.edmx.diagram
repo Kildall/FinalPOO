@@ -15,12 +15,12 @@
         <AssociationConnector Association="EmpresaDB.EmpleadoEmpleado" />
         <EntityTypeShape EntityType="EmpresaDB.Productos" Width="1.5" PointX="8.375" PointY="3.375" />
         <EntityTypeShape EntityType="EmpresaDB.Ventas" Width="1.5" PointX="5.75" PointY="3.375" />
-        <AssociationConnector Association="EmpresaDB.ProductosVentas" />
         <AssociationConnector Association="EmpresaDB.CategoriaEmpresa" />
         <AssociationConnector Association="EmpresaDB.ProductosEmpresa" />
         <AssociationConnector Association="EmpresaDB.VentasEmpresa" />
         <AssociationConnector Association="EmpresaDB.EmpleadoVentas" />
         <AssociationConnector Association="EmpresaDB.ClienteVentas" />
+        <AssociationConnector Association="EmpresaDB.VentasProductos" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

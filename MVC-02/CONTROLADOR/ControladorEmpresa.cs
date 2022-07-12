@@ -11,8 +11,10 @@ namespace CONTROLADOR
     public class ControladorEmpresa
     {
         private static ControladorEmpresa _instancia; //Una instancia del controlador
-
-        private ControladorEmpresa() { }    //Constructor privado
+        public int empresa_id { get; set; }
+        private ControladorEmpresa() //Constructor privado
+        {
+        }
 
         //Obtiene la instancia
         public static ControladorEmpresa GetInstancia()
@@ -20,8 +22,18 @@ namespace CONTROLADOR
             if (_instancia == null)
             {
                 _instancia = new ControladorEmpresa();
+                
             }
             return _instancia;
+        }
+
+        public List<VentaDataGrid> GetVentas()
+        {
+            List<VentaDataGrid> listaVentas = new List<VentaDataGrid>();
+            foreach (var venta in EmpresaContext.GetInstancia().GetContainer.Ventas.Where(x => x.Empresa.Id == empresa_id))
+                listaVentas.Add(new VentaDataGrid(venta));
+
+            return listaVentas;
         }
 
         #region Clientes
@@ -42,11 +54,26 @@ namespace CONTROLADOR
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
+        public void AgregarVenta(VentaDataGrid venta)
+        {
+            try
+            {
+                venta.GetVentas().Empresa = GetEmpresaFromSession();
+                EmpresaContext.GetInstancia().GetContainer.Ventas.Add(venta.GetVentas());
+                EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
         //Devuelve una lista de clientes (todos los que tiene la empresa)
         public List<ClienteDataGrid> GetClientes()
         {
             List<ClienteDataGrid> listaClientes = new List<ClienteDataGrid>();
-            foreach (var cliente in EmpresaContext.GetInstancia().GetContainer.Clientes)
+            foreach (var cliente in EmpresaContext.GetInstancia().GetContainer.Clientes.Where(x => x.Empresa.Id == empresa_id))
                 listaClientes.Add(new ClienteDataGrid(cliente));
 
             return listaClientes;
@@ -77,7 +104,7 @@ namespace CONTROLADOR
         public List<EmpleadoDataGrid> GetEmpleados()
         {
             List<EmpleadoDataGrid> listaEmpleados = new List<EmpleadoDataGrid>();
-            foreach (var empleado in EmpresaContext.GetInstancia().GetContainer.Empleados) 
+            foreach (var empleado in EmpresaContext.GetInstancia().GetContainer.Empleados.Where(x => x.Empresa.Id == empresa_id)) 
                 listaEmpleados.Add(new EmpleadoDataGrid(empleado));
             
             return listaEmpleados;
@@ -104,7 +131,6 @@ namespace CONTROLADOR
 
         public Empresa GetEmpresaFromSession()
         {
-            var empresa_id = ControladorSeguridad.GetInstancia().usuarioLogueado.empresa_id;
             return EmpresaContext.GetInstancia().GetContainer.Empresa.First(x => x.Id == empresa_id);
             
         }
@@ -117,7 +143,7 @@ namespace CONTROLADOR
         public List<ProductoDataGrid> GetProductos()
         {
             List<ProductoDataGrid> listaProductos = new List<ProductoDataGrid>();
-            foreach(var producto in EmpresaContext.GetInstancia().GetContainer.Productos.ToList())
+            foreach(var producto in EmpresaContext.GetInstancia().GetContainer.Productos.Where(x=> x.Empresa.Id == empresa_id).ToList())
                 listaProductos.Add(new ProductoDataGrid(producto));
 
             return listaProductos;
