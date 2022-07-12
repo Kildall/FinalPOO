@@ -4,306 +4,282 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EmpresaDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Categorias">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Empresa_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Clientes">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="edad" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Empresa_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="EmpleadoEmpleado">
-          <Key>
-            <PropertyRef Name="Subordinados_Id" />
-            <PropertyRef Name="Superior_Id" />
-          </Key>
-          <Property Name="Subordinados_Id" Type="int" Nullable="false" />
-          <Property Name="Superior_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Empleados">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="edad" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="salario" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Empresa_Id" Type="int" Nullable="false" />
-          <Property Name="Categoria_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Empresa">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Productos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="cantidad" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="precio" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Empresa_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ProductosVentas">
-          <Key>
-            <PropertyRef Name="Productos_Id" />
-            <PropertyRef Name="Ventas_Id" />
-          </Key>
-          <Property Name="Productos_Id" Type="int" Nullable="false" />
-          <Property Name="Ventas_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Ventas">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="total" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Cliente_Id" Type="int" Nullable="false" />
-          <Property Name="Empresa_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="VentasEmpleado">
-          <Key>
-            <PropertyRef Name="Ventas_Id" />
-            <PropertyRef Name="Empleado_Id" />
-          </Key>
-          <Property Name="Ventas_Id" Type="int" Nullable="false" />
-          <Property Name="Empleado_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_CategoriaEmpresa">
-          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
-          <End Role="Categorias" Type="Self.Categorias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empresa">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Categorias">
-              <PropertyRef Name="Empresa_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpleadoCategoria">
-          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
-          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categorias">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Empleados">
-              <PropertyRef Name="Categoria_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpleadoEmpleado_Empleado">
-          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
-          <End Role="EmpleadoEmpleado" Type="Self.EmpleadoEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleados">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EmpleadoEmpleado">
-              <PropertyRef Name="Subordinados_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpleadoEmpleado_Empleado1">
-          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
-          <End Role="EmpleadoEmpleado" Type="Self.EmpleadoEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleados">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EmpleadoEmpleado">
-              <PropertyRef Name="Superior_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpresaCliente">
-          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empresa">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Clientes">
-              <PropertyRef Name="Empresa_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpresaEmpleado">
-          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
-          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empresa">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Empleados">
-              <PropertyRef Name="Empresa_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductosEmpresa">
-          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
-          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empresa">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Productos">
-              <PropertyRef Name="Empresa_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductosVentas_Productos">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="ProductosVentas" Type="Self.ProductosVentas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductosVentas">
-              <PropertyRef Name="Productos_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductosVentas_Ventas">
-          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
-          <End Role="ProductosVentas" Type="Self.ProductosVentas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ventas">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductosVentas">
-              <PropertyRef Name="Ventas_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VentasCliente">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
-          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Ventas">
-              <PropertyRef Name="Cliente_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VentasEmpleado_Empleado">
-          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
-          <End Role="VentasEmpleado" Type="Self.VentasEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleados">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="VentasEmpleado">
-              <PropertyRef Name="Empleado_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VentasEmpleado_Ventas">
-          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
-          <End Role="VentasEmpleado" Type="Self.VentasEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ventas">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="VentasEmpleado">
-              <PropertyRef Name="Ventas_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VentasEmpresa">
-          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
-          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empresa">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Ventas">
-              <PropertyRef Name="Empresa_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="EmpresaDBStoreContainer">
-          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EmpleadoEmpleado" EntityType="Self.EmpleadoEmpleado" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductosVentas" EntityType="Self.ProductosVentas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VentasEmpleado" EntityType="Self.VentasEmpleado" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CategoriaEmpresa" Association="Self.FK_CategoriaEmpresa">
-            <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Categorias" EntitySet="Categorias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoCategoria" Association="Self.FK_EmpleadoCategoria">
-            <End Role="Categorias" EntitySet="Categorias" />
-            <End Role="Empleados" EntitySet="Empleados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoEmpleado_Empleado" Association="Self.FK_EmpleadoEmpleado_Empleado">
-            <End Role="Empleados" EntitySet="Empleados" />
-            <End Role="EmpleadoEmpleado" EntitySet="EmpleadoEmpleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoEmpleado_Empleado1" Association="Self.FK_EmpleadoEmpleado_Empleado1">
-            <End Role="Empleados" EntitySet="Empleados" />
-            <End Role="EmpleadoEmpleado" EntitySet="EmpleadoEmpleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpresaCliente" Association="Self.FK_EmpresaCliente">
-            <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Clientes" EntitySet="Clientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpresaEmpleado" Association="Self.FK_EmpresaEmpleado">
-            <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Empleados" EntitySet="Empleados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductosEmpresa" Association="Self.FK_ProductosEmpresa">
-            <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Productos" EntitySet="Productos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductosVentas_Productos" Association="Self.FK_ProductosVentas_Productos">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="ProductosVentas" EntitySet="ProductosVentas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductosVentas_Ventas" Association="Self.FK_ProductosVentas_Ventas">
-            <End Role="Ventas" EntitySet="Ventas" />
-            <End Role="ProductosVentas" EntitySet="ProductosVentas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VentasCliente" Association="Self.FK_VentasCliente">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Ventas" EntitySet="Ventas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VentasEmpleado_Empleado" Association="Self.FK_VentasEmpleado_Empleado">
-            <End Role="Empleados" EntitySet="Empleados" />
-            <End Role="VentasEmpleado" EntitySet="VentasEmpleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VentasEmpleado_Ventas" Association="Self.FK_VentasEmpleado_Ventas">
-            <End Role="Ventas" EntitySet="Ventas" />
-            <End Role="VentasEmpleado" EntitySet="VentasEmpleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VentasEmpresa" Association="Self.FK_VentasEmpresa">
-            <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Ventas" EntitySet="Ventas" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="EmpresaDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EmpresaDBStoreContainer">
+    <EntitySet Name="Clientes" EntityType="EmpresaDB.Store.Clientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Empresa" EntityType="EmpresaDB.Store.Empresa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Empleados" EntityType="EmpresaDB.Store.Empleados" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categorias" EntityType="EmpresaDB.Store.Categorias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Productos" EntityType="EmpresaDB.Store.Productos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ventas" EntityType="EmpresaDB.Store.Ventas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmpleadoEmpleado" EntityType="EmpresaDB.Store.EmpleadoEmpleado" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductosVentas" EntityType="EmpresaDB.Store.ProductosVentas" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="EmpresaCliente" Association="EmpresaDB.Store.EmpresaCliente">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Cliente" EntitySet="Clientes" />
+    </AssociationSet>
+    <AssociationSet Name="EmpresaEmpleado" Association="EmpresaDB.Store.EmpresaEmpleado">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Empleado" EntitySet="Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="EmpleadoCategoria" Association="EmpresaDB.Store.EmpleadoCategoria">
+      <End Role="Empleado" EntitySet="Empleados" />
+      <End Role="Categoria" EntitySet="Categorias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpleadoEmpleado_Empleado" Association="EmpresaDB.Store.FK_EmpleadoEmpleado_Empleado">
+      <End Role="Empleado" EntitySet="Empleados" />
+      <End Role="EmpleadoEmpleado" EntitySet="EmpleadoEmpleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpleadoEmpleado_Empleado1" Association="EmpresaDB.Store.FK_EmpleadoEmpleado_Empleado1">
+      <End Role="Empleado1" EntitySet="Empleados" />
+      <End Role="EmpleadoEmpleado" EntitySet="EmpleadoEmpleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductosVentas_Productos" Association="EmpresaDB.Store.FK_ProductosVentas_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="ProductosVentas" EntitySet="ProductosVentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductosVentas_Ventas" Association="EmpresaDB.Store.FK_ProductosVentas_Ventas">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="ProductosVentas" EntitySet="ProductosVentas" />
+    </AssociationSet>
+    <AssociationSet Name="CategoriaEmpresa" Association="EmpresaDB.Store.CategoriaEmpresa">
+      <End Role="Categoria" EntitySet="Categorias" />
+      <End Role="Empresa" EntitySet="Empresa" />
+    </AssociationSet>
+    <AssociationSet Name="ProductosEmpresa" Association="EmpresaDB.Store.ProductosEmpresa">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Empresa" EntitySet="Empresa" />
+    </AssociationSet>
+    <AssociationSet Name="VentasEmpresa" Association="EmpresaDB.Store.VentasEmpresa">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="Empresa" EntitySet="Empresa" />
+    </AssociationSet>
+    <AssociationSet Name="EmpleadoVentas" Association="EmpresaDB.Store.EmpleadoVentas">
+      <End Role="Empleado" EntitySet="Empleados" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteVentas" Association="EmpresaDB.Store.ClienteVentas">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="edad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empresa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="edad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="salario" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa_Id" Type="int" Nullable="false" />
+    <Property Name="Categoria_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cantidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="precio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="total" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa_Id" Type="int" Nullable="false" />
+    <Property Name="Empleado_Id" Type="int" Nullable="false" />
+    <Property Name="Cliente_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmpleadoEmpleado">
+    <Key>
+      <PropertyRef Name="Subordinados_Id" />
+      <PropertyRef Name="Superior_Id" />
+    </Key>
+    <Property Name="Subordinados_Id" Type="int" Nullable="false" />
+    <Property Name="Superior_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductosVentas">
+    <Key>
+      <PropertyRef Name="Productos_Id" />
+      <PropertyRef Name="Ventas_Id" />
+    </Key>
+    <Property Name="Productos_Id" Type="int" Nullable="false" />
+    <Property Name="Ventas_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="EmpresaCliente">
+    <End Role="Empresa" Type="EmpresaDB.Store.Empresa" Multiplicity="1" />
+    <End Role="Cliente" Type="EmpresaDB.Store.Clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmpresaEmpleado">
+    <End Role="Empresa" Type="EmpresaDB.Store.Empresa" Multiplicity="1" />
+    <End Role="Empleado" Type="EmpresaDB.Store.Empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmpleadoCategoria">
+    <End Role="Empleado" Type="EmpresaDB.Store.Empleados" Multiplicity="*" />
+    <End Role="Categoria" Type="EmpresaDB.Store.Categorias" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="Categoria_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoriaEmpresa">
+    <End Role="Categoria" Type="EmpresaDB.Store.Categorias" Multiplicity="*" />
+    <End Role="Empresa" Type="EmpresaDB.Store.Empresa" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Categoria">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductosEmpresa">
+    <End Role="Productos" Type="EmpresaDB.Store.Productos" Multiplicity="*" />
+    <End Role="Empresa" Type="EmpresaDB.Store.Empresa" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VentasEmpresa">
+    <End Role="Ventas" Type="EmpresaDB.Store.Ventas" Multiplicity="*" />
+    <End Role="Empresa" Type="EmpresaDB.Store.Empresa" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmpleadoVentas">
+    <End Role="Empleado" Type="EmpresaDB.Store.Empleados" Multiplicity="1" />
+    <End Role="Ventas" Type="EmpresaDB.Store.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="Empleado_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteVentas">
+    <End Role="Cliente" Type="EmpresaDB.Store.Clientes" Multiplicity="1" />
+    <End Role="Ventas" Type="EmpresaDB.Store.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="Cliente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpleadoEmpleado_Empleado">
+    <End Role="Empleado" Type="EmpresaDB.Store.Empleados" Multiplicity="1" />
+    <End Role="EmpleadoEmpleado" Type="EmpresaDB.Store.EmpleadoEmpleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmpleadoEmpleado">
+        <PropertyRef Name="Subordinados_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpleadoEmpleado_Empleado1">
+    <End Role="EmpleadoEmpleado" Type="EmpresaDB.Store.EmpleadoEmpleado" Multiplicity="*" />
+    <End Role="Empleado1" Type="EmpresaDB.Store.Empleados" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmpleadoEmpleado">
+        <PropertyRef Name="Superior_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductosVentas_Productos">
+    <End Role="Productos" Type="EmpresaDB.Store.Productos" Multiplicity="1" />
+    <End Role="ProductosVentas" Type="EmpresaDB.Store.ProductosVentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductosVentas">
+        <PropertyRef Name="Productos_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductosVentas_Ventas">
+    <End Role="ProductosVentas" Type="EmpresaDB.Store.ProductosVentas" Multiplicity="*" />
+    <End Role="Ventas" Type="EmpresaDB.Store.Ventas" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Ventas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductosVentas">
+        <PropertyRef Name="Ventas_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EmpresaDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -334,14 +310,6 @@
             <End Role="Productos" EntitySet="Productos" />
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
-          <AssociationSet Name="VentasCliente" Association="EmpresaDB.VentasCliente">
-            <End Role="Ventas" EntitySet="Ventas" />
-            <End Role="Cliente" EntitySet="Clientes" />
-          </AssociationSet>
-          <AssociationSet Name="VentasEmpleado" Association="EmpresaDB.VentasEmpleado">
-            <End Role="Ventas" EntitySet="Ventas" />
-            <End Role="Empleado" EntitySet="Empleados" />
-          </AssociationSet>
           <AssociationSet Name="CategoriaEmpresa" Association="EmpresaDB.CategoriaEmpresa">
             <End Role="Categoria" EntitySet="Categorias" />
             <End Role="Empresa" EntitySet="Empresa" />
@@ -354,6 +322,14 @@
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="Empresa" EntitySet="Empresa" />
           </AssociationSet>
+          <AssociationSet Name="EmpleadoVentas" Association="EmpresaDB.EmpleadoVentas">
+            <End Role="Empleado" EntitySet="Empleados" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteVentas" Association="EmpresaDB.ClienteVentas">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
@@ -364,7 +340,7 @@
           <Property Name="edad" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="telefono" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Empresa" Relationship="EmpresaDB.EmpresaCliente" FromRole="Cliente" ToRole="Empresa" />
-          <NavigationProperty Name="Ventas" Relationship="EmpresaDB.VentasCliente" FromRole="Cliente" ToRole="Ventas" />
+          <NavigationProperty Name="Ventas" Relationship="EmpresaDB.ClienteVentas" FromRole="Cliente" ToRole="Ventas" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -389,7 +365,7 @@
           <NavigationProperty Name="Categoria" Relationship="EmpresaDB.EmpleadoCategoria" FromRole="Empleado" ToRole="Categoria" />
           <NavigationProperty Name="Superior" Relationship="EmpresaDB.EmpleadoEmpleado" FromRole="Empleado" ToRole="Empleado1" />
           <NavigationProperty Name="Subordinados" Relationship="EmpresaDB.EmpleadoEmpleado" FromRole="Empleado1" ToRole="Empleado" />
-          <NavigationProperty Name="Ventas" Relationship="EmpresaDB.VentasEmpleado" FromRole="Empleado" ToRole="Ventas" />
+          <NavigationProperty Name="Ventas" Relationship="EmpresaDB.EmpleadoVentas" FromRole="Empleado" ToRole="Ventas" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
@@ -434,21 +410,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="total" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Productos" Relationship="EmpresaDB.ProductosVentas" FromRole="Ventas" ToRole="Productos" />
-          <NavigationProperty Name="Cliente" Relationship="EmpresaDB.VentasCliente" FromRole="Ventas" ToRole="Cliente" />
-          <NavigationProperty Name="Empleado" Relationship="EmpresaDB.VentasEmpleado" FromRole="Ventas" ToRole="Empleado" />
           <NavigationProperty Name="Empresa" Relationship="EmpresaDB.VentasEmpresa" FromRole="Ventas" ToRole="Empresa" />
+          <NavigationProperty Name="Empleado" Relationship="EmpresaDB.EmpleadoVentas" FromRole="Ventas" ToRole="Empleado" />
+          <NavigationProperty Name="Cliente" Relationship="EmpresaDB.ClienteVentas" FromRole="Ventas" ToRole="Cliente" />
         </EntityType>
         <Association Name="ProductosVentas">
           <End Type="EmpresaDB.Productos" Role="Productos" Multiplicity="*" />
           <End Type="EmpresaDB.Ventas" Role="Ventas" Multiplicity="*" />
-        </Association>
-        <Association Name="VentasCliente">
-          <End Type="EmpresaDB.Ventas" Role="Ventas" Multiplicity="1" />
-          <End Type="EmpresaDB.Cliente" Role="Cliente" Multiplicity="1" />
-        </Association>
-        <Association Name="VentasEmpleado">
-          <End Type="EmpresaDB.Ventas" Role="Ventas" Multiplicity="*" />
-          <End Type="EmpresaDB.Empleado" Role="Empleado" Multiplicity="*" />
         </Association>
         <Association Name="CategoriaEmpresa">
           <End Type="EmpresaDB.Categoria" Role="Categoria" Multiplicity="*" />
@@ -461,6 +429,14 @@
         <Association Name="VentasEmpresa">
           <End Type="EmpresaDB.Ventas" Role="Ventas" Multiplicity="*" />
           <End Type="EmpresaDB.Empresa" Role="Empresa" Multiplicity="1" />
+        </Association>
+        <Association Name="EmpleadoVentas">
+          <End Type="EmpresaDB.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="EmpresaDB.Ventas" Role="Ventas" Multiplicity="*" />
+        </Association>
+        <Association Name="ClienteVentas">
+          <End Type="EmpresaDB.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="EmpresaDB.Ventas" Role="Ventas" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -562,22 +538,6 @@
         <ScalarProperty Name="Id" ColumnName="Ventas_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="VentasCliente" TypeName="EmpresaDB.VentasCliente" StoreEntitySet="Ventas">
-      <EndProperty Name="Cliente">
-        <ScalarProperty Name="Id" ColumnName="Cliente_Id" />
-      </EndProperty>
-      <EndProperty Name="Ventas">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="VentasEmpleado" TypeName="EmpresaDB.VentasEmpleado" StoreEntitySet="VentasEmpleado">
-      <EndProperty Name="Ventas">
-        <ScalarProperty Name="Id" ColumnName="Ventas_Id" />
-      </EndProperty>
-      <EndProperty Name="Empleado">
-        <ScalarProperty Name="Id" ColumnName="Empleado_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="CategoriaEmpresa" TypeName="EmpresaDB.CategoriaEmpresa" StoreEntitySet="Categorias">
       <EndProperty Name="Empresa">
         <ScalarProperty Name="Id" ColumnName="Empresa_Id" />
@@ -597,6 +557,22 @@
     <AssociationSetMapping Name="VentasEmpresa" TypeName="EmpresaDB.VentasEmpresa" StoreEntitySet="Ventas">
       <EndProperty Name="Empresa">
         <ScalarProperty Name="Id" ColumnName="Empresa_Id" />
+      </EndProperty>
+      <EndProperty Name="Ventas">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmpleadoVentas" TypeName="EmpresaDB.EmpleadoVentas" StoreEntitySet="Ventas">
+      <EndProperty Name="Empleado">
+        <ScalarProperty Name="Id" ColumnName="Empleado_Id" />
+      </EndProperty>
+      <EndProperty Name="Ventas">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClienteVentas" TypeName="EmpresaDB.ClienteVentas" StoreEntitySet="Ventas">
+      <EndProperty Name="Cliente">
+        <ScalarProperty Name="Id" ColumnName="Cliente_Id" />
       </EndProperty>
       <EndProperty Name="Ventas">
         <ScalarProperty Name="Id" ColumnName="Id" />

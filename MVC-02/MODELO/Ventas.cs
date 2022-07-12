@@ -18,7 +18,6 @@ namespace MODELO
         public Ventas()
         {
             this.Productos = new HashSet<Productos>();
-            this.Empleado = new HashSet<Empleado>();
         }
     
         public int Id { get; set; }
@@ -26,9 +25,8 @@ namespace MODELO
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Productos> Productos { get; set; }
-        public virtual Cliente Cliente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleado> Empleado { get; set; }
         public virtual Empresa Empresa { get; set; }
+        public virtual Empleado Empleado { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }

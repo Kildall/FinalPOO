@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MODELO;
+using MODELO.Seguridad;
 
 namespace CONTROLADOR
 {
@@ -84,7 +85,8 @@ namespace CONTROLADOR
 
         public List<Categoria> GetCategorias()
         {
-            return EmpresaContext.GetInstancia().GetContainer.Categorias.ToList();
+            Usuario usuario = ControladorSeguridad.GetInstancia().usuarioLogueado;
+            return EmpresaContext.GetInstancia().GetContainer.Categorias.Where(x => x.Empresa.Id == usuario.Id).ToList();
         }
 
         #endregion Empleados

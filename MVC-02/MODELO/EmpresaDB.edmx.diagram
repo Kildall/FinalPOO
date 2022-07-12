@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3efe5e092e384657a7e0cefb97acaf08" Name="Diagram1" ZoomLevel="64" >
+      <Diagram DiagramId="3efe5e092e384657a7e0cefb97acaf08" Name="Diagram1" ZoomLevel="77" >
         <EntityTypeShape EntityType="EmpresaDB.Cliente" Width="1.5" PointX="0.5" PointY="4.25" />
         <EntityTypeShape EntityType="EmpresaDB.Empresa" Width="1.5" PointX="3.375" PointY="0.875" />
         <EntityTypeShape EntityType="EmpresaDB.Empleado" Width="1.5" PointX="5.75" PointY="6.5" />
@@ -16,11 +16,11 @@
         <EntityTypeShape EntityType="EmpresaDB.Productos" Width="1.5" PointX="8.375" PointY="3.375" />
         <EntityTypeShape EntityType="EmpresaDB.Ventas" Width="1.5" PointX="5.75" PointY="3.375" />
         <AssociationConnector Association="EmpresaDB.ProductosVentas" />
-        <AssociationConnector Association="EmpresaDB.VentasCliente" />
-        <AssociationConnector Association="EmpresaDB.VentasEmpleado" />
         <AssociationConnector Association="EmpresaDB.CategoriaEmpresa" />
         <AssociationConnector Association="EmpresaDB.ProductosEmpresa" />
         <AssociationConnector Association="EmpresaDB.VentasEmpresa" />
+        <AssociationConnector Association="EmpresaDB.EmpleadoVentas" />
+        <AssociationConnector Association="EmpresaDB.ClienteVentas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

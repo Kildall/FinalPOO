@@ -136,6 +136,12 @@
     <Compile Include="JerarquiaComponent.Designer.cs">
       <DependentUpon>JerarquiaComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="VentasComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VentasComponent.Designer.cs">
+      <DependentUpon>VentasComponent.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClientesComponent.resx">
       <DependentUpon>ClientesComponent.cs</DependentUpon>
     </EmbeddedResource>
