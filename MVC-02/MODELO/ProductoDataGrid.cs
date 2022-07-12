@@ -15,6 +15,7 @@ namespace MODELO
 
         public ProductoDataGrid(Productos producto)
         {
+            this._producto = producto;
             this.Nombre = producto.nombre;
             this.Cantidad = producto.cantidad;
             this.Precio = producto.precio;

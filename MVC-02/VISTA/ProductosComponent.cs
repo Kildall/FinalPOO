@@ -15,6 +15,7 @@ namespace VISTA
     public partial class ProductosComponent : UserControl
     {
         List<ProductoDataGrid> listaProductos = new List<ProductoDataGrid>();
+        int indice;
 
         public ProductosComponent()
         {
@@ -38,10 +39,27 @@ namespace VISTA
                 precio = txtPrecio.Text,
                 Empresa = ControladorEmpresa.GetInstancia().GetEmpresaFromSession()
             };
-            
+
             ControladorEmpresa.GetInstancia().AgregarProducto(producto);
             ListarProductos();
 
         }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+            Productos producto = listaProductos.ElementAt(indice).GetProductos();
+            ControladorEmpresa.GetInstancia().EliminarProducto(producto);
+            ListarProductos();
+        }
+
+        private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                indice = e.RowIndex;
+            }
+        }
+
+        
     }
 }

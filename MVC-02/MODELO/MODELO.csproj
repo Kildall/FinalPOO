@@ -120,6 +120,7 @@
       <DependentUpon>Seguridad.tt</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\UsuarioDataGrid.cs" />
+    <Compile Include="VentaDataGrid.cs" />
     <Compile Include="Ventas.cs">
       <DependentUpon>EmpresaDB.tt</DependentUpon>
     </Compile>

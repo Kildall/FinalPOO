@@ -79,5 +79,11 @@ namespace VISTA
             panelMenu.Controls.Clear();
             panelMenu.Controls.Add(new JerarquiaComponent());
         }
+
+        private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelMenu.Controls.Clear();
+            panelMenu.Controls.Add(new VentasComponent());
+        }
     }
 }

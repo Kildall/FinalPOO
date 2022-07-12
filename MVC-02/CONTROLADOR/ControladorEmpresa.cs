@@ -128,5 +128,11 @@ namespace CONTROLADOR
             EmpresaContext.GetInstancia().GetContainer.Productos.Add(producto);
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
+
+        public void EliminarProducto(Productos producto)
+        {
+            EmpresaContext.GetInstancia().GetContainer.Productos.Remove(producto);
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
     }
 }

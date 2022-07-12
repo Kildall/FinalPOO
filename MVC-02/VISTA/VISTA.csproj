@@ -190,6 +190,9 @@
     <EmbeddedResource Include="JerarquiaComponent.resx">
       <DependentUpon>JerarquiaComponent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VentasComponent.resx">
+      <DependentUpon>VentasComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
