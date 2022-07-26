@@ -30,9 +30,9 @@
         {
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnVender = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnEliminarProducto = new System.Windows.Forms.Button();
+            this.btnVenderProducto = new System.Windows.Forms.Button();
+            this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,9 +54,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnEliminar);
-            this.groupBox1.Controls.Add(this.btnVender);
-            this.groupBox1.Controls.Add(this.btnAgregar);
+            this.groupBox1.Controls.Add(this.btnEliminarProducto);
+            this.groupBox1.Controls.Add(this.btnVenderProducto);
+            this.groupBox1.Controls.Add(this.btnAgregarProducto);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -70,34 +70,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Producto";
             // 
-            // btnEliminar
+            // btnEliminarProducto
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(173, 165);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 8;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(173, 165);
+            this.btnEliminarProducto.Name = "btnEliminarProducto";
+            this.btnEliminarProducto.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarProducto.TabIndex = 8;
+            this.btnEliminarProducto.Text = "Eliminar";
+            this.btnEliminarProducto.UseVisualStyleBackColor = true;
+            this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
-            // btnVender
+            // btnVenderProducto
             // 
-            this.btnVender.Location = new System.Drawing.Point(92, 165);
-            this.btnVender.Name = "btnVender";
-            this.btnVender.Size = new System.Drawing.Size(75, 23);
-            this.btnVender.TabIndex = 7;
-            this.btnVender.Text = "Vender";
-            this.btnVender.UseVisualStyleBackColor = true;
+            this.btnVenderProducto.Location = new System.Drawing.Point(92, 165);
+            this.btnVenderProducto.Name = "btnVenderProducto";
+            this.btnVenderProducto.Size = new System.Drawing.Size(75, 23);
+            this.btnVenderProducto.TabIndex = 7;
+            this.btnVenderProducto.Text = "Vender";
+            this.btnVenderProducto.UseVisualStyleBackColor = true;
             // 
-            // btnAgregar
+            // btnAgregarProducto
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(11, 165);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 6;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnAgregarProducto.Location = new System.Drawing.Point(11, 165);
+            this.btnAgregarProducto.Name = "btnAgregarProducto";
+            this.btnAgregarProducto.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarProducto.TabIndex = 6;
+            this.btnAgregarProducto.Text = "Agregar";
+            this.btnAgregarProducto.UseVisualStyleBackColor = true;
+            this.btnAgregarProducto.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // label3
             // 
@@ -172,8 +172,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtCantidad;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnVender;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnEliminarProducto;
+        private System.Windows.Forms.Button btnVenderProducto;
+        private System.Windows.Forms.Button btnAgregarProducto;
     }
 }

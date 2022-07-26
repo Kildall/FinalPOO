@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MODELO.Seguridad;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace CONTROLADOR
 {
@@ -24,7 +25,7 @@ namespace CONTROLADOR
             Usuario user = SeguridadContext.GetInstancia().Container.UsuarioSet.FirstOrDefault(x => x.mail == email);
 
             if (user == null) return 20;
-            if (user.contraseña != password) return 40;
+            if (user.contraseña != Encriptacion(password)) return 40;
             usuarioLogueado = user;
             ControladorEmpresa.GetInstancia().empresa_id = usuarioLogueado.empresa_id;
             return 0;
@@ -35,6 +36,7 @@ namespace CONTROLADOR
             if (SeguridadContext.GetInstancia().Container.UsuarioSet.FirstOrDefault(x => x.mail == usuario.mail) != null)
                 return 10;
             usuario.Perfil = SeguridadContext.GetInstancia().Container.PerfilSet.Where(x => x.nombre == "Nadie" && x.empresa_id == usuario.empresa_id).First();
+            usuario.contraseña = Encriptacion(usuario.contraseña);
             SeguridadContext.GetInstancia().Container.UsuarioSet.Add(usuario);
             SeguridadContext.GetInstancia().Container.SaveChanges();
             return 0;
@@ -134,6 +136,44 @@ namespace CONTROLADOR
                 });
 
             return listaPermisos;
+        }
+
+        public bool CanUserAccessForm(string form)
+        {
+            foreach (var formulario in usuarioLogueado.Perfil.Formularios)
+            {
+                if (formulario.nombre == form)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public List<string> GetControlsAllowed(string form)
+        {
+            return usuarioLogueado.Perfil.Permisos.Where(x => x.Formulario.nombre == form).Select(x => x.nombreSistema).ToList();
+        }
+
+        public string Encriptacion(string contraseña)
+        {
+            //Creo el encriptador
+            SHA256 sha256 = SHA256.Create();
+
+            //Encripto el valor pasando el string recibido a bytes
+            byte[] hash = sha256.ComputeHash(Encoding.Default.GetBytes(contraseña));
+            
+            //Creo un string
+            string contraEncriptada = "";
+            
+            //Transformo todos los bytes en valores de string
+            for (int i = 0; i < hash.Length; i++)
+            {
+                contraEncriptada += hash[i].ToString();
+            }
+
+            //Devuelvo el valor generado
+            return contraEncriptada;
         }
     }
 }

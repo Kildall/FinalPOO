@@ -26,6 +26,33 @@ namespace VISTA
             InitializeComponent();
             ListarEmpleados();
             MostrarCategorias();
+            var permisos = ControladorSeguridad.GetInstancia().GetControlsAllowed("frmEmpleados");
+            foreach (var control in GetButtonControls(this))
+            {
+                var permiso = permisos.FirstOrDefault(x => x == control.Name);
+                if (permiso != null)
+                {
+                    control.Enabled = true;
+                }
+                else
+                {
+                    control.Enabled = false;
+                }
+            }
+        }
+        //Usar recursion para obtener todos los hijos de un control
+        private List<Control> GetButtonControls(Control padre)
+        {
+            List<Control> controles = new List<Control>();
+            //Caso base es el caso en donde no haya hijos ya que no entra al foreach
+            foreach (Control c in padre.Controls)
+            {
+                controles.AddRange(GetButtonControls(c));
+                if (c is Button)
+                    controles.Add(c);
+            }
+            //En el caso base, devuelve la lista vacia, si no, devuelve los controles
+            return controles;
         }
 
         public void ListarEmpleados()

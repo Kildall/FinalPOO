@@ -94,7 +94,7 @@
             this.tbNombre.Location = new System.Drawing.Point(150, 96);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(149, 20);
-            this.tbNombre.TabIndex = 4;
+            this.tbNombre.TabIndex = 1;
             // 
             // label4
             // 
@@ -110,7 +110,7 @@
             this.tbDNI.Location = new System.Drawing.Point(150, 152);
             this.tbDNI.Name = "tbDNI";
             this.tbDNI.Size = new System.Drawing.Size(149, 20);
-            this.tbDNI.TabIndex = 6;
+            this.tbDNI.TabIndex = 3;
             // 
             // lblLogin
             // 
@@ -138,7 +138,7 @@
             this.btnRegistrarse.Location = new System.Drawing.Point(188, 311);
             this.btnRegistrarse.Name = "btnRegistrarse";
             this.btnRegistrarse.Size = new System.Drawing.Size(110, 23);
-            this.btnRegistrarse.TabIndex = 11;
+            this.btnRegistrarse.TabIndex = 7;
             this.btnRegistrarse.Text = "Registrarse";
             this.btnRegistrarse.UseVisualStyleBackColor = true;
             this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);
@@ -167,7 +167,7 @@
             this.tbRepetirContraseña.Location = new System.Drawing.Point(150, 223);
             this.tbRepetirContraseña.Name = "tbRepetirContraseña";
             this.tbRepetirContraseña.Size = new System.Drawing.Size(149, 20);
-            this.tbRepetirContraseña.TabIndex = 14;
+            this.tbRepetirContraseña.TabIndex = 5;
             // 
             // label7
             // 
@@ -183,16 +183,16 @@
             this.tbContraseña.Location = new System.Drawing.Point(150, 195);
             this.tbContraseña.Name = "tbContraseña";
             this.tbContraseña.Size = new System.Drawing.Size(149, 20);
-            this.tbContraseña.TabIndex = 12;
+            this.tbContraseña.TabIndex = 4;
             // 
             // cbEmpresa
             // 
             this.cbEmpresa.FormattingEnabled = true;
             this.cbEmpresa.Location = new System.Drawing.Point(150, 259);
-            this.cbEmpresa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.cbEmpresa.Name = "cbEmpresa";
             this.cbEmpresa.Size = new System.Drawing.Size(149, 21);
-            this.cbEmpresa.TabIndex = 16;
+            this.cbEmpresa.TabIndex = 6;
             // 
             // label8
             // 
@@ -206,6 +206,7 @@
             // 
             // frmRegister
             // 
+            this.AcceptButton = this.btnRegistrarse;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 344);

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbxClientes = new System.Windows.Forms.GroupBox();
+            this.gbClientes = new System.Windows.Forms.GroupBox();
             this.btnEliminarCliente = new System.Windows.Forms.Button();
             this.btnModificarCliente = new System.Windows.Forms.Button();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
@@ -39,28 +39,28 @@
             this.lblEdad = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.dvgClientes = new System.Windows.Forms.DataGridView();
-            this.gbxClientes.SuspendLayout();
+            this.gbClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgClientes)).BeginInit();
             this.SuspendLayout();
             // 
-            // gbxClientes
+            // gbClientes
             // 
-            this.gbxClientes.Controls.Add(this.btnEliminarCliente);
-            this.gbxClientes.Controls.Add(this.btnModificarCliente);
-            this.gbxClientes.Controls.Add(this.btnAgregarCliente);
-            this.gbxClientes.Controls.Add(this.txtTelCliente);
-            this.gbxClientes.Controls.Add(this.nudEdadCliente);
-            this.gbxClientes.Controls.Add(this.txtNombreCliente);
-            this.gbxClientes.Controls.Add(this.lblTelefono);
-            this.gbxClientes.Controls.Add(this.lblEdad);
-            this.gbxClientes.Controls.Add(this.lblNombre);
-            this.gbxClientes.Location = new System.Drawing.Point(15, 146);
-            this.gbxClientes.Name = "gbxClientes";
-            this.gbxClientes.Size = new System.Drawing.Size(321, 212);
-            this.gbxClientes.TabIndex = 0;
-            this.gbxClientes.TabStop = false;
-            this.gbxClientes.Text = "Clientes";
+            this.gbClientes.Controls.Add(this.btnEliminarCliente);
+            this.gbClientes.Controls.Add(this.btnModificarCliente);
+            this.gbClientes.Controls.Add(this.btnAgregarCliente);
+            this.gbClientes.Controls.Add(this.txtTelCliente);
+            this.gbClientes.Controls.Add(this.nudEdadCliente);
+            this.gbClientes.Controls.Add(this.txtNombreCliente);
+            this.gbClientes.Controls.Add(this.lblTelefono);
+            this.gbClientes.Controls.Add(this.lblEdad);
+            this.gbClientes.Controls.Add(this.lblNombre);
+            this.gbClientes.Location = new System.Drawing.Point(15, 146);
+            this.gbClientes.Name = "gbClientes";
+            this.gbClientes.Size = new System.Drawing.Size(321, 212);
+            this.gbClientes.TabIndex = 0;
+            this.gbClientes.TabStop = false;
+            this.gbClientes.Text = "Clientes";
             // 
             // btnEliminarCliente
             // 
@@ -155,11 +155,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dvgClientes);
-            this.Controls.Add(this.gbxClientes);
+            this.Controls.Add(this.gbClientes);
             this.Name = "ClientesComponent";
             this.Size = new System.Drawing.Size(990, 529);
-            this.gbxClientes.ResumeLayout(false);
-            this.gbxClientes.PerformLayout();
+            this.gbClientes.ResumeLayout(false);
+            this.gbClientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgClientes)).EndInit();
             this.ResumeLayout(false);
@@ -168,7 +168,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbxClientes;
+        private System.Windows.Forms.GroupBox gbClientes;
         private System.Windows.Forms.NumericUpDown nudEdadCliente;
         private System.Windows.Forms.TextBox txtNombreCliente;
         private System.Windows.Forms.Label lblTelefono;

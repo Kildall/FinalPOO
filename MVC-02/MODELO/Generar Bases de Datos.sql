@@ -361,6 +361,7 @@ GO
 INSERT INTO Empresa (nombre) VALUES ('Franco');
 INSERT INTO Empresa (nombre) VALUES ('Paula');
 INSERT INTO Empresa (nombre) VALUES ('Pedro');
+INSERT INTO Empresa (nombre) VALUES ('Administrador');
 
 INSERT INTO Categorias (nombre, Empresa_Id) VALUES ('Tier I', 1);
 INSERT INTO Categorias (nombre, Empresa_Id) VALUES ('Tier II', 1);
@@ -644,18 +645,50 @@ INSERT INTO PerfilSet (nombre, empresa_id) VALUES ('Empleado', 3);
 INSERT INTO PerfilSet (nombre, empresa_id) VALUES ('Cliente', 3);
 INSERT INTO PerfilSet (nombre, empresa_id) VALUES ('Nadie', 3);
 
+INSERT INTO PerfilSet (nombre, empresa_id) VALUES ('Administrador', 4);
+INSERT INTO PerfilSet (nombre, empresa_id) VALUES ('Nadie', 4);
+
 --Formularios
 
-INSERT INTO FormularioSet (nombre) VALUES ('Jerarquia');
-INSERT INTO FormularioSet (nombre) VALUES ('Clientes');
-INSERT INTO FormularioSet (nombre) VALUES ('Empleados');
+INSERT INTO FormularioSet (nombre) VALUES ('frmPerfiles'); --1
+INSERT INTO FormularioSet (nombre) VALUES ('frmProductos'); --2
+INSERT INTO FormularioSet (nombre) VALUES ('frmEmpleados'); --3
+INSERT INTO FormularioSet (nombre) VALUES ('frmUsuarios'); --4
+INSERT INTO FormularioSet (nombre) VALUES ('frmVenta'); --5
+INSERT INTO FormularioSet (nombre) VALUES ('frmClientes'); --6
+INSERT INTO FormularioSet (nombre) VALUES ('frmJerarquia'); --7
 
 --Permisos
 
     --Clientes
-    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Cliente', 'btnAgregarCliente', 2);
-    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Cliente', 'btnEliminarCliente', 2);
-    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Modificar Cliente', 'btnModificarCliente', 2);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Cliente', 'btnAgregarCliente', 6);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Cliente', 'btnEliminarCliente', 6);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Modificar Cliente', 'btnModificarCliente', 6);
+	
+    --Ventas
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Seleccionar Cliente', 'btnSeleccionarCliente', 5);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Seleccionar Producto', 'btnSeleccionarProducto', 5);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Seleccionar Empleado', 'btnSeleccionarEmpleado', 5);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Cancelar Venta', 'btnCancelarVenta', 5);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Vender Producto', 'btnVenderProducto', 5);
+
+	--Perfiles
+	INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Crear Perfil', 'btnCrearPerfil', 1);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Formulario', 'btnAgregarFormulario', 1);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Formulario', 'btnEliminarFormulario', 1);
+	INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Permiso', 'btnAgregarPermiso', 1);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Permiso', 'btnEliminarPermiso', 1);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar/Modificar Perfil', 'btnAgregarPerfil', 1);
+	INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Seleccionar Perfil', 'gbDatos', 1);
+
+    --Productos
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Producto', 'btnAgregarProducto', 2);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Vender Producto', 'btnVenderProducto', 2);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Producto', 'btnEliminarProducto', 2);
+
+	--Usuarios
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Usuario', 'btnEliminarUsuario', 4);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Modificar Usuario', 'btnModificarUsuario', 4);
 
     --Empleados
     INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Empleado', 'btnAgregarEmpleado', 3);
@@ -663,25 +696,53 @@ INSERT INTO FormularioSet (nombre) VALUES ('Empleados');
     INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Modificar Empleado', 'btnModificarEmpleado', 3);
 
     --Jerarquia
-    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Superior', 'btnAgregarSuperior', 1);
-    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Subordinado', 'btnAgregarSubordinado', 1);
-    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Superior', 'btnEliminarSuperior', 1);
-    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Subordinado', 'btnEliminarSubordinado', 1);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Superior', 'btnAgregarSuperior', 7);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Subordinado', 'btnAgregarSubordinado', 7);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Superior', 'btnEliminarSuperior', 7);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Subordinado', 'btnEliminarSubordinado', 7);
 
---Formularios que puede acceder cada perfil
+--Formularios para el Administrador
 
-    --Dueño
-    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (1, 1)
-    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (1, 2)
-    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (1, 3)
+    --Admin
+    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (16, 1);
+    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (16, 2);
+    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (16, 3);
+	INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (16, 4);
+    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (16, 5);
+    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (16, 6);
+    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (16, 7);
 
-    --Gerente
-    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (2, 2)
-    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (2, 3)
+--Permisos para el Administrador
 
-    --Empleado
-    INSERT INTO PerfilFormulario (Perfiles_Id, Formularios_Id) VALUES (3, 2)
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 1);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 2);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 3);
+	INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 4);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 5);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 6);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 7);
+	INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 8);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 9);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 10);
+	INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 11);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 12);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 13);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 14);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 15);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 16);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 17);
+	INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 18);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 19);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 20);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 21);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 22);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 23);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 24);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 25);
+	INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 26);
+    INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 27);
 
-----Permisos que tiene cada formulario
+INSERT INTO UsuarioSet (nombre, dni, apellido, mail, contraseña, empresa_id, Perfil_Id) VALUES ('asd','123','asd','admin','admin','4','16')
 
---    --Jerarquia
+
+

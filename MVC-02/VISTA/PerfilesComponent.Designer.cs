@@ -43,14 +43,14 @@ namespace VISTA
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbDatos = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.dgvPerfiles = new System.Windows.Forms.DataGridView();
             this.btnCrearPerfil = new System.Windows.Forms.Button();
             this.gbPerfil.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerfiles)).BeginInit();
             this.SuspendLayout();
@@ -194,18 +194,18 @@ namespace VISTA
             this.tbNombre.Size = new System.Drawing.Size(121, 20);
             this.tbNombre.TabIndex = 0;
             // 
-            // groupBox2
+            // gbDatos
             // 
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.dgvUsuarios);
-            this.groupBox2.Controls.Add(this.dgvPerfiles);
-            this.groupBox2.Location = new System.Drawing.Point(417, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(570, 523);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Datos";
+            this.gbDatos.Controls.Add(this.label2);
+            this.gbDatos.Controls.Add(this.label1);
+            this.gbDatos.Controls.Add(this.dgvUsuarios);
+            this.gbDatos.Controls.Add(this.dgvPerfiles);
+            this.gbDatos.Location = new System.Drawing.Point(417, 3);
+            this.gbDatos.Name = "gbDatos";
+            this.gbDatos.Size = new System.Drawing.Size(570, 523);
+            this.gbDatos.TabIndex = 1;
+            this.gbDatos.TabStop = false;
+            this.gbDatos.Text = "Datos";
             // 
             // label2
             // 
@@ -267,14 +267,14 @@ namespace VISTA
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnCrearPerfil);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gbDatos);
             this.Controls.Add(this.gbPerfil);
             this.Name = "PerfilesComponent";
             this.Size = new System.Drawing.Size(990, 529);
             this.gbPerfil.ResumeLayout(false);
             this.gbPerfil.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbDatos.ResumeLayout(false);
+            this.gbDatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerfiles)).EndInit();
             this.ResumeLayout(false);
@@ -284,7 +284,7 @@ namespace VISTA
         #endregion
 
         private System.Windows.Forms.GroupBox gbPerfil;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbDatos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvUsuarios;

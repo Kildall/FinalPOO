@@ -30,18 +30,18 @@
         {
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
             this.gbxEmpleados = new System.Windows.Forms.GroupBox();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.cbxCategoria = new System.Windows.Forms.ComboBox();
             this.lblCategoria = new System.Windows.Forms.Label();
-            this.btnEliminarEmpl = new System.Windows.Forms.Button();
-            this.btnModificarEmpl = new System.Windows.Forms.Button();
-            this.btnAgregarEmpl = new System.Windows.Forms.Button();
+            this.btnEliminarEmpleado = new System.Windows.Forms.Button();
+            this.btnModificarEmpleado = new System.Windows.Forms.Button();
+            this.btnAgregarEmpleado = new System.Windows.Forms.Button();
             this.txtSalarioEmp = new System.Windows.Forms.TextBox();
             this.nudEdadEmp = new System.Windows.Forms.NumericUpDown();
             this.txtNombreEmp = new System.Windows.Forms.TextBox();
             this.lblSalario = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.lbl1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.gbxEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadEmp)).BeginInit();
@@ -69,9 +69,9 @@
             this.gbxEmpleados.Controls.Add(this.lbl1);
             this.gbxEmpleados.Controls.Add(this.cbxCategoria);
             this.gbxEmpleados.Controls.Add(this.lblCategoria);
-            this.gbxEmpleados.Controls.Add(this.btnEliminarEmpl);
-            this.gbxEmpleados.Controls.Add(this.btnModificarEmpl);
-            this.gbxEmpleados.Controls.Add(this.btnAgregarEmpl);
+            this.gbxEmpleados.Controls.Add(this.btnEliminarEmpleado);
+            this.gbxEmpleados.Controls.Add(this.btnModificarEmpleado);
+            this.gbxEmpleados.Controls.Add(this.btnAgregarEmpleado);
             this.gbxEmpleados.Controls.Add(this.txtSalarioEmp);
             this.gbxEmpleados.Controls.Add(this.nudEdadEmp);
             this.gbxEmpleados.Controls.Add(this.txtNombreEmp);
@@ -84,6 +84,15 @@
             this.gbxEmpleados.TabIndex = 3;
             this.gbxEmpleados.TabStop = false;
             this.gbxEmpleados.Text = "Empleados";
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Location = new System.Drawing.Point(6, 259);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(306, 13);
+            this.lbl1.TabIndex = 13;
+            this.lbl1.Text = "*Haga doble clic en un empleado para modificar sus relaciones.";
             // 
             // cbxCategoria
             // 
@@ -102,35 +111,35 @@
             this.lblCategoria.TabIndex = 11;
             this.lblCategoria.Text = "Categoria";
             // 
-            // btnEliminarEmpl
+            // btnEliminarEmpleado
             // 
-            this.btnEliminarEmpl.Location = new System.Drawing.Point(210, 200);
-            this.btnEliminarEmpl.Name = "btnEliminarEmpl";
-            this.btnEliminarEmpl.Size = new System.Drawing.Size(93, 38);
-            this.btnEliminarEmpl.TabIndex = 8;
-            this.btnEliminarEmpl.Text = "Eliminar";
-            this.btnEliminarEmpl.UseVisualStyleBackColor = true;
-            this.btnEliminarEmpl.Click += new System.EventHandler(this.btnEliminarEmpl_Click);
+            this.btnEliminarEmpleado.Location = new System.Drawing.Point(210, 200);
+            this.btnEliminarEmpleado.Name = "btnEliminarEmpleado";
+            this.btnEliminarEmpleado.Size = new System.Drawing.Size(93, 38);
+            this.btnEliminarEmpleado.TabIndex = 8;
+            this.btnEliminarEmpleado.Text = "Eliminar";
+            this.btnEliminarEmpleado.UseVisualStyleBackColor = true;
+            this.btnEliminarEmpleado.Click += new System.EventHandler(this.btnEliminarEmpl_Click);
             // 
-            // btnModificarEmpl
+            // btnModificarEmpleado
             // 
-            this.btnModificarEmpl.Location = new System.Drawing.Point(111, 200);
-            this.btnModificarEmpl.Name = "btnModificarEmpl";
-            this.btnModificarEmpl.Size = new System.Drawing.Size(93, 38);
-            this.btnModificarEmpl.TabIndex = 7;
-            this.btnModificarEmpl.Text = "Modificar";
-            this.btnModificarEmpl.UseVisualStyleBackColor = true;
-            this.btnModificarEmpl.Click += new System.EventHandler(this.btnModificarEmpl_Click);
+            this.btnModificarEmpleado.Location = new System.Drawing.Point(111, 200);
+            this.btnModificarEmpleado.Name = "btnModificarEmpleado";
+            this.btnModificarEmpleado.Size = new System.Drawing.Size(93, 38);
+            this.btnModificarEmpleado.TabIndex = 7;
+            this.btnModificarEmpleado.Text = "Modificar";
+            this.btnModificarEmpleado.UseVisualStyleBackColor = true;
+            this.btnModificarEmpleado.Click += new System.EventHandler(this.btnModificarEmpl_Click);
             // 
-            // btnAgregarEmpl
+            // btnAgregarEmpleado
             // 
-            this.btnAgregarEmpl.Location = new System.Drawing.Point(12, 200);
-            this.btnAgregarEmpl.Name = "btnAgregarEmpl";
-            this.btnAgregarEmpl.Size = new System.Drawing.Size(93, 38);
-            this.btnAgregarEmpl.TabIndex = 6;
-            this.btnAgregarEmpl.Text = "Agregar";
-            this.btnAgregarEmpl.UseVisualStyleBackColor = true;
-            this.btnAgregarEmpl.Click += new System.EventHandler(this.btnAgregarEmpl_Click);
+            this.btnAgregarEmpleado.Location = new System.Drawing.Point(12, 200);
+            this.btnAgregarEmpleado.Name = "btnAgregarEmpleado";
+            this.btnAgregarEmpleado.Size = new System.Drawing.Size(93, 38);
+            this.btnAgregarEmpleado.TabIndex = 6;
+            this.btnAgregarEmpleado.Text = "Agregar";
+            this.btnAgregarEmpleado.UseVisualStyleBackColor = true;
+            this.btnAgregarEmpleado.Click += new System.EventHandler(this.btnAgregarEmpl_Click);
             // 
             // txtSalarioEmp
             // 
@@ -185,15 +194,6 @@
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(6, 259);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(306, 13);
-            this.lbl1.TabIndex = 13;
-            this.lbl1.Text = "*Haga doble clic en un empleado para modificar sus relaciones.";
-            // 
             // EmpleadosComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,9 +215,9 @@
         private System.Windows.Forms.DataGridView dgvEmpleados;
         private System.Windows.Forms.GroupBox gbxEmpleados;
         private System.Windows.Forms.Label lblCategoria;
-        private System.Windows.Forms.Button btnEliminarEmpl;
-        private System.Windows.Forms.Button btnModificarEmpl;
-        private System.Windows.Forms.Button btnAgregarEmpl;
+        private System.Windows.Forms.Button btnEliminarEmpleado;
+        private System.Windows.Forms.Button btnModificarEmpleado;
+        private System.Windows.Forms.Button btnAgregarEmpleado;
         private System.Windows.Forms.TextBox txtSalarioEmp;
         private System.Windows.Forms.NumericUpDown nudEdadEmp;
         private System.Windows.Forms.TextBox txtNombreEmp;

@@ -52,7 +52,6 @@
             this.tbContraseña.PasswordChar = '*';
             this.tbContraseña.Size = new System.Drawing.Size(148, 20);
             this.tbContraseña.TabIndex = 1;
-            this.tbContraseña.Enter += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnVolver
             // 
@@ -115,6 +114,7 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 195);

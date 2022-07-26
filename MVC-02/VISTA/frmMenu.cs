@@ -16,32 +16,31 @@ namespace VISTA
         public frmMenu()
         {
             InitializeComponent();
-            //switch (ControladorSeguridad.GetInstancia().usuarioLogueado.Perfil.nombre)
-            //{
-            //    case "Empleado":
-            //        //Deshabilitar o esconder todo menos clientes
-            //        break;
+            Dictionary<string, UserControl> formularios = new Dictionary<string, UserControl>();
+            formularios.Add("frmPerfiles", new PerfilesComponent());
+            formularios.Add("frmProductos", new ProductosComponent());
+            formularios.Add("frmEmpleados", new EmpleadosComponent());
+            formularios.Add("frmUsuarios", new UsuariosComponent());
+            formularios.Add("frmVenta", new VentasComponent());
+            formularios.Add("frmClientes", new ClientesComponent());
+            formularios.Add("frmJerarquia", new JerarquiaComponent());
 
-            //    case "Gerente":
-            //        //Deshabilitar o esconder jerarquia
-            //        break;
-
-            //    case "Cliente":
-            //        //Deshabilitar o esconder todo menos productos
-            //        break;
-
-            //    case "Dueño":
-            //        //Mostrarle todo
-            //        break;
-
-            //    case "Nadie":
-            //        break;
-
-            //    default:
-            //        throw new Exception("Perfil desconocido");
-            //}
-            //panelMenu.Controls.Clear();
-            //panelMenu.Controls.Add(new EmpleadosComponent());
+            menuStrip1.Items.Clear();
+            foreach (var form in formularios)
+            {
+                if (ControladorSeguridad.GetInstancia().CanUserAccessForm(form.Key))
+                {
+                    var item = new ToolStripMenuItem(form.Key.Substring(3));
+                    item.Click += (sender, e) =>
+                    {
+                        panelMenu.Controls.Clear();
+                        panelMenu.Controls.Add(form.Value);
+                    };
+                    menuStrip1.Items.Add(item);
+                    
+                }
+            }
+         
         }
 
         private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)

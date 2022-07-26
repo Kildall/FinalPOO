@@ -24,27 +24,24 @@ namespace VISTA
             frmLogin.Show();
             this.Hide();
             frmLogin.FormClosed += ShowInicio;
-            frmLogin.FormClosed += ShowMenu;
-
-
-        }
-
-        private void ShowMenu(object sender, EventArgs e)
-        {
-            //((frmLogin)sender).successLogin (otra forma menos intuitiva)
-            if ((sender as frmLogin).successLogin == true)
-            {
-                frmMenu frmMenu = new frmMenu();
-                frmMenu.Show();
-                successLogin = true;
-                this.Close();
-                
-            }
         }
 
         private void ShowInicio(object sender, EventArgs e)
         {
-            this.Show();
+            //((frmLogin)sender).successLogin (otra forma menos intuitiva)
+            if ((sender as frmLogin) == null)
+            {
+                this.Show();
+                return;
+            }
+            if ((sender as frmLogin).successLogin)
+            {
+                successLogin = true;
+                this.Close();
+            } else
+            {
+                this.Show();
+            }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

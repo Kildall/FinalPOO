@@ -20,6 +20,34 @@ namespace VISTA
         {
             InitializeComponent();
             ListarClientes();
+            var permisos = ControladorSeguridad.GetInstancia().GetControlsAllowed("frmClientes");
+            foreach (var control in GetButtonControls(this))
+            {
+                var permiso = permisos.FirstOrDefault(x => x == control.Name);
+                if (permiso != null)
+                {
+                    control.Enabled = true;
+                } else
+                {
+                    control.Enabled = false;
+                }
+            }
+        }
+
+
+        //Usar recursion para obtener todos los hijos de un control
+        private List<Control> GetButtonControls(Control padre)
+        {
+            List<Control> controles = new List<Control>();
+            //Caso base es el caso en donde no haya hijos ya que no entra al foreach
+            foreach (Control c in padre.Controls)
+            {
+                controles.AddRange(GetButtonControls(c));
+                if (c is Button)
+                    controles.Add(c);
+            }
+            //En el caso base, devuelve la lista vacia, si no, devuelve los controles
+            return controles;
         }
 
 
@@ -57,11 +85,13 @@ namespace VISTA
 
         private ClienteDataGrid ClienteSeleccionado()
         {
+            if (indice == -1) return null;
             return ListaClientes.ElementAt(indice);
         }
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
+            if (ClienteSeleccionado() == null) return;
             Cliente cliente = ClienteSeleccionado().GetCliente();
             cliente.nombre = txtNombreCliente.Text;
             cliente.edad = nudEdadCliente.Text;
@@ -73,6 +103,7 @@ namespace VISTA
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
+            if (ClienteSeleccionado() == null) return;
             Cliente cliente = ClienteSeleccionado().GetCliente();
      
             ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
