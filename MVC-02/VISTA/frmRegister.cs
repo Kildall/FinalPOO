@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CONTROLADOR;
 using MODELO.Seguridad;
 using MODELO;
+using System.Text.RegularExpressions;
 
 namespace VISTA
 {
@@ -20,18 +21,65 @@ namespace VISTA
         {
             InitializeComponent();
             empresas = ControladorEmpresa.GetInstancia().GetEmpresas();
-            cbEmpresa.DataSource = empresas.Select(x => x.Nombre).ToList();
+            var listaEmpresas = empresas.Select(x => x.Nombre).ToList();
+            listaEmpresas.Insert(0, "-");
+            cbEmpresa.DataSource = listaEmpresas;
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
             //Agregar validaciones de datos con sus errores
 
+            if (!ValidateEmail(tbEmail.Text))
+            {
+                MessageBox.Show("El mail ingresado es inválido.");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(tbNombre.Text) || !tbNombre.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El nombre ingresado es inválido.");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(tbApellido.Text) || !tbApellido.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El apellido ingresado es inválido.");
+                return;
+            }
+
+            if (nudDNI.Value >= 99999999 || nudDNI.Value <= 100000)
+            {
+                MessageBox.Show("El DNI ingresado es inválido.");
+                return;
+            }
+
+            if (tbContraseña.Text.Length < 8 ||
+                String.IsNullOrEmpty(tbContraseña.Text) ||
+                !tbContraseña.Text.ToCharArray().Any(x=> char.IsUpper(x)) ||
+                !tbContraseña.Text.ToCharArray().Any(x => char.IsDigit(x)))
+            {
+                MessageBox.Show("La contraseña ingresada es inválida.");
+                return;
+            }
+
+            if (tbContraseña.Text != tbRepetirContraseña.Text)
+            {
+                MessageBox.Show("Las contraseñas no coinciden.");
+                return;
+            }
+
+            if (cbEmpresa.SelectedIndex < 1)
+            {
+                MessageBox.Show("Seleccione una empresa.");
+                return;
+            }
+
             int respuesta = ControladorSeguridad.GetInstancia().Register(new Usuario()
             {
                 nombre = tbNombre.Text,
                 apellido = tbApellido.Text,
-                dni = tbDNI.Text,
+                dni = nudDNI.Text,
                 contraseña = tbContraseña.Text,
                 mail = tbEmail.Text,
                 empresa_id = empresas[cbEmpresa.SelectedIndex].GetEmpresa().Id
@@ -43,7 +91,7 @@ namespace VISTA
                     //Error el mail ya existe (hay un label de error para esto)
                     lblError.Text = "El mail ingresado ya existe.";
                     lblError.Visible = true;
-                    tbEmail.BackColor = Color.Red;
+                    tbEmail.ForeColor = Color.Red;
                     break;
                 case 0:
                     //Mostrar mensaje de registro exitoso
@@ -58,11 +106,29 @@ namespace VISTA
             }
         }
 
+        
+
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        public bool ValidateEmail(string email)
+        {
+            Regex validateEmailRegex = new Regex("^\\S+@\\S+\\.\\S+$");
+            return validateEmailRegex.IsMatch(email);
+        }
 
+        private void tbEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (!ValidateEmail(tbEmail.Text))
+            {
+                tbEmail.ForeColor = Color.Red;
+            }
+            else
+            {
+                tbEmail.ForeColor = Color.Black;
+            }
+        }
     }
 }

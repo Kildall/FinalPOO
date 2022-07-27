@@ -35,7 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbDNI = new System.Windows.Forms.TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
             this.btnRegistrarse = new System.Windows.Forms.Button();
@@ -46,6 +45,8 @@
             this.tbContraseña = new System.Windows.Forms.TextBox();
             this.cbEmpresa = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.nudDNI = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDNI)).BeginInit();
             this.SuspendLayout();
             // 
             // tbEmail
@@ -54,6 +55,7 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(149, 20);
             this.tbEmail.TabIndex = 0;
+            this.tbEmail.TextChanged += new System.EventHandler(this.tbEmail_TextChanged);
             // 
             // label1
             // 
@@ -76,6 +78,7 @@
             // tbApellido
             // 
             this.tbApellido.Location = new System.Drawing.Point(150, 124);
+            this.tbApellido.MaxLength = 20;
             this.tbApellido.Name = "tbApellido";
             this.tbApellido.Size = new System.Drawing.Size(149, 20);
             this.tbApellido.TabIndex = 2;
@@ -92,6 +95,7 @@
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(150, 96);
+            this.tbNombre.MaxLength = 20;
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(149, 20);
             this.tbNombre.TabIndex = 1;
@@ -104,13 +108,6 @@
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "DNI";
-            // 
-            // tbDNI
-            // 
-            this.tbDNI.Location = new System.Drawing.Point(150, 152);
-            this.tbDNI.Name = "tbDNI";
-            this.tbDNI.Size = new System.Drawing.Size(149, 20);
-            this.tbDNI.TabIndex = 3;
             // 
             // lblLogin
             // 
@@ -166,6 +163,7 @@
             // 
             this.tbRepetirContraseña.Location = new System.Drawing.Point(150, 223);
             this.tbRepetirContraseña.Name = "tbRepetirContraseña";
+            this.tbRepetirContraseña.PasswordChar = '*';
             this.tbRepetirContraseña.Size = new System.Drawing.Size(149, 20);
             this.tbRepetirContraseña.TabIndex = 5;
             // 
@@ -182,6 +180,7 @@
             // 
             this.tbContraseña.Location = new System.Drawing.Point(150, 195);
             this.tbContraseña.Name = "tbContraseña";
+            this.tbContraseña.PasswordChar = '*';
             this.tbContraseña.Size = new System.Drawing.Size(149, 20);
             this.tbContraseña.TabIndex = 4;
             // 
@@ -204,12 +203,25 @@
             this.label8.TabIndex = 17;
             this.label8.Text = "Empresa";
             // 
+            // nudDNI
+            // 
+            this.nudDNI.Location = new System.Drawing.Point(150, 155);
+            this.nudDNI.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.nudDNI.Name = "nudDNI";
+            this.nudDNI.Size = new System.Drawing.Size(148, 20);
+            this.nudDNI.TabIndex = 18;
+            // 
             // frmRegister
             // 
             this.AcceptButton = this.btnRegistrarse;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 344);
+            this.Controls.Add(this.nudDNI);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbEmpresa);
             this.Controls.Add(this.label6);
@@ -221,7 +233,6 @@
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tbDNI);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.label2);
@@ -230,6 +241,7 @@
             this.Controls.Add(this.tbEmail);
             this.Name = "frmRegister";
             this.Text = "Registro";
+            ((System.ComponentModel.ISupportInitialize)(this.nudDNI)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,7 +256,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbDNI;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Button btnRegistrarse;
@@ -255,5 +266,6 @@
         private System.Windows.Forms.TextBox tbContraseña;
         private System.Windows.Forms.ComboBox cbEmpresa;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudDNI;
     }
 }
