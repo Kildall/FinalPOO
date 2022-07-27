@@ -22,7 +22,7 @@ namespace MODELO
     
         public int Id { get; set; }
         public string nombre { get; set; }
-        public string edad { get; set; }
+        public int edad { get; set; }
         public string telefono { get; set; }
     
         public virtual Empresa Empresa { get; set; }

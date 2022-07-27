@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/05/2022 13:34:37
+-- Date Created: 07/27/2022 15:16:53
 -- Generated from EDMX file: C:\Users\Pedro\Desktop\Programacion\POO\FinalPOO\MVC-02\MODELO\Seguridad\Seguridad.edmx
 -- --------------------------------------------------
 
@@ -17,20 +17,23 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_UsuarioPerfil]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UsuarioSet] DROP CONSTRAINT [FK_UsuarioPerfil];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PerfilFormulario_Perfil]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PerfilFormulario] DROP CONSTRAINT [FK_PerfilFormulario_Perfil];
+IF OBJECT_ID(N'[dbo].[FK_FormularioPermiso]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PermisoSet] DROP CONSTRAINT [FK_FormularioPermiso];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PerfilFormulario_Formulario]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PerfilFormulario] DROP CONSTRAINT [FK_PerfilFormulario_Formulario];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PerfilFormulario_Perfil]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PerfilFormulario] DROP CONSTRAINT [FK_PerfilFormulario_Perfil];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PerfilPermiso_Perfil]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PerfilPermiso] DROP CONSTRAINT [FK_PerfilPermiso_Perfil];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PerfilPermiso_Permiso]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PerfilPermiso] DROP CONSTRAINT [FK_PerfilPermiso_Permiso];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UsuarioPerfil]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UsuarioSet] DROP CONSTRAINT [FK_UsuarioPerfil];
 GO
 
 -- --------------------------------------------------
@@ -40,20 +43,20 @@ GO
 IF OBJECT_ID(N'[dbo].[FormularioSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[FormularioSet];
 GO
-IF OBJECT_ID(N'[dbo].[PermisoSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PermisoSet];
-GO
-IF OBJECT_ID(N'[dbo].[PerfilSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PerfilSet];
-GO
-IF OBJECT_ID(N'[dbo].[UsuarioSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UsuarioSet];
-GO
 IF OBJECT_ID(N'[dbo].[PerfilFormulario]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PerfilFormulario];
 GO
 IF OBJECT_ID(N'[dbo].[PerfilPermiso]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PerfilPermiso];
+GO
+IF OBJECT_ID(N'[dbo].[PerfilSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PerfilSet];
+GO
+IF OBJECT_ID(N'[dbo].[PermisoSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PermisoSet];
+GO
+IF OBJECT_ID(N'[dbo].[UsuarioSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UsuarioSet];
 GO
 
 -- --------------------------------------------------
@@ -79,7 +82,7 @@ GO
 -- Creating table 'PerfilSet'
 CREATE TABLE [dbo].[PerfilSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
     [empresa_id] int  NOT NULL
 );
 GO
@@ -87,10 +90,10 @@ GO
 -- Creating table 'UsuarioSet'
 CREATE TABLE [dbo].[UsuarioSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [dni] nvarchar(max)  NOT NULL,
-    [apellido] nvarchar(max)  NOT NULL,
-    [mail] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
+    [dni] bigint  NOT NULL,
+    [apellido] nvarchar(50)  NOT NULL,
+    [mail] nvarchar(90)  NOT NULL,
     [contraseña] nvarchar(max)  NOT NULL,
     [empresa_id] int  NOT NULL,
     [Perfil_Id] int  NOT NULL

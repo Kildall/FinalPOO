@@ -10,8 +10,8 @@ namespace MODELO
     {
         private Productos _producto;
         public string Nombre { get; private set; }
-        public string Cantidad { get; private set; }
-        public string Precio { get; private set; }
+        public int Cantidad { get; private set; }
+        public int Precio { get; private set; }
 
         public ProductoDataGrid(Productos producto)
         {
@@ -19,6 +19,7 @@ namespace MODELO
             this.Nombre = producto.nombre;
             this.Cantidad = producto.cantidad;
             this.Precio = producto.precio;
+            
         }
 
         public Productos GetProductos()

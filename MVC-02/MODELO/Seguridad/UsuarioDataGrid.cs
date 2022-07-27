@@ -6,7 +6,7 @@
 
         public string Nombre { get; private set; }
         public string Apellido { get; private set; }
-        public string DNI { get; private set; }
+        public long DNI { get; private set; }
         public string EMail { get; private set; }
         public string Perfil { get; private set; }
         public string Empresa { get; set; }

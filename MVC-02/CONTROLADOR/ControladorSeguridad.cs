@@ -20,6 +20,7 @@ namespace CONTROLADOR
 
         public Usuario usuarioLogueado { get; private set; }
 
+        #region Login y Registro
         public int Login(string email, string password)
         {
             Usuario user = SeguridadContext.GetInstancia().Container.UsuarioSet.FirstOrDefault(x => x.mail == email);
@@ -30,7 +31,6 @@ namespace CONTROLADOR
             ControladorEmpresa.GetInstancia().empresa_id = usuarioLogueado.empresa_id;
             return 0;
         }
-
         public int Register(Usuario usuario)
         {
             if (SeguridadContext.GetInstancia().Container.UsuarioSet.FirstOrDefault(x => x.mail == usuario.mail) != null)
@@ -41,7 +41,29 @@ namespace CONTROLADOR
             SeguridadContext.GetInstancia().Container.SaveChanges();
             return 0;
         }
+        public string Encriptacion(string contraseña)
+        {
+            //Creo el encriptador
+            SHA256 sha256 = SHA256.Create();
 
+            //Encripto el valor pasando el string recibido a bytes
+            byte[] hash = sha256.ComputeHash(Encoding.Default.GetBytes(contraseña));
+
+            //Creo un string
+            string contraEncriptada = "";
+
+            //Transformo todos los bytes en valores de string
+            for (int i = 0; i < hash.Length; i++)
+            {
+                contraEncriptada += hash[i].ToString();
+            }
+
+            //Devuelvo el valor generado
+            return contraEncriptada;
+        }
+        #endregion
+
+        #region Usuarios
         public List<UsuarioDataGrid> GetUsuarios()
         {
             List<UsuarioDataGrid> listaUsuarios = new List<UsuarioDataGrid>();
@@ -77,7 +99,14 @@ namespace CONTROLADOR
 
             return listaUsuarios;
         }
+        public void ModificarUsuario()
+        {
+            SeguridadContext.GetInstancia().Container.SaveChanges();
+        }
 
+        #endregion
+
+        #region Perfiles
         public List<PerfilDataGrid> GetPerfilesByEmpresa(int empresa_id)
         {
             List<PerfilDataGrid> listaPerfiles = new List<PerfilDataGrid>();
@@ -109,23 +138,23 @@ namespace CONTROLADOR
         {
             SeguridadContext.GetInstancia().Container.SaveChanges();
         }
-
-        public List<Formulario> GetFormularios()
-        {
-            return SeguridadContext.GetInstancia().Container.FormularioSet.ToList();
-        }
-
-        public void ModificarUsuario()
-        {
-            SeguridadContext.GetInstancia().Container.SaveChanges();
-        }
-
+        
         public void AgregarPerfil(Perfil perfil)
         {
             SeguridadContext.GetInstancia().Container.PerfilSet.Add(perfil);
             SeguridadContext.GetInstancia().Container.SaveChanges();
         }
 
+        #endregion
+
+        #region Formularios
+        public List<Formulario> GetFormularios()
+        {
+            return SeguridadContext.GetInstancia().Container.FormularioSet.ToList();
+        }
+        #endregion
+
+        #region Permisos
         public List<PermisoDataGrid> GetPermisos()
         {
             List<PermisoDataGrid> listaPermisos = new List<PermisoDataGrid>();
@@ -137,8 +166,7 @@ namespace CONTROLADOR
 
             return listaPermisos;
         }
-
-        public bool CanUserAccessForm(string form)
+        public bool CanUsuarioViewFormulario(string form)
         {
             foreach (var formulario in usuarioLogueado.Perfil.Formularios)
             {
@@ -149,31 +177,10 @@ namespace CONTROLADOR
             }
             return false;
         }
-
-        public List<string> GetControlsAllowed(string form)
+        public List<string> GetPermisosByFormulario(string form)
         {
             return usuarioLogueado.Perfil.Permisos.Where(x => x.Formulario.nombre == form).Select(x => x.nombreSistema).ToList();
         }
-
-        public string Encriptacion(string contraseña)
-        {
-            //Creo el encriptador
-            SHA256 sha256 = SHA256.Create();
-
-            //Encripto el valor pasando el string recibido a bytes
-            byte[] hash = sha256.ComputeHash(Encoding.Default.GetBytes(contraseña));
-            
-            //Creo un string
-            string contraEncriptada = "";
-            
-            //Transformo todos los bytes en valores de string
-            for (int i = 0; i < hash.Length; i++)
-            {
-                contraEncriptada += hash[i].ToString();
-            }
-
-            //Devuelvo el valor generado
-            return contraEncriptada;
-        }
+        #endregion
     }
 }

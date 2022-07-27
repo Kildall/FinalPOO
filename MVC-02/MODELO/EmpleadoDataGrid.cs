@@ -10,11 +10,11 @@ namespace MODELO
     {
 
         private readonly Empleado _empleado;
-
+        
         //public int ID { get; set; }
         public string Nombre { get; set; }
-        public string Edad { get; set; }
-        public string Salario { get; set; }
+        public int Edad { get; set; }
+        public int Salario { get; set; }
         public string Categoria { get; set; }
         public List<Empleado> Superiores { get; set; }
         public List<Empleado> Subordinados { get; set; }

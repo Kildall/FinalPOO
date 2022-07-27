@@ -49,6 +49,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ClienteVentas]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Ventas] DROP CONSTRAINT [FK_ClienteVentas];
 GO
+IF OBJECT_ID(N'[dbo].[FK_VentasProductos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Ventas] DROP CONSTRAINT [FK_VentasProductos];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -83,8 +86,8 @@ GO
 -- Creating table 'Clientes'
 CREATE TABLE [dbo].[Clientes] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [edad] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
+    [edad] int  NOT NULL,
     [telefono] nvarchar(max)  NOT NULL,
     [Empresa_Id] int  NOT NULL
 );
@@ -100,9 +103,9 @@ GO
 -- Creating table 'Empleados'
 CREATE TABLE [dbo].[Empleados] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [edad] nvarchar(max)  NOT NULL,
-    [salario] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
+    [edad] int  NOT NULL,
+    [salario] int  NOT NULL,
     [Empresa_Id] int  NOT NULL,
     [Categoria_Id] int  NOT NULL
 );
@@ -111,7 +114,7 @@ GO
 -- Creating table 'Categorias'
 CREATE TABLE [dbo].[Categorias] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
     [Empresa_Id] int  NOT NULL
 );
 GO
@@ -119,9 +122,9 @@ GO
 -- Creating table 'Productos'
 CREATE TABLE [dbo].[Productos] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [cantidad] nvarchar(max)  NOT NULL,
-    [precio] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
+    [cantidad] int  NOT NULL,
+    [precio] int  NOT NULL,
     [Empresa_Id] int  NOT NULL
 );
 GO
@@ -129,8 +132,8 @@ GO
 -- Creating table 'Ventas'
 CREATE TABLE [dbo].[Ventas] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [total] nvarchar(max)  NOT NULL,
-    [cantidad] nvarchar(max)  NOT NULL,
+    [total] int  NOT NULL,
+    [cantidad] int  NOT NULL,
     [Empresa_Id] int  NOT NULL,
     [Empleado_Id] int  NOT NULL,
     [Cliente_Id] int  NOT NULL,
@@ -406,20 +409,23 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_UsuarioPerfil]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UsuarioSet] DROP CONSTRAINT [FK_UsuarioPerfil];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PerfilFormulario_Perfil]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PerfilFormulario] DROP CONSTRAINT [FK_PerfilFormulario_Perfil];
+IF OBJECT_ID(N'[dbo].[FK_FormularioPermiso]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PermisoSet] DROP CONSTRAINT [FK_FormularioPermiso];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PerfilFormulario_Formulario]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PerfilFormulario] DROP CONSTRAINT [FK_PerfilFormulario_Formulario];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PerfilFormulario_Perfil]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PerfilFormulario] DROP CONSTRAINT [FK_PerfilFormulario_Perfil];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PerfilPermiso_Perfil]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PerfilPermiso] DROP CONSTRAINT [FK_PerfilPermiso_Perfil];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PerfilPermiso_Permiso]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PerfilPermiso] DROP CONSTRAINT [FK_PerfilPermiso_Permiso];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UsuarioPerfil]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UsuarioSet] DROP CONSTRAINT [FK_UsuarioPerfil];
 GO
 
 -- --------------------------------------------------
@@ -429,20 +435,20 @@ GO
 IF OBJECT_ID(N'[dbo].[FormularioSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[FormularioSet];
 GO
-IF OBJECT_ID(N'[dbo].[PermisoSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PermisoSet];
-GO
-IF OBJECT_ID(N'[dbo].[PerfilSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PerfilSet];
-GO
-IF OBJECT_ID(N'[dbo].[UsuarioSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UsuarioSet];
-GO
 IF OBJECT_ID(N'[dbo].[PerfilFormulario]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PerfilFormulario];
 GO
 IF OBJECT_ID(N'[dbo].[PerfilPermiso]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PerfilPermiso];
+GO
+IF OBJECT_ID(N'[dbo].[PerfilSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PerfilSet];
+GO
+IF OBJECT_ID(N'[dbo].[PermisoSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PermisoSet];
+GO
+IF OBJECT_ID(N'[dbo].[UsuarioSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UsuarioSet];
 GO
 
 -- --------------------------------------------------
@@ -468,7 +474,7 @@ GO
 -- Creating table 'PerfilSet'
 CREATE TABLE [dbo].[PerfilSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
     [empresa_id] int  NOT NULL
 );
 GO
@@ -476,10 +482,10 @@ GO
 -- Creating table 'UsuarioSet'
 CREATE TABLE [dbo].[UsuarioSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [dni] nvarchar(max)  NOT NULL,
-    [apellido] nvarchar(max)  NOT NULL,
-    [mail] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
+    [dni] bigint  NOT NULL,
+    [apellido] nvarchar(50)  NOT NULL,
+    [mail] nvarchar(90)  NOT NULL,
     [contraseña] nvarchar(max)  NOT NULL,
     [empresa_id] int  NOT NULL,
     [Perfil_Id] int  NOT NULL
@@ -742,7 +748,7 @@ INSERT INTO FormularioSet (nombre) VALUES ('frmJerarquia'); --7
 	INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 26);
     INSERT INTO PerfilPermiso (Perfiles_Id, Permisos_Id) VALUES (16, 27);
 
-INSERT INTO UsuarioSet (nombre, dni, apellido, mail, contraseña, empresa_id, Perfil_Id) VALUES ('asd','123','asd','admin','admin','4','16')
+INSERT INTO UsuarioSet (nombre, dni, apellido, mail, contraseña, empresa_id, Perfil_Id) VALUES ('asd','123','asd','admin','14010511822918165421189233818977238212231771031692001152527518416831111421807216924','4','16')
 
 
 

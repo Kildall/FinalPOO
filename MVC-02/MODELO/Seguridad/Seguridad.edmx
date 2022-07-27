@@ -58,7 +58,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="empresa_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UsuarioSet">
@@ -66,10 +66,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="dni" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="apellido" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="dni" Type="bigint" Nullable="false" />
+    <Property Name="apellido" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="mail" Type="nvarchar" Nullable="false" MaxLength="90" />
     <Property Name="contraseña" Type="nvarchar(max)" Nullable="false" />
     <Property Name="empresa_id" Type="int" Nullable="false" />
     <Property Name="Perfil_Id" Type="int" Nullable="false" />
@@ -212,7 +212,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="nombre" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="50" />
           <NavigationProperty Name="Usuarios" Relationship="Seguridad.UsuarioPerfil" FromRole="Perfil" ToRole="Usuario" />
           <NavigationProperty Name="Formularios" Relationship="Seguridad.PerfilFormulario" FromRole="Perfil" ToRole="Formulario" />
           <Property Name="empresa_id" Type="Int32" Nullable="false" />
@@ -223,11 +223,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="dni" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="apellido" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="mail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="contraseña" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="dni" Type="Int64" Nullable="false" />
+          <Property Name="apellido" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="50" />
+          <Property Name="mail" Type="String" Nullable="false" MaxLength="90" />
+          <Property Name="contraseña" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="Max" />
           <NavigationProperty Name="Perfil" Relationship="Seguridad.UsuarioPerfil" FromRole="Usuario" ToRole="Perfil" />
           <Property Name="empresa_id" Type="Int32" Nullable="false" />
         </EntityType>

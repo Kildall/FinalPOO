@@ -15,8 +15,8 @@ namespace MODELO
     public partial class Ventas
     {
         public int Id { get; set; }
-        public string total { get; set; }
-        public string cantidad { get; set; }
+        public int total { get; set; }
+        public int cantidad { get; set; }
     
         public virtual Empresa Empresa { get; set; }
         public virtual Empleado Empleado { get; set; }

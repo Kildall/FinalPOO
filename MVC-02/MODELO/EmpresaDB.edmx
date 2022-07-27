@@ -63,8 +63,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="edad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="edad" Type="int" Nullable="false" />
     <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Empresa_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -80,9 +80,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="edad" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="salario" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="edad" Type="int" Nullable="false" />
+    <Property Name="salario" Type="int" Nullable="false" />
     <Property Name="Empresa_Id" Type="int" Nullable="false" />
     <Property Name="Categoria_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -91,7 +91,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Empresa_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Productos">
@@ -99,9 +99,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="cantidad" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="precio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="precio" Type="int" Nullable="false" />
     <Property Name="Empresa_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Ventas">
@@ -109,8 +109,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="total" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="cantidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="total" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
     <Property Name="Empresa_Id" Type="int" Nullable="false" />
     <Property Name="Empleado_Id" Type="int" Nullable="false" />
     <Property Name="Cliente_Id" Type="int" Nullable="false" />
@@ -313,8 +313,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="edad" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="nombre" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="50" />
+          <Property Name="edad" Type="Int32" Nullable="false" />
           <Property Name="telefono" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Empresa" Relationship="EmpresaDB.EmpresaCliente" FromRole="Cliente" ToRole="Empresa" />
           <NavigationProperty Name="Ventas" Relationship="EmpresaDB.ClienteVentas" FromRole="Cliente" ToRole="Ventas" />
@@ -335,9 +335,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="edad" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="salario" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="nombre" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="50" />
+          <Property Name="edad" Type="Int32" Nullable="false" />
+          <Property Name="salario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Empresa" Relationship="EmpresaDB.EmpresaEmpleado" FromRole="Empleado" ToRole="Empresa" />
           <NavigationProperty Name="Categoria" Relationship="EmpresaDB.EmpleadoCategoria" FromRole="Empleado" ToRole="Categoria" />
           <NavigationProperty Name="Superior" Relationship="EmpresaDB.EmpleadoEmpleado" FromRole="Empleado" ToRole="Empleado1" />
@@ -349,7 +349,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Empleados" Relationship="EmpresaDB.EmpleadoCategoria" FromRole="Categoria" ToRole="Empleado" />
           <NavigationProperty Name="Empresa" Relationship="EmpresaDB.CategoriaEmpresa" FromRole="Categoria" ToRole="Empresa" />
         </EntityType>
@@ -374,9 +374,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="cantidad" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="precio" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="nombre" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="50" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Empresa" Relationship="EmpresaDB.ProductosEmpresa" FromRole="Productos" ToRole="Empresa" />
           <NavigationProperty Name="Ventas" Relationship="EmpresaDB.VentasProductos" FromRole="Productos" ToRole="Ventas" />
         </EntityType>
@@ -385,11 +385,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="total" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="total" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Empresa" Relationship="EmpresaDB.VentasEmpresa" FromRole="Ventas" ToRole="Empresa" />
           <NavigationProperty Name="Empleado" Relationship="EmpresaDB.EmpleadoVentas" FromRole="Ventas" ToRole="Empleado" />
           <NavigationProperty Name="Cliente" Relationship="EmpresaDB.ClienteVentas" FromRole="Ventas" ToRole="Cliente" />
-          <Property Name="cantidad" Type="String" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Productos" Relationship="EmpresaDB.VentasProductos" FromRole="Ventas" ToRole="Productos" />
         </EntityType>
         <Association Name="CategoriaEmpresa">
