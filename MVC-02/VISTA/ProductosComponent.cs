@@ -62,8 +62,8 @@ namespace VISTA
             Productos producto = new Productos()
             {
                 nombre = txtNombre.Text,
-                cantidad = txtCantidad.Text,
-                precio = txtPrecio.Text,
+                cantidad = int.Parse(txtCantidad.Text),
+                precio = int.Parse(txtPrecio.Text),
                 Empresa = ControladorEmpresa.GetInstancia().GetEmpresaFromSession()
             };
 

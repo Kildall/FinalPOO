@@ -84,7 +84,7 @@ namespace VISTA
             //Datos
             tbNombre.Text = usuarioSeleccionado.Nombre;
             tbApellido.Text = usuarioSeleccionado.Apellido;
-            tbDNI.Text = usuarioSeleccionado.DNI;
+            tbDNI.Text = usuarioSeleccionado.DNI.ToString();
             tbEmail.Text = usuarioSeleccionado.EMail;
             
         }
@@ -103,7 +103,7 @@ namespace VISTA
             Usuario usu = usuarioSeleccionado.GetUsuario();
             usu.nombre = tbNombre.Text;
             usu.apellido = tbApellido.Text;
-            usu.dni = tbDNI.Text;
+            usu.dni = long.Parse(tbDNI.Text);
             usu.mail = tbEmail.Text;
             ControladorSeguridad.GetInstancia().ModificarUsuario();
             empresaModificada = false;
@@ -150,7 +150,7 @@ namespace VISTA
                 ActualizarListaUsuarios();
             else
             {
-                dgvUsuarios.DataSource = usuarios.Where(x => x.DNI.Contains(tbBusquedaDNI.Text)).ToList();
+                dgvUsuarios.DataSource = usuarios.Where(x => x.DNI.ToString().Contains(tbBusquedaDNI.Text)).ToList();
             }
 
 

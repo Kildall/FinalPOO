@@ -60,8 +60,8 @@ namespace VISTA
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            venta.GetVentas().cantidad = tbCantidad.Text;
-            venta.GetVentas().total = (int.Parse(venta.GetVentas().Productos.precio) * int.Parse(tbCantidad.Text)).ToString();
+            venta.GetVentas().cantidad = int.Parse(tbCantidad.Text);
+            venta.GetVentas().total = venta.GetVentas().Productos.precio * int.Parse(tbCantidad.Text);
             ControladorEmpresa.GetInstancia().AgregarVenta(venta);
             lblCliente.Text = null;
             lblCliente.Visible = false;

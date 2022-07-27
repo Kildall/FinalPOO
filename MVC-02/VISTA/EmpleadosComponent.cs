@@ -94,8 +94,8 @@ namespace VISTA
             Empleado empleado = new Empleado() //Se construye un empleado
             {
                 nombre = txtNombreEmp.Text,
-                edad = nudEdadEmp.Text,
-                salario = txtSalarioEmp.Text
+                edad = int.Parse(nudEdadEmp.Text),
+                salario = int.Parse(txtSalarioEmp.Text)
             };
 
             empleado.Categoria = ListaCategorias.ElementAt(categoriaSeleccionada);
@@ -110,8 +110,8 @@ namespace VISTA
         {
             Empleado empleado = EmpleadoSeleccionado().GetEmpleado();
             empleado.nombre = txtNombreEmp.Text;
-            empleado.edad = nudEdadEmp.Text;
-            empleado.salario = txtSalarioEmp.Text;
+            empleado.edad = int.Parse(nudEdadEmp.Text);
+            empleado.salario = int.Parse(txtSalarioEmp.Text);
 
             empleado.Categoria = ListaCategorias.ElementAt(cbxCategoria.SelectedIndex);
 

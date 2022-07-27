@@ -79,7 +79,7 @@ namespace VISTA
             {
                 nombre = tbNombre.Text,
                 apellido = tbApellido.Text,
-                dni = nudDNI.Text,
+                dni = (long)nudDNI.Value,
                 contraseña = tbContraseña.Text,
                 mail = tbEmail.Text,
                 empresa_id = empresas[cbEmpresa.SelectedIndex].GetEmpresa().Id

@@ -63,7 +63,7 @@ namespace VISTA
             Cliente cliente = new Cliente() //Construyo un cliente
             {
                 nombre = txtNombreCliente.Text,
-                edad = nudEdadCliente.Text,
+                edad = int.Parse(nudEdadCliente.Text),
                 telefono = txtTelCliente.Text,
             };
 
@@ -94,7 +94,7 @@ namespace VISTA
             if (ClienteSeleccionado() == null) return;
             Cliente cliente = ClienteSeleccionado().GetCliente();
             cliente.nombre = txtNombreCliente.Text;
-            cliente.edad = nudEdadCliente.Text;
+            cliente.edad = int.Parse(nudEdadCliente.Text);
             cliente.telefono = txtTelCliente.Text;
 
             ControladorEmpresa.GetInstancia().ModificarCliente(cliente);
