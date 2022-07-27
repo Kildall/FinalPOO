@@ -28,7 +28,7 @@ namespace VISTA
         {
             InitializeComponent();
             ActualizarLista();
-            var permisos = ControladorSeguridad.GetInstancia().GetControlsAllowed("frmPerfiles");
+            var permisos = ControladorSeguridad.GetInstancia().GetPermisosByFormulario("frmPerfiles");
             foreach (var control in GetButtonControls(this))
             {
                 var permiso = permisos.FirstOrDefault(x => x == control.Name);

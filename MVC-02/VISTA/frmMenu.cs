@@ -28,7 +28,7 @@ namespace VISTA
             menuStrip1.Items.Clear();
             foreach (var form in formularios)
             {
-                if (ControladorSeguridad.GetInstancia().CanUserAccessForm(form.Key))
+                if (ControladorSeguridad.GetInstancia().CanUsuarioViewFormulario(form.Key))
                 {
                     var item = new ToolStripMenuItem(form.Key.Substring(3));
                     item.Click += (sender, e) =>

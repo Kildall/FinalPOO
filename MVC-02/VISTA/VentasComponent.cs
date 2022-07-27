@@ -25,7 +25,7 @@ namespace VISTA
             venta.CrearVenta();
             ventas = ControladorEmpresa.GetInstancia().GetVentas();
             ListarVentas();
-            var permisos = ControladorSeguridad.GetInstancia().GetControlsAllowed("frmVenta");
+            var permisos = ControladorSeguridad.GetInstancia().GetPermisosByFormulario("frmVenta");
             foreach (var control in GetButtonControls(this))
             {
                 var permiso = permisos.FirstOrDefault(x => x == control.Name);
