@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/12/2022 17:38:28
+-- Date Created: 07/27/2022 15:16:38
 -- Generated from EDMX file: C:\Users\Pedro\Desktop\Programacion\POO\FinalPOO\MVC-02\MODELO\EmpresaDB.edmx
 -- --------------------------------------------------
 
@@ -47,6 +47,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ClienteVentas]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Ventas] DROP CONSTRAINT [FK_ClienteVentas];
 GO
+IF OBJECT_ID(N'[dbo].[FK_VentasProductos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Ventas] DROP CONSTRAINT [FK_VentasProductos];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -81,8 +84,8 @@ GO
 -- Creating table 'Clientes'
 CREATE TABLE [dbo].[Clientes] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [edad] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
+    [edad] int  NOT NULL,
     [telefono] nvarchar(max)  NOT NULL,
     [Empresa_Id] int  NOT NULL
 );
@@ -98,9 +101,9 @@ GO
 -- Creating table 'Empleados'
 CREATE TABLE [dbo].[Empleados] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [edad] nvarchar(max)  NOT NULL,
-    [salario] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
+    [edad] int  NOT NULL,
+    [salario] int  NOT NULL,
     [Empresa_Id] int  NOT NULL,
     [Categoria_Id] int  NOT NULL
 );
@@ -109,7 +112,7 @@ GO
 -- Creating table 'Categorias'
 CREATE TABLE [dbo].[Categorias] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
     [Empresa_Id] int  NOT NULL
 );
 GO
@@ -117,9 +120,9 @@ GO
 -- Creating table 'Productos'
 CREATE TABLE [dbo].[Productos] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [cantidad] nvarchar(max)  NOT NULL,
-    [precio] nvarchar(max)  NOT NULL,
+    [nombre] nvarchar(50)  NOT NULL,
+    [cantidad] int  NOT NULL,
+    [precio] int  NOT NULL,
     [Empresa_Id] int  NOT NULL
 );
 GO
@@ -127,8 +130,8 @@ GO
 -- Creating table 'Ventas'
 CREATE TABLE [dbo].[Ventas] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [total] nvarchar(max)  NOT NULL,
-    [cantidad] nvarchar(max)  NOT NULL,
+    [total] int  NOT NULL,
+    [cantidad] int  NOT NULL,
     [Empresa_Id] int  NOT NULL,
     [Empleado_Id] int  NOT NULL,
     [Cliente_Id] int  NOT NULL,

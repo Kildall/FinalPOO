@@ -16,7 +16,7 @@ namespace MODELO.Seguridad
     {
         public int Id { get; set; }
         public string nombre { get; set; }
-        public string dni { get; set; }
+        public long dni { get; set; }
         public string apellido { get; set; }
         public string mail { get; set; }
         public string contraseña { get; set; }

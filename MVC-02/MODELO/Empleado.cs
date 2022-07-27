@@ -24,8 +24,8 @@ namespace MODELO
     
         public int Id { get; set; }
         public string nombre { get; set; }
-        public string edad { get; set; }
-        public string salario { get; set; }
+        public int edad { get; set; }
+        public int salario { get; set; }
     
         public virtual Empresa Empresa { get; set; }
         public virtual Categoria Categoria { get; set; }

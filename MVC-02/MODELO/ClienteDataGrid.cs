@@ -10,7 +10,7 @@ namespace MODELO
     {
         private readonly Cliente _cliente;
         public string Nombre { get; set; }
-        public string Edad { get; set; }
+        public int Edad { get; set; }
         public string Telefono { get; set; }
 
         public ClienteDataGrid(Cliente cliente)

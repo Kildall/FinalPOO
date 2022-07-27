@@ -27,6 +27,7 @@ namespace CONTROLADOR
             return _instancia;
         }
 
+        #region Ventas
         public List<VentaDataGrid> GetVentas()
         {
             List<VentaDataGrid> listaVentas = new List<VentaDataGrid>();
@@ -35,6 +36,30 @@ namespace CONTROLADOR
 
             return listaVentas;
         }
+        
+        public void AgregarVenta(VentaDataGrid venta)
+        {
+            try
+            {
+                venta.GetVentas().Empresa = GetEmpresaFromSession();
+                EmpresaContext.GetInstancia().GetContainer.Ventas.Add(venta.GetVentas());
+                EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+        #endregion
+
+        #region Categorias
+        public List<Categoria> GetCategorias()
+        {
+            Usuario usuario = ControladorSeguridad.GetInstancia().usuarioLogueado;
+            return EmpresaContext.GetInstancia().GetContainer.Categorias.Where(x => x.Empresa.Id == usuario.Id).ToList();
+        }
+        #endregion
 
         #region Clientes
         public void AgregarCliente(Cliente cliente)
@@ -52,21 +77,6 @@ namespace CONTROLADOR
         public void ModificarCliente(Cliente cliente)
         {
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
-        }
-
-        public void AgregarVenta(VentaDataGrid venta)
-        {
-            try
-            {
-                venta.GetVentas().Empresa = GetEmpresaFromSession();
-                EmpresaContext.GetInstancia().GetContainer.Ventas.Add(venta.GetVentas());
-                EmpresaContext.GetInstancia().GetContainer.SaveChanges();
-            }
-            catch (Exception e)
-            {
-
-                throw;
-            }
         }
 
         //Devuelve una lista de clientes (todos los que tiene la empresa)
@@ -110,16 +120,9 @@ namespace CONTROLADOR
             return listaEmpleados;
         }
 
-        public List<Categoria> GetCategorias()
-        {
-            Usuario usuario = ControladorSeguridad.GetInstancia().usuarioLogueado;
-            return EmpresaContext.GetInstancia().GetContainer.Categorias.Where(x => x.Empresa.Id == usuario.Id).ToList();
-        }
-
         #endregion Empleados
 
-
-
+        #region Empresas
         public List<EmpresaDataGrid> GetEmpresas()
         {
             List<EmpresaDataGrid> listaEmpresas = new List<EmpresaDataGrid>();
@@ -128,18 +131,20 @@ namespace CONTROLADOR
 
             return listaEmpresas;
         }
-
         public Empresa GetEmpresaFromSession()
         {
             return EmpresaContext.GetInstancia().GetContainer.Empresa.First(x => x.Id == empresa_id);
-            
-        }
 
+        }
         public Empresa GetEmpresaById(int id)
         {
             return EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == id);
         }
 
+
+        #endregion
+
+        #region Productos
         public List<ProductoDataGrid> GetProductos()
         {
             List<ProductoDataGrid> listaProductos = new List<ProductoDataGrid>();
@@ -160,5 +165,6 @@ namespace CONTROLADOR
             EmpresaContext.GetInstancia().GetContainer.Productos.Remove(producto);
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
+        #endregion
     }
 }

@@ -19,7 +19,7 @@ namespace MODELO
             this.Nombre = empresa.nombre;
             this.Empleados = empresa.Empleados.Count;
             this.Ventas = empresa.Ventas.Count;
-            this.Monto = empresa.Ventas.Select(x => int.Parse(x.total)).Sum();
+            this.Monto = empresa.Ventas.Select(x => x.total).Sum();
             _empresa = empresa;
         }
 
