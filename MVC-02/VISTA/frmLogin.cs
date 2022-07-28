@@ -38,10 +38,16 @@ namespace VISTA
 
                 case 20:
                     //Mostrar error email no existe. (hay un label de error)
+                    successLogin = false;
+                    MessageBox.Show("Los datos ingresados son incorrectos. Compruebe si su mail y contraseña son válidos."
+                        , "Error en el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
 
                 case 40:
                     //Mostrar error contraseña incorrecta (hay un label de error)
+                    successLogin = false;
+                    MessageBox.Show("Los datos ingresados son incorrectos. Compruebe si su mail y contraseña son válidos."
+                        , "Error en el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
 
                 default:

@@ -30,13 +30,12 @@
         {
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
             this.gbxEmpleados = new System.Windows.Forms.GroupBox();
-            this.lbl1 = new System.Windows.Forms.Label();
+            this.nudSalarioEmp = new System.Windows.Forms.NumericUpDown();
             this.cbxCategoria = new System.Windows.Forms.ComboBox();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.btnEliminarEmpleado = new System.Windows.Forms.Button();
             this.btnModificarEmpleado = new System.Windows.Forms.Button();
             this.btnAgregarEmpleado = new System.Windows.Forms.Button();
-            this.txtSalarioEmp = new System.Windows.Forms.TextBox();
             this.nudEdadEmp = new System.Windows.Forms.NumericUpDown();
             this.txtNombreEmp = new System.Windows.Forms.TextBox();
             this.lblSalario = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@
             this.lblNombre = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.gbxEmpleados.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSalarioEmp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadEmp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,13 +66,12 @@
             // 
             // gbxEmpleados
             // 
-            this.gbxEmpleados.Controls.Add(this.lbl1);
+            this.gbxEmpleados.Controls.Add(this.nudSalarioEmp);
             this.gbxEmpleados.Controls.Add(this.cbxCategoria);
             this.gbxEmpleados.Controls.Add(this.lblCategoria);
             this.gbxEmpleados.Controls.Add(this.btnEliminarEmpleado);
             this.gbxEmpleados.Controls.Add(this.btnModificarEmpleado);
             this.gbxEmpleados.Controls.Add(this.btnAgregarEmpleado);
-            this.gbxEmpleados.Controls.Add(this.txtSalarioEmp);
             this.gbxEmpleados.Controls.Add(this.nudEdadEmp);
             this.gbxEmpleados.Controls.Add(this.txtNombreEmp);
             this.gbxEmpleados.Controls.Add(this.lblSalario);
@@ -80,19 +79,22 @@
             this.gbxEmpleados.Controls.Add(this.lblNombre);
             this.gbxEmpleados.Location = new System.Drawing.Point(16, 115);
             this.gbxEmpleados.Name = "gbxEmpleados";
-            this.gbxEmpleados.Size = new System.Drawing.Size(321, 296);
+            this.gbxEmpleados.Size = new System.Drawing.Size(321, 262);
             this.gbxEmpleados.TabIndex = 3;
             this.gbxEmpleados.TabStop = false;
             this.gbxEmpleados.Text = "Empleados";
             // 
-            // lbl1
+            // nudSalarioEmp
             // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(6, 259);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(306, 13);
-            this.lbl1.TabIndex = 13;
-            this.lbl1.Text = "*Haga doble clic en un empleado para modificar sus relaciones.";
+            this.nudSalarioEmp.Location = new System.Drawing.Point(87, 110);
+            this.nudSalarioEmp.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nudSalarioEmp.Name = "nudSalarioEmp";
+            this.nudSalarioEmp.Size = new System.Drawing.Size(148, 20);
+            this.nudSalarioEmp.TabIndex = 14;
             // 
             // cbxCategoria
             // 
@@ -140,13 +142,6 @@
             this.btnAgregarEmpleado.Text = "Agregar";
             this.btnAgregarEmpleado.UseVisualStyleBackColor = true;
             this.btnAgregarEmpleado.Click += new System.EventHandler(this.btnAgregarEmpl_Click);
-            // 
-            // txtSalarioEmp
-            // 
-            this.txtSalarioEmp.Location = new System.Drawing.Point(87, 114);
-            this.txtSalarioEmp.Name = "txtSalarioEmp";
-            this.txtSalarioEmp.Size = new System.Drawing.Size(148, 20);
-            this.txtSalarioEmp.TabIndex = 5;
             // 
             // nudEdadEmp
             // 
@@ -206,6 +201,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.gbxEmpleados.ResumeLayout(false);
             this.gbxEmpleados.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSalarioEmp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadEmp)).EndInit();
             this.ResumeLayout(false);
 
@@ -219,13 +215,12 @@
         private System.Windows.Forms.Button btnEliminarEmpleado;
         private System.Windows.Forms.Button btnModificarEmpleado;
         private System.Windows.Forms.Button btnAgregarEmpleado;
-        private System.Windows.Forms.TextBox txtSalarioEmp;
         private System.Windows.Forms.NumericUpDown nudEdadEmp;
         private System.Windows.Forms.TextBox txtNombreEmp;
         private System.Windows.Forms.Label lblSalario;
         private System.Windows.Forms.Label lblEdad;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.ComboBox cbxCategoria;
-        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.NumericUpDown nudSalarioEmp;
     }
 }

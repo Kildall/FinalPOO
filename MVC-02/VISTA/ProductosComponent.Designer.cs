@@ -30,17 +30,19 @@
         {
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nudPrecio = new System.Windows.Forms.NumericUpDown();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.btnEliminarProducto = new System.Windows.Forms.Button();
-            this.btnVenderProducto = new System.Windows.Forms.Button();
+            this.btnModificarProducto = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvProductos
@@ -51,17 +53,19 @@
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.Size = new System.Drawing.Size(619, 498);
             this.dgvProductos.TabIndex = 2;
+            this.dgvProductos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellDoubleClick);
+            this.dgvProductos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProductos_CellMouseClick);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.nudPrecio);
+            this.groupBox1.Controls.Add(this.nudCantidad);
             this.groupBox1.Controls.Add(this.btnEliminarProducto);
-            this.groupBox1.Controls.Add(this.btnVenderProducto);
+            this.groupBox1.Controls.Add(this.btnModificarProducto);
             this.groupBox1.Controls.Add(this.btnAgregarProducto);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtPrecio);
-            this.groupBox1.Controls.Add(this.txtCantidad);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Location = new System.Drawing.Point(43, 146);
             this.groupBox1.Name = "groupBox1";
@@ -69,6 +73,30 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Producto";
+            // 
+            // nudPrecio
+            // 
+            this.nudPrecio.Location = new System.Drawing.Point(79, 117);
+            this.nudPrecio.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nudPrecio.Name = "nudPrecio";
+            this.nudPrecio.Size = new System.Drawing.Size(163, 20);
+            this.nudPrecio.TabIndex = 10;
+            // 
+            // nudCantidad
+            // 
+            this.nudCantidad.Location = new System.Drawing.Point(79, 76);
+            this.nudCantidad.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(163, 20);
+            this.nudCantidad.TabIndex = 9;
             // 
             // btnEliminarProducto
             // 
@@ -80,14 +108,15 @@
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
             this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
-            // btnVenderProducto
+            // btnModificarProducto
             // 
-            this.btnVenderProducto.Location = new System.Drawing.Point(92, 165);
-            this.btnVenderProducto.Name = "btnVenderProducto";
-            this.btnVenderProducto.Size = new System.Drawing.Size(75, 23);
-            this.btnVenderProducto.TabIndex = 7;
-            this.btnVenderProducto.Text = "Vender";
-            this.btnVenderProducto.UseVisualStyleBackColor = true;
+            this.btnModificarProducto.Location = new System.Drawing.Point(92, 165);
+            this.btnModificarProducto.Name = "btnModificarProducto";
+            this.btnModificarProducto.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarProducto.TabIndex = 7;
+            this.btnModificarProducto.Text = "Modificar";
+            this.btnModificarProducto.UseVisualStyleBackColor = true;
+            this.btnModificarProducto.Click += new System.EventHandler(this.btnModProducto_Click);
             // 
             // btnAgregarProducto
             // 
@@ -126,20 +155,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Nombre";
             // 
-            // txtPrecio
-            // 
-            this.txtPrecio.Location = new System.Drawing.Point(79, 116);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(163, 20);
-            this.txtPrecio.TabIndex = 2;
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Location = new System.Drawing.Point(79, 75);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(163, 20);
-            this.txtCantidad.TabIndex = 1;
-            // 
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(79, 34);
@@ -159,6 +174,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -171,10 +188,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtPrecio;
-        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Button btnEliminarProducto;
-        private System.Windows.Forms.Button btnVenderProducto;
+        private System.Windows.Forms.Button btnModificarProducto;
         private System.Windows.Forms.Button btnAgregarProducto;
+        private System.Windows.Forms.NumericUpDown nudPrecio;
+        private System.Windows.Forms.NumericUpDown nudCantidad;
     }
 }

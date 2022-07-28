@@ -126,7 +126,7 @@ namespace VISTA
             EmpleadoDataGrid empleado = listaEmpleados.ElementAt(indice);
             empleado.GetEmpleado().Superior.Add(
                 listaEmpleadosSuperiores[lbEmpleadosSubordinados.SelectedIndex].GetEmpleado());
-            ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado.GetEmpleado());
+            ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado);
             ListarSupSub();
             ActualizarListBoxs(empleado.GetEmpleado());
 
@@ -144,7 +144,7 @@ namespace VISTA
             EmpleadoDataGrid empleado = listaEmpleados.ElementAt(indice);
             empleado.GetEmpleado().Superior.Remove(
                 empleado.GetEmpleado().Superior.ToList()[dgvSuperiores.SelectedRows[0].Index]);
-            ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado.GetEmpleado());
+            ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado);
             ListarSupSub();
             ActualizarListBoxs(empleado.GetEmpleado());
         }
@@ -161,7 +161,7 @@ namespace VISTA
             EmpleadoDataGrid empleado = listaEmpleados.ElementAt(indice);
             empleado.GetEmpleado().Subordinados.Add(
                 listaEmpleadosSubordinados[lbEmpleados.SelectedIndex].GetEmpleado());
-            ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado.GetEmpleado());
+            ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado);
             ListarSupSub();
             ActualizarListBoxs(empleado.GetEmpleado());
         }
@@ -178,7 +178,7 @@ namespace VISTA
             EmpleadoDataGrid empleado = listaEmpleados.ElementAt(indice);
             empleado.GetEmpleado().Subordinados.Remove(
                 empleado.GetEmpleado().Subordinados.ToList()[dgvSubordinados.SelectedRows[0].Index]);
-            ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado.GetEmpleado());
+            ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado);
             ListarSupSub();
             ActualizarListBoxs(empleado.GetEmpleado());
         }

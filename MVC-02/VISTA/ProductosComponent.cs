@@ -15,6 +15,7 @@ namespace VISTA
     public partial class ProductosComponent : UserControl
     {
         List<ProductoDataGrid> listaProductos = new List<ProductoDataGrid>();
+        ProductoDataGrid producto = null;
         int indice;
 
         public ProductosComponent()
@@ -58,28 +59,98 @@ namespace VISTA
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //Validaciones faltantes
-            Productos producto = new Productos()
+            //Validaciones para Agregar Producto
+
+            if (string.IsNullOrEmpty(txtNombre.Text) || !txtNombre.Text.ToCharArray().All(x => char.IsLetterOrDigit(x)))
+            {
+                MessageBox.Show("El nombre del producto ingresado es inválido.");
+                return;
+            }
+
+            if (nudCantidad.Value <= 0)
+            {
+                MessageBox.Show("La cantidad ingresada es inválida.");
+                return;
+            }
+
+            if (nudPrecio.Value <= 0)
+            {
+                MessageBox.Show("El precio ingresado es inválido.");
+                return;
+            }
+
+            producto = new ProductoDataGrid(new Productos()
             {
                 nombre = txtNombre.Text,
-                cantidad = int.Parse(txtCantidad.Text),
-                precio = int.Parse(txtPrecio.Text),
+                cantidad = (int)nudCantidad.Value,
+                precio = (int)nudPrecio.Value,
                 Empresa = ControladorEmpresa.GetInstancia().GetEmpresaFromSession()
-            };
+            });
 
             ControladorEmpresa.GetInstancia().AgregarProducto(producto);
             ListarProductos();
 
+            producto = null;
+            LimpiarCampos();
         }
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            Productos producto = listaProductos.ElementAt(indice).GetProductos();
-            ControladorEmpresa.GetInstancia().EliminarProducto(producto);
+            if (indice == -1 || listaProductos.Count <= indice)
+            {
+                MessageBox.Show("Seleccione un producto.");
+                return;
+            }
+
+            producto = listaProductos.ElementAt(indice);
+
+            if (
+                MessageBox.Show($"Desea eliminar el producto: {producto.Nombre}",
+                "Eliminar producto", MessageBoxButtons.OKCancel) == DialogResult.OK
+                )
+            {
+                ControladorEmpresa.GetInstancia().EliminarProducto(producto);
+                ListarProductos();
+                producto = null;
+                LimpiarCampos();
+            }
+        }
+
+        private void ProductosComponent_Paint(object sender, PaintEventArgs e)
+        {
             ListarProductos();
         }
 
-        private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnModProducto_Click(object sender, EventArgs e)
+        {
+            if (producto == null) { MessageBox.Show("Seleccione un producto."); return; }
+            producto.GetProductos().nombre = txtNombre.Text;
+            producto.GetProductos().precio = (int)nudPrecio.Value;
+            producto.GetProductos().cantidad = (int)nudCantidad.Value;
+            ControladorEmpresa.GetInstancia().ModificarProducto(producto);
+            ListarProductos();
+            producto = null;
+
+            btnAgregarProducto.Enabled = true;
+            btnEliminarProducto.Enabled = true;
+
+            LimpiarCampos();
+        }
+
+        private void dgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            producto = listaProductos.ElementAt(e.RowIndex);
+
+            txtNombre.Text = producto.Nombre;
+            nudCantidad.Value = producto.Cantidad;
+            nudPrecio.Value = producto.Precio;
+
+            btnAgregarProducto.Enabled = false;
+            btnEliminarProducto.Enabled = false;
+
+        }
+
+        private void dgvProductos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -87,9 +158,11 @@ namespace VISTA
             }
         }
 
-        private void ProductosComponent_Paint(object sender, PaintEventArgs e)
+        private void LimpiarCampos()
         {
-            ListarProductos();
+            txtNombre.Text = null;
+            nudCantidad.Value = 0;
+            nudPrecio.Value = 0;
         }
     }
 }

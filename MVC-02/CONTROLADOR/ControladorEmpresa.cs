@@ -62,19 +62,19 @@ namespace CONTROLADOR
         #endregion
 
         #region Clientes
-        public void AgregarCliente(Cliente cliente)
+        public void AgregarCliente(ClienteDataGrid cliente)
         {
-            EmpresaContext.GetInstancia().GetContainer.Clientes.Add(cliente);
+            EmpresaContext.GetInstancia().GetContainer.Clientes.Add(cliente.GetCliente());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void EliminarCliente(Cliente cliente)
+        public void EliminarCliente(ClienteDataGrid cliente)
         {
-            EmpresaContext.GetInstancia().GetContainer.Clientes.Remove(cliente);
+            EmpresaContext.GetInstancia().GetContainer.Clientes.Remove(cliente.GetCliente());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void ModificarCliente(Cliente cliente)
+        public void ModificarCliente(ClienteDataGrid cliente)
         {
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
@@ -93,20 +93,20 @@ namespace CONTROLADOR
 
         #region Empleados
 
-        public void AgregarEmpleado(Empleado empleado)
+        public void AgregarEmpleado(EmpleadoDataGrid empleado)
         {
-            EmpresaContext.GetInstancia().GetContainer.Empleados.Add(empleado);
+            EmpresaContext.GetInstancia().GetContainer.Empleados.Add(empleado.GetEmpleado());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void ModificarEmpleado(Empleado empleado)
+        public void ModificarEmpleado(EmpleadoDataGrid empleado)
         {
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void EliminarEmpleado(Empleado empleado)
+        public void EliminarEmpleado(EmpleadoDataGrid empleado)
         {
-            EmpresaContext.GetInstancia().GetContainer.Empleados.Remove(empleado);
+            EmpresaContext.GetInstancia().GetContainer.Empleados.Remove(empleado.GetEmpleado());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
@@ -154,15 +154,20 @@ namespace CONTROLADOR
             return listaProductos;
         }
 
-        public void AgregarProducto(Productos producto)
+        public void AgregarProducto(ProductoDataGrid producto)
         {
-            EmpresaContext.GetInstancia().GetContainer.Productos.Add(producto);
+            EmpresaContext.GetInstancia().GetContainer.Productos.Add(producto.GetProductos());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void EliminarProducto(Productos producto)
+        public void EliminarProducto(ProductoDataGrid producto)
         {
-            EmpresaContext.GetInstancia().GetContainer.Productos.Remove(producto);
+            EmpresaContext.GetInstancia().GetContainer.Productos.Remove(producto.GetProductos());
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+
+        public void ModificarProducto(ProductoDataGrid producto)
+        {
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
         #endregion

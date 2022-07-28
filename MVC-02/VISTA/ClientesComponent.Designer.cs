@@ -154,6 +154,7 @@
             this.dvgClientes.Name = "dvgClientes";
             this.dvgClientes.Size = new System.Drawing.Size(619, 498);
             this.dvgClientes.TabIndex = 1;
+            this.dvgClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgClientes_CellDoubleClick);
             this.dvgClientes.SelectionChanged += new System.EventHandler(this.dvgClientes_SelectionChanged);
             // 
             // ClientesComponent
