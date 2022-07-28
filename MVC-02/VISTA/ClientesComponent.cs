@@ -60,6 +60,26 @@ namespace VISTA
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)    //Agrega un cliente
         {
+
+            if (String.IsNullOrEmpty(txtNombreCliente.Text) || !txtNombreCliente.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El nombre ingresado es inválido.");
+                return;
+            }
+
+            if (nudEdadCliente.Value <= 0)
+            {
+                MessageBox.Show("La edad ingresada es inválida.");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtTelCliente.Text) || !txtTelCliente.Text.ToCharArray().All(x => char.IsDigit(x)) ||
+                txtTelCliente.Text.Length > 13)
+            {
+                MessageBox.Show("El teléfono ingresado no es válido.");
+                return;
+            }
+
             Cliente cliente = new Cliente() //Construyo un cliente
             {
                 nombre = txtNombreCliente.Text,

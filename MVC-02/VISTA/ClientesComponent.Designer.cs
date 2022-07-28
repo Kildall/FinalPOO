@@ -102,6 +102,11 @@
             // nudEdadCliente
             // 
             this.nudEdadCliente.Location = new System.Drawing.Point(57, 76);
+            this.nudEdadCliente.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
             this.nudEdadCliente.Name = "nudEdadCliente";
             this.nudEdadCliente.Size = new System.Drawing.Size(148, 20);
             this.nudEdadCliente.TabIndex = 4;
@@ -109,6 +114,7 @@
             // txtNombreCliente
             // 
             this.txtNombreCliente.Location = new System.Drawing.Point(57, 35);
+            this.txtNombreCliente.MaxLength = 50;
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(247, 20);
             this.txtNombreCliente.TabIndex = 3;
