@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CONTROLADOR;
@@ -35,6 +36,10 @@ namespace VISTA
                 }
                 else
                 {
+                    if (control.Name == "btnModificarUsuario")
+                    {
+                        dgvUsuarios.CellDoubleClick -= dgvUsuarios_CellDoubleClick;
+                    }
                     control.Enabled = false;
                 }
             }
@@ -83,7 +88,7 @@ namespace VISTA
             //Datos
             tbNombre.Text = usuarioSeleccionado.Nombre;
             tbApellido.Text = usuarioSeleccionado.Apellido;
-            tbDNI.Text = usuarioSeleccionado.DNI.ToString();
+            nudDNI.Value = usuarioSeleccionado.DNI;
             tbEmail.Text = usuarioSeleccionado.EMail;
             
         }
@@ -99,15 +104,58 @@ namespace VISTA
 
         private void btnModificarUsuario_Click(object sender, EventArgs e)
         {
-            //Validaciones faltantes
+            if (usuarioSeleccionado == null) {
+                MessageBox.Show("Seleccione un usuario.");
+                return;
+            }
+            
+            if (!ValidateEmail(tbEmail.Text))
+            {
+                MessageBox.Show("El mail ingresado es inválido.");
+                return;
+            }
+
+            if (tbEmail.Text != usuarioSeleccionado.EMail && ControladorSeguridad.GetInstancia().ExisteEmail(tbEmail.Text))
+            {
+                MessageBox.Show("El mail ingresado ya existe.");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(tbNombre.Text) || !tbNombre.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El nombre ingresado es inválido.");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(tbApellido.Text) || !tbApellido.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El apellido ingresado es inválido.");
+                return;
+            }
+
+            if (nudDNI.Value >= 99999999 || nudDNI.Value <= 100000)
+            {
+                MessageBox.Show("El DNI ingresado es inválido.");
+                return;
+            }
+
             Usuario usu = usuarioSeleccionado.GetUsuario();
             usu.nombre = tbNombre.Text;
             usu.apellido = tbApellido.Text;
-            usu.dni = long.Parse(tbDNI.Text);
+            usu.dni = (long)nudDNI.Value;
             usu.mail = tbEmail.Text;
             ControladorSeguridad.GetInstancia().ModificarUsuario();
             empresaModificada = false;
             ActualizarListaUsuarios();
+            LimpiarCampos();
+
+            MessageBox.Show("Usuario modificado correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public bool ValidateEmail(string email)
+        {
+            Regex validateEmailRegex = new Regex("^\\S+@\\S+\\.\\S+$");
+            return validateEmailRegex.IsMatch(email);
         }
 
         private void dgvUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -169,14 +217,19 @@ namespace VISTA
             {
                 ControladorSeguridad.GetInstancia().EliminarUsuario(usuarioSeleccionado.GetUsuario());
                 ActualizarListaUsuarios();
-                tbNombre.Text = null;
-                tbApellido.Text = null;
-                tbDNI.Text = null;
-                tbEmail.Text = null;
-                cbEmpresa.SelectedItem = null;
-                cbPerfiles.SelectedItem = null;
             }
-                
+            LimpiarCampos();
+        }
+
+        private void LimpiarCampos()
+        {
+            usuarioSeleccionado = null;
+            tbNombre.Text = null;
+            tbApellido.Text = null;
+            nudDNI.Value = 0;
+            tbEmail.Text = null;
+            cbEmpresa.SelectedItem = null;
+            cbPerfiles.SelectedItem = null;
         }
     }
 }

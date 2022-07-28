@@ -11,8 +11,8 @@ namespace MODELO
         private Ventas _venta;
         public string Cliente { get; set; }
         public string Empleado { get; set; }
-        public string Total { get; set; }
-        public string Cantidad { get; set; }
+        public int Total { get; set; }
+        public int Cantidad { get; set; }
 
         public string Producto { get; set; }
 
@@ -22,8 +22,8 @@ namespace MODELO
             _venta = venta;
             Cliente = venta.Cliente.nombre;
             Empleado = venta.Empleado.nombre;
-            Total = venta.total.ToString();
-            Cantidad = venta.cantidad.ToString();
+            Total = venta.total;
+            Cantidad = venta.cantidad;
             Producto = venta.Productos.nombre;
 
         }

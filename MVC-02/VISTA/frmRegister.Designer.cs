@@ -269,6 +269,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbEmail);
             this.Name = "frmRegister";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Registro";
             ((System.ComponentModel.ISupportInitialize)(this.nudDNI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

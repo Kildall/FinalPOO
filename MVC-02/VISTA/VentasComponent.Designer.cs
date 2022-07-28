@@ -30,6 +30,7 @@
         {
             this.dgvVentas = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.lblEmpleado = new System.Windows.Forms.Label();
             this.btnSeleccionarEmpleado = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -41,14 +42,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbCantidad = new System.Windows.Forms.TextBox();
             this.btnCancelarVenta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvVentas
             // 
+            this.dgvVentas.AllowUserToAddRows = false;
+            this.dgvVentas.AllowUserToDeleteRows = false;
+            this.dgvVentas.AllowUserToResizeColumns = false;
+            this.dgvVentas.AllowUserToResizeRows = false;
             this.dgvVentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVentas.Location = new System.Drawing.Point(359, 18);
@@ -58,7 +63,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.nudCantidad);
             this.groupBox1.Controls.Add(this.lblEmpleado);
+            this.groupBox1.Controls.Add(this.btnCancelarVenta);
             this.groupBox1.Controls.Add(this.btnSeleccionarEmpleado);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.lblProducto);
@@ -69,13 +76,19 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.tbCantidad);
             this.groupBox1.Location = new System.Drawing.Point(43, 75);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(263, 336);
+            this.groupBox1.Size = new System.Drawing.Size(263, 408);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Venta";
+            // 
+            // nudCantidad
+            // 
+            this.nudCantidad.Location = new System.Drawing.Point(76, 153);
+            this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(160, 20);
+            this.nudCantidad.TabIndex = 20;
             // 
             // lblEmpleado
             // 
@@ -183,21 +196,15 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Cliente";
             // 
-            // tbCantidad
-            // 
-            this.tbCantidad.Location = new System.Drawing.Point(76, 152);
-            this.tbCantidad.Name = "tbCantidad";
-            this.tbCantidad.Size = new System.Drawing.Size(163, 20);
-            this.tbCantidad.TabIndex = 2;
-            // 
             // btnCancelarVenta
             // 
-            this.btnCancelarVenta.Location = new System.Drawing.Point(359, 489);
+            this.btnCancelarVenta.Location = new System.Drawing.Point(41, 373);
             this.btnCancelarVenta.Name = "btnCancelarVenta";
-            this.btnCancelarVenta.Size = new System.Drawing.Size(199, 29);
+            this.btnCancelarVenta.Size = new System.Drawing.Size(178, 29);
             this.btnCancelarVenta.TabIndex = 8;
             this.btnCancelarVenta.Text = "Cancelar Venta";
             this.btnCancelarVenta.UseVisualStyleBackColor = true;
+            this.btnCancelarVenta.Click += new System.EventHandler(this.btnCancelarVenta_Click);
             // 
             // VentasComponent
             // 
@@ -205,13 +212,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvVentas);
-            this.Controls.Add(this.btnCancelarVenta);
             this.Name = "VentasComponent";
             this.Size = new System.Drawing.Size(990, 529);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.VentasComponent_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -225,7 +232,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbCantidad;
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.Button btnSeleccionarCliente;
         private System.Windows.Forms.Label lblProducto;
@@ -233,5 +239,6 @@
         private System.Windows.Forms.Label lblEmpleado;
         private System.Windows.Forms.Button btnSeleccionarEmpleado;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown nudCantidad;
     }
 }

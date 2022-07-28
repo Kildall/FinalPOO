@@ -30,6 +30,10 @@ namespace VISTA
                 }
                 else
                 {
+                    if(control.Name == "btnModificarCliente")
+                    {
+                        dgvClientes.CellDoubleClick -= dvgClientes_CellDoubleClick;
+                    }
                     control.Enabled = false;
                 }
             }
@@ -54,9 +58,9 @@ namespace VISTA
 
         private void ListarClientes() //Lista los clientes en el DataGridView
         {
-            dvgClientes.DataSource = null;
+            dgvClientes.DataSource = null;
             ListaClientes = ControladorEmpresa.GetInstancia().GetClientes();
-            dvgClientes.DataSource = ListaClientes;
+            dgvClientes.DataSource = ListaClientes;
         }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)    //Agrega un cliente
@@ -99,9 +103,9 @@ namespace VISTA
 
         private void dvgClientes_SelectionChanged(object sender, EventArgs e)
         {
-            if (dvgClientes.SelectedRows.Count > 0)
+            if (dgvClientes.SelectedRows.Count > 0)
             {
-                indice = dvgClientes.SelectedRows[0].Index;
+                indice = dgvClientes.SelectedRows[0].Index;
             }
         }
 

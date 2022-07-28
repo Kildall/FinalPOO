@@ -31,6 +31,12 @@ namespace CONTROLADOR
             ControladorEmpresa.GetInstancia().empresa_id = usuarioLogueado.empresa_id;
             return 0;
         }
+
+        public bool ExisteEmail(string email)
+        {
+            return SeguridadContext.GetInstancia().Container.UsuarioSet.FirstOrDefault(x => x.mail == email) != null;
+        }
+
         public int Register(Usuario usuario)
         {
             if (SeguridadContext.GetInstancia().Container.UsuarioSet.FirstOrDefault(x => x.mail == usuario.mail) != null)

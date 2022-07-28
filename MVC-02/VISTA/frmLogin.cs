@@ -26,7 +26,7 @@ namespace VISTA
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            int respuesta = ControladorSeguridad.GetInstancia().Login(tbEmail.Text, tbContraseña.Text);
+            int respuesta = ControladorSeguridad.GetInstancia().Login(tbEmail.Text.ToLower(), tbContraseña.Text.ToLower());
             switch (respuesta)
             {
                 case 0:

@@ -38,10 +38,10 @@
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.dvgClientes = new System.Windows.Forms.DataGridView();
+            this.dgvClientes = new System.Windows.Forms.DataGridView();
             this.gbClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadCliente)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // gbClientes
@@ -146,22 +146,22 @@
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
-            // dvgClientes
+            // dgvClientes
             // 
-            this.dvgClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dvgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgClientes.Location = new System.Drawing.Point(355, 15);
-            this.dvgClientes.Name = "dvgClientes";
-            this.dvgClientes.Size = new System.Drawing.Size(619, 498);
-            this.dvgClientes.TabIndex = 1;
-            this.dvgClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgClientes_CellDoubleClick);
-            this.dvgClientes.SelectionChanged += new System.EventHandler(this.dvgClientes_SelectionChanged);
+            this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientes.Location = new System.Drawing.Point(355, 15);
+            this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.Size = new System.Drawing.Size(619, 498);
+            this.dgvClientes.TabIndex = 1;
+            this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgClientes_CellDoubleClick);
+            this.dgvClientes.SelectionChanged += new System.EventHandler(this.dvgClientes_SelectionChanged);
             // 
             // ClientesComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dvgClientes);
+            this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.gbClientes);
             this.Name = "ClientesComponent";
             this.Size = new System.Drawing.Size(990, 529);
@@ -169,7 +169,7 @@
             this.gbClientes.ResumeLayout(false);
             this.gbClientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadCliente)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,6 +186,6 @@
         private System.Windows.Forms.Button btnEliminarCliente;
         private System.Windows.Forms.Button btnModificarCliente;
         private System.Windows.Forms.Button btnAgregarCliente;
-        private System.Windows.Forms.DataGridView dvgClientes;
+        private System.Windows.Forms.DataGridView dgvClientes;
     }
 }

@@ -61,6 +61,7 @@ namespace VISTA
             this.Controls.Add(this.btnSeleccionarProducto);
             this.Controls.Add(this.lbProductos);
             this.Name = "frmSeleccionarProducto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Seleccionar";
             this.ResumeLayout(false);
 

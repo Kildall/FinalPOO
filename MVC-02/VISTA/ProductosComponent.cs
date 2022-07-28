@@ -31,6 +31,10 @@ namespace VISTA
                 }
                 else
                 {
+                    if (control.Name == "btnModificarProducto")
+                    {
+                        dgvProductos.CellDoubleClick -= dgvProductos_CellDoubleClick;
+                    }
                     control.Enabled = false;
                 }
             }

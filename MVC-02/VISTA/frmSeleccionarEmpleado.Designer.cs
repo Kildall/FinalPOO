@@ -59,6 +59,7 @@ namespace VISTA
             this.Controls.Add(this.btnSeleccionarCliente);
             this.Controls.Add(this.lbEmpleados);
             this.Name = "frmSeleccionarEmpleado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Seleccionar";
             this.ResumeLayout(false);
 

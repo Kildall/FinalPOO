@@ -31,8 +31,8 @@ namespace VISTA
         {
             this.dgvPermisos = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbFormularios = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbFormularios = new System.Windows.Forms.ComboBox();
             this.lbPermisosSeleccionados = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSeleccionar = new System.Windows.Forms.Button();
@@ -62,15 +62,6 @@ namespace VISTA
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar por Formulario";
             // 
-            // cbFormularios
-            // 
-            this.cbFormularios.FormattingEnabled = true;
-            this.cbFormularios.Location = new System.Drawing.Point(70, 35);
-            this.cbFormularios.Name = "cbFormularios";
-            this.cbFormularios.Size = new System.Drawing.Size(121, 21);
-            this.cbFormularios.TabIndex = 0;
-            this.cbFormularios.SelectionChangeCommitted += new System.EventHandler(this.cbFormularios_SelectionChangeCommitted);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -79,6 +70,15 @@ namespace VISTA
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Formulario";
+            // 
+            // cbFormularios
+            // 
+            this.cbFormularios.FormattingEnabled = true;
+            this.cbFormularios.Location = new System.Drawing.Point(70, 35);
+            this.cbFormularios.Name = "cbFormularios";
+            this.cbFormularios.Size = new System.Drawing.Size(121, 21);
+            this.cbFormularios.TabIndex = 0;
+            this.cbFormularios.SelectionChangeCommitted += new System.EventHandler(this.cbFormularios_SelectionChangeCommitted);
             // 
             // lbPermisosSeleccionados
             // 
@@ -140,6 +140,7 @@ namespace VISTA
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvPermisos);
             this.Name = "frmSeleccionarPermisos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Permisos";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPermisos)).EndInit();
             this.groupBox1.ResumeLayout(false);

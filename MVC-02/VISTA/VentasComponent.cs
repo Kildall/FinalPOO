@@ -16,7 +16,7 @@ namespace VISTA
     {
 
         private VentaDataGrid venta;
-        private List<VentaDataGrid> ventas;
+        private List<VentaDataGrid> ventas = new List<VentaDataGrid>();
 
         public VentasComponent()
         {
@@ -63,9 +63,32 @@ namespace VISTA
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //Validaciones faltantes (Cantidad)
-            venta.GetVentas().cantidad = int.Parse(tbCantidad.Text);
-            venta.GetVentas().total = venta.GetVentas().Productos.precio * int.Parse(tbCantidad.Text);
+            if (venta.Cliente == null)
+            {
+                MessageBox.Show("Seleccione un cliente.");
+                return;
+            }
+            if (venta.Producto == null) { 
+                MessageBox.Show("Seleccione un producto."); 
+                return;
+            }
+            if (nudCantidad.Value <= 0)
+            {
+                MessageBox.Show("Ingrese una cantidad valida");
+                return;
+            }
+            if(nudCantidad.Value > venta.GetVentas().Productos.cantidad)
+            {
+                MessageBox.Show($"Falta(n) {Math.Abs(nudCantidad.Value - venta.GetVentas().Productos.cantidad)} unidad(es) de {venta.GetVentas().Productos.nombre}");
+                return;
+            }
+            if (venta.Empleado == null)
+            {
+                MessageBox.Show("Seleccione un empleado.");
+                return;
+            }
+            venta.GetVentas().cantidad = (int) nudCantidad.Value;
+            venta.GetVentas().total = venta.GetVentas().Productos.precio * (int) nudCantidad.Value;
             ControladorEmpresa.GetInstancia().AgregarVenta(venta);
             lblCliente.Text = null;
             lblCliente.Visible = false;
@@ -73,6 +96,7 @@ namespace VISTA
             lblProducto.Visible = false;
             lblEmpleado.Text = null;
             lblEmpleado.Visible = true;
+            nudCantidad.Value = 0;
             venta = new VentaDataGrid();
             venta.CrearVenta();
             ListarVentas();
@@ -96,7 +120,7 @@ namespace VISTA
             if (seleccion.ShowDialog() == DialogResult.OK)
             {
                 venta.GetVentas().Productos = seleccion.producto.GetProductos();
-                venta.Cliente = seleccion.producto.Nombre;
+                venta.Producto = seleccion.producto.Nombre;
                 lblProducto.Text = seleccion.producto.Nombre;
                 lblProducto.Visible = true;
             }
@@ -117,6 +141,19 @@ namespace VISTA
         private void VentasComponent_Paint(object sender, PaintEventArgs e)
         {
             ListarVentas();
+        }
+
+        private void btnCancelarVenta_Click(object sender, EventArgs e)
+        {
+            if (dgvVentas.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Seleccione una venta para cancelar.");
+                return;
+            }
+            if (MessageBox.Show($"Desea cancelar la venta seleccionada?","Cancelar Venta",MessageBoxButtons.OKCancel) == DialogResult.OK) {
+                ControladorEmpresa.GetInstancia().EliminarVenta(ventas[dgvVentas.SelectedRows[0].Index]);
+                ListarVentas();
+            }
         }
     }
 }

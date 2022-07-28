@@ -127,6 +127,7 @@
             this.Controls.Add(this.tbContraseña);
             this.Controls.Add(this.tbEmail);
             this.Name = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.ResumeLayout(false);

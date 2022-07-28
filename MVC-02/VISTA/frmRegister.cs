@@ -39,13 +39,13 @@ namespace VISTA
                 return;
             }
 
-            if (String.IsNullOrEmpty(tbNombre.Text) || !tbNombre.Text.ToCharArray().All(x => char.IsLetter(x)))
+            if (String.IsNullOrEmpty(tbNombre.Text) || !tbNombre.Text.ToCharArray().All(x => char.IsLetter(x) || x == ' '))
             {
                 MessageBox.Show("El nombre ingresado es inválido.");
                 return;
             }
 
-            if (String.IsNullOrEmpty(tbApellido.Text) || !tbApellido.Text.ToCharArray().All(x => char.IsLetter(x)))
+            if (String.IsNullOrEmpty(tbApellido.Text) || !tbApellido.Text.ToCharArray().All(x => char.IsLetter(x) || x == ' '))
             {
                 MessageBox.Show("El apellido ingresado es inválido.");
                 return;
@@ -83,8 +83,8 @@ namespace VISTA
                 nombre = tbNombre.Text,
                 apellido = tbApellido.Text,
                 dni = (long)nudDNI.Value,
-                contraseña = tbContraseña.Text,
-                mail = tbEmail.Text,
+                contraseña = tbContraseña.Text.ToLower(),
+                mail = tbEmail.Text.ToLower(),
                 empresa_id = empresas[cbEmpresa.SelectedIndex - 1].GetEmpresa().Id
             });
 

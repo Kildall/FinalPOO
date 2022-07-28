@@ -22,7 +22,7 @@ namespace CONTROLADOR
             if (_instancia == null)
             {
                 _instancia = new ControladorEmpresa();
-                
+
             }
             return _instancia;
         }
@@ -36,20 +36,20 @@ namespace CONTROLADOR
 
             return listaVentas;
         }
-        
+
         public void AgregarVenta(VentaDataGrid venta)
         {
-            try
-            {
-                venta.GetVentas().Empresa = GetEmpresaFromSession();
-                EmpresaContext.GetInstancia().GetContainer.Ventas.Add(venta.GetVentas());
-                EmpresaContext.GetInstancia().GetContainer.SaveChanges();
-            }
-            catch (Exception e)
-            {
+            venta.GetVentas().Empresa = GetEmpresaFromSession();
+            venta.GetVentas().Productos.cantidad = venta.GetVentas().Productos.cantidad - venta.GetVentas().cantidad;
+            EmpresaContext.GetInstancia().GetContainer.Ventas.Add(venta.GetVentas());
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
 
-                throw;
-            }
+        public void EliminarVenta(VentaDataGrid venta)
+        {
+            venta.GetVentas().Productos.cantidad = venta.GetVentas().Productos.cantidad + venta.GetVentas().cantidad;
+            EmpresaContext.GetInstancia().GetContainer.Ventas.Remove(venta.GetVentas());
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
         #endregion
 
@@ -114,9 +114,9 @@ namespace CONTROLADOR
         public List<EmpleadoDataGrid> GetEmpleados()
         {
             List<EmpleadoDataGrid> listaEmpleados = new List<EmpleadoDataGrid>();
-            foreach (var empleado in EmpresaContext.GetInstancia().GetContainer.Empleados.Where(x => x.Empresa.Id == empresa_id)) 
+            foreach (var empleado in EmpresaContext.GetInstancia().GetContainer.Empleados.Where(x => x.Empresa.Id == empresa_id))
                 listaEmpleados.Add(new EmpleadoDataGrid(empleado));
-            
+
             return listaEmpleados;
         }
 
@@ -148,7 +148,7 @@ namespace CONTROLADOR
         public List<ProductoDataGrid> GetProductos()
         {
             List<ProductoDataGrid> listaProductos = new List<ProductoDataGrid>();
-            foreach(var producto in EmpresaContext.GetInstancia().GetContainer.Productos.Where(x=> x.Empresa.Id == empresa_id).ToList())
+            foreach (var producto in EmpresaContext.GetInstancia().GetContainer.Productos.Where(x => x.Empresa.Id == empresa_id).ToList())
                 listaProductos.Add(new ProductoDataGrid(producto));
 
             return listaProductos;

@@ -83,6 +83,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblLogin);
             this.Name = "frmInicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

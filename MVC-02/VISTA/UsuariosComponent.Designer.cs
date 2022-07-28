@@ -40,7 +40,6 @@ namespace VISTA
             this.label4 = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbDNI = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbApellido = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,9 +50,11 @@ namespace VISTA
             this.tbBusquedaDNI = new System.Windows.Forms.TextBox();
             this.cbBusquedaEmpresa = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.nudDNI = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupbox.SuspendLayout();
             this.groupbox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDNI)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvUsuarios
@@ -67,6 +68,7 @@ namespace VISTA
             // 
             // groupbox
             // 
+            this.groupbox.Controls.Add(this.nudDNI);
             this.groupbox.Controls.Add(this.btnModificarUsuario);
             this.groupbox.Controls.Add(this.btnEliminarUsuario);
             this.groupbox.Controls.Add(this.cbEmpresa);
@@ -76,7 +78,6 @@ namespace VISTA
             this.groupbox.Controls.Add(this.label4);
             this.groupbox.Controls.Add(this.tbEmail);
             this.groupbox.Controls.Add(this.label3);
-            this.groupbox.Controls.Add(this.tbDNI);
             this.groupbox.Controls.Add(this.label2);
             this.groupbox.Controls.Add(this.tbApellido);
             this.groupbox.Controls.Add(this.label1);
@@ -169,13 +170,6 @@ namespace VISTA
             this.label3.TabIndex = 5;
             this.label3.Text = "DNI";
             // 
-            // tbDNI
-            // 
-            this.tbDNI.Location = new System.Drawing.Point(112, 103);
-            this.tbDNI.Name = "tbDNI";
-            this.tbDNI.Size = new System.Drawing.Size(170, 20);
-            this.tbDNI.TabIndex = 4;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -257,6 +251,18 @@ namespace VISTA
             this.label7.TabIndex = 0;
             this.label7.Text = "Por Empresa: ";
             // 
+            // nudDNI
+            // 
+            this.nudDNI.Location = new System.Drawing.Point(112, 104);
+            this.nudDNI.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.nudDNI.Name = "nudDNI";
+            this.nudDNI.Size = new System.Drawing.Size(170, 20);
+            this.nudDNI.TabIndex = 16;
+            // 
             // UsuariosComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +278,7 @@ namespace VISTA
             this.groupbox.PerformLayout();
             this.groupbox2.ResumeLayout(false);
             this.groupbox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDNI)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -285,7 +292,6 @@ namespace VISTA
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbDNI;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbApellido;
         private System.Windows.Forms.Label label1;
@@ -300,5 +306,6 @@ namespace VISTA
         private System.Windows.Forms.TextBox tbBusquedaDNI;
         private System.Windows.Forms.ComboBox cbBusquedaEmpresa;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown nudDNI;
     }
 }

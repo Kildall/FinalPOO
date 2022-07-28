@@ -36,6 +36,10 @@ namespace VISTA
                 }
                 else
                 {
+                    if (control.Name == "btnModificarEmpleado")
+                    {
+                        dgvEmpleados.CellDoubleClick -= dgvEmpleados_CellDoubleClick;
+                    }
                     control.Enabled = false;
                 }
             }
