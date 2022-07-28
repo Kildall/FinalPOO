@@ -109,5 +109,10 @@ namespace VISTA
                 lblEmpleado.Visible = true;
             }
         }
+
+        private void VentasComponent_Paint(object sender, PaintEventArgs e)
+        {
+            ListarVentas();
+        }
     }
 }

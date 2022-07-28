@@ -109,5 +109,10 @@ namespace VISTA
             ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
             ListarClientes();
         }
+
+        private void ClientesComponent_Paint(object sender, PaintEventArgs e)
+        {
+            ListarClientes();
+        }
     }
 }

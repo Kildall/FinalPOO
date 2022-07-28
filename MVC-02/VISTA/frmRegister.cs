@@ -17,6 +17,7 @@ namespace VISTA
     public partial class frmRegister : Form
     {
         private List<EmpresaDataGrid> empresas;
+        private bool showPassword = false;
         public frmRegister()
         {
             InitializeComponent();
@@ -24,6 +25,8 @@ namespace VISTA
             var listaEmpresas = empresas.Select(x => x.Nombre).ToList();
             listaEmpresas.Insert(0, "-");
             cbEmpresa.DataSource = listaEmpresas;
+
+            ttContraseña.SetToolTip(tbContraseña, "La contraseña debe:\n-Tener 8 caracteres.\n-Tener 1 Numero.\n-Tener 1 Mayuscula.");
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
@@ -82,7 +85,7 @@ namespace VISTA
                 dni = (long)nudDNI.Value,
                 contraseña = tbContraseña.Text,
                 mail = tbEmail.Text,
-                empresa_id = empresas[cbEmpresa.SelectedIndex].GetEmpresa().Id
+                empresa_id = empresas[cbEmpresa.SelectedIndex - 1].GetEmpresa().Id
             });
 
             switch (respuesta)
@@ -128,6 +131,21 @@ namespace VISTA
             else
             {
                 tbEmail.ForeColor = Color.Black;
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (!showPassword)
+            {
+                tbContraseña.PasswordChar = '\0';
+                pictureBox1.Image = Properties.Resources.Ojo_Cerrado;
+                showPassword = true;
+            } else
+            {
+                tbContraseña.PasswordChar = '*';
+                pictureBox1.Image = Properties.Resources.Ojo_Abierto;
+                showPassword = false;
             }
         }
     }

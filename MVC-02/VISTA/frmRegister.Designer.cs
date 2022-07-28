@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,7 +47,10 @@
             this.cbEmpresa = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.nudDNI = new System.Windows.Forms.NumericUpDown();
+            this.ttContraseña = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudDNI)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbEmail
@@ -213,7 +217,31 @@
             0});
             this.nudDNI.Name = "nudDNI";
             this.nudDNI.Size = new System.Drawing.Size(148, 20);
-            this.nudDNI.TabIndex = 18;
+            this.nudDNI.TabIndex = 3;
+            // 
+            // ttContraseña
+            // 
+            this.ttContraseña.AutomaticDelay = 200;
+            this.ttContraseña.AutoPopDelay = 9000000;
+            this.ttContraseña.InitialDelay = 200;
+            this.ttContraseña.ReshowDelay = 40;
+            this.ttContraseña.ShowAlways = true;
+            this.ttContraseña.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttContraseña.ToolTipTitle = "Contraseña";
+            this.ttContraseña.UseAnimation = false;
+            this.ttContraseña.UseFading = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::VISTA.Properties.Resources.Ojo_Abierto;
+            this.pictureBox1.InitialImage = global::VISTA.Properties.Resources.Ojo_Abierto;
+            this.pictureBox1.Location = new System.Drawing.Point(305, 195);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(29, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // frmRegister
             // 
@@ -221,6 +249,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 344);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.nudDNI);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbEmpresa);
@@ -242,6 +271,7 @@
             this.Name = "frmRegister";
             this.Text = "Registro";
             ((System.ComponentModel.ISupportInitialize)(this.nudDNI)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,5 +297,7 @@
         private System.Windows.Forms.ComboBox cbEmpresa;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudDNI;
+        private System.Windows.Forms.ToolTip ttContraseña;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

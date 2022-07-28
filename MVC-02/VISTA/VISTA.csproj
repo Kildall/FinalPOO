@@ -210,6 +210,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UsuariosComponent.resx">
       <DependentUpon>UsuariosComponent.cs</DependentUpon>
@@ -243,6 +244,12 @@
       <Project>{83d8404a-d25c-40ef-bff4-b4a77def290d}</Project>
       <Name>MODELO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1251076.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1250934.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

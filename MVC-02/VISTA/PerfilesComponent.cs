@@ -187,5 +187,10 @@ namespace VISTA
             permisosPerfil.RemoveAt(lbPermisos.SelectedIndex);
             lbPermisos.DataSource = permisosPerfil.Select(x => x.Nombre).ToList();
         }
+
+        private void PerfilesComponent_Paint(object sender, PaintEventArgs e)
+        {
+            ActualizarLista();
+        }
     }
 }

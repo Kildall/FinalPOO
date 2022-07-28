@@ -271,6 +271,7 @@ namespace VISTA
             this.Controls.Add(this.gbPerfil);
             this.Name = "PerfilesComponent";
             this.Size = new System.Drawing.Size(990, 529);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.PerfilesComponent_Paint);
             this.gbPerfil.ResumeLayout(false);
             this.gbPerfil.PerformLayout();
             this.gbDatos.ResumeLayout(false);

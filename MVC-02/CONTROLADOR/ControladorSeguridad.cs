@@ -61,6 +61,11 @@ namespace CONTROLADOR
             //Devuelvo el valor generado
             return contraEncriptada;
         }
+        public void Logout()
+        {
+            this.usuarioLogueado = null;
+            ControladorEmpresa.GetInstancia().empresa_id = -1;
+        }
         #endregion
 
         #region Usuarios

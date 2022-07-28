@@ -187,6 +187,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "JerarquiaComponent";
             this.Size = new System.Drawing.Size(990, 529);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.JerarquiaComponent_Paint);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuperiores)).EndInit();
             this.groupBox1.ResumeLayout(false);

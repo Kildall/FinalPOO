@@ -37,12 +37,12 @@
             this.btnSeleccionarProducto = new System.Windows.Forms.Button();
             this.lblCliente = new System.Windows.Forms.Label();
             this.btnSeleccionarCliente = new System.Windows.Forms.Button();
-            this.btnCancelarVenta = new System.Windows.Forms.Button();
             this.btnVenderProducto = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbCantidad = new System.Windows.Forms.TextBox();
+            this.btnCancelarVenta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -146,15 +146,6 @@
             this.btnSeleccionarCliente.UseVisualStyleBackColor = true;
             this.btnSeleccionarCliente.Click += new System.EventHandler(this.btnSeleccionarCliente_Click);
             // 
-            // btnCancelarVenta
-            // 
-            this.btnCancelarVenta.Location = new System.Drawing.Point(359, 489);
-            this.btnCancelarVenta.Name = "btnCancelarVenta";
-            this.btnCancelarVenta.Size = new System.Drawing.Size(199, 29);
-            this.btnCancelarVenta.TabIndex = 8;
-            this.btnCancelarVenta.Text = "Cancelar Venta";
-            this.btnCancelarVenta.UseVisualStyleBackColor = true;
-            // 
             // btnVenderProducto
             // 
             this.btnVenderProducto.Location = new System.Drawing.Point(41, 282);
@@ -199,6 +190,15 @@
             this.tbCantidad.Size = new System.Drawing.Size(163, 20);
             this.tbCantidad.TabIndex = 2;
             // 
+            // btnCancelarVenta
+            // 
+            this.btnCancelarVenta.Location = new System.Drawing.Point(359, 489);
+            this.btnCancelarVenta.Name = "btnCancelarVenta";
+            this.btnCancelarVenta.Size = new System.Drawing.Size(199, 29);
+            this.btnCancelarVenta.TabIndex = 8;
+            this.btnCancelarVenta.Text = "Cancelar Venta";
+            this.btnCancelarVenta.UseVisualStyleBackColor = true;
+            // 
             // VentasComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,6 +208,7 @@
             this.Controls.Add(this.btnCancelarVenta);
             this.Name = "VentasComponent";
             this.Size = new System.Drawing.Size(990, 529);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.VentasComponent_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -47,10 +47,10 @@ namespace VISTA
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupbox2 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbBusquedaEmpresa = new System.Windows.Forms.ComboBox();
-            this.tbBusquedaDNI = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.tbBusquedaDNI = new System.Windows.Forms.TextBox();
+            this.cbBusquedaEmpresa = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupbox.SuspendLayout();
             this.groupbox2.SuspendLayout();
@@ -220,14 +220,22 @@ namespace VISTA
             this.groupbox2.TabStop = false;
             this.groupbox2.Text = "Busqueda";
             // 
-            // label7
+            // label8
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Por Empresa: ";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 69);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(48, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Por DNI:";
+            // 
+            // tbBusquedaDNI
+            // 
+            this.tbBusquedaDNI.Location = new System.Drawing.Point(97, 66);
+            this.tbBusquedaDNI.Name = "tbBusquedaDNI";
+            this.tbBusquedaDNI.Size = new System.Drawing.Size(121, 20);
+            this.tbBusquedaDNI.TabIndex = 2;
+            this.tbBusquedaDNI.TextChanged += new System.EventHandler(this.tbBusquedaDNI_TextChanged);
             // 
             // cbBusquedaEmpresa
             // 
@@ -238,22 +246,14 @@ namespace VISTA
             this.cbBusquedaEmpresa.TabIndex = 1;
             this.cbBusquedaEmpresa.SelectionChangeCommitted += new System.EventHandler(this.cbBusquedaEmpresa_SelectionChangeCommitted);
             // 
-            // tbBusquedaDNI
+            // label7
             // 
-            this.tbBusquedaDNI.Location = new System.Drawing.Point(97, 66);
-            this.tbBusquedaDNI.Name = "tbBusquedaDNI";
-            this.tbBusquedaDNI.Size = new System.Drawing.Size(121, 20);
-            this.tbBusquedaDNI.TabIndex = 2;
-            this.tbBusquedaDNI.TextChanged += new System.EventHandler(this.tbBusquedaDNI_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 69);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Por DNI:";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Por Empresa: ";
             // 
             // UsuariosComponent
             // 
@@ -264,6 +264,7 @@ namespace VISTA
             this.Controls.Add(this.dgvUsuarios);
             this.Name = "UsuariosComponent";
             this.Size = new System.Drawing.Size(990, 529);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.UsuariosComponent_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.groupbox.ResumeLayout(false);
             this.groupbox.PerformLayout();

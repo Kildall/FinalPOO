@@ -202,6 +202,7 @@
             this.Controls.Add(this.dgvEmpleados);
             this.Name = "EmpleadosComponent";
             this.Size = new System.Drawing.Size(990, 529);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.EmpleadosComponent_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.gbxEmpleados.ResumeLayout(false);
             this.gbxEmpleados.PerformLayout();

@@ -158,6 +158,7 @@
             this.Controls.Add(this.gbClientes);
             this.Name = "ClientesComponent";
             this.Size = new System.Drawing.Size(990, 529);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ClientesComponent_Paint);
             this.gbClientes.ResumeLayout(false);
             this.gbClientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadCliente)).EndInit();

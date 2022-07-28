@@ -155,5 +155,10 @@ namespace VISTA
 
 
         }
+
+        private void UsuariosComponent_Paint(object sender, PaintEventArgs e)
+        {
+            ActualizarListaUsuarios();
+        }
     }
 }

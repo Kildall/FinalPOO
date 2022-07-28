@@ -155,6 +155,7 @@
             this.Controls.Add(this.dgvProductos);
             this.Name = "ProductosComponent";
             this.Size = new System.Drawing.Size(990, 529);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ProductosComponent_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

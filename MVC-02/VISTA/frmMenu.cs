@@ -13,6 +13,7 @@ namespace VISTA
 {
     public partial class frmMenu : Form
     {
+        public bool Logueado = true;
         public frmMenu()
         {
             InitializeComponent();
@@ -40,49 +41,16 @@ namespace VISTA
                     
                 }
             }
+            var logoutItem = new ToolStripMenuItem("Cerrar Sesion");
+            logoutItem.Click += (sender, e) =>
+            {
+                ControladorSeguridad.GetInstancia().Logout();
+                this.Logueado = false;
+                this.Close();
+            };
+            logoutItem.Alignment = ToolStripItemAlignment.Right;
+            menuStrip1.Items.Add(logoutItem);
          
-        }
-
-        private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelMenu.Controls.Clear();
-            panelMenu.Controls.Add(new EmpleadosComponent());
-        }
-
-        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelMenu.Controls.Clear();
-            panelMenu.Controls.Add(new ClientesComponent());
-        }
-
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelMenu.Controls.Clear();
-            panelMenu.Controls.Add(new UsuariosComponent());
-        }
-
-        private void perfilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelMenu.Controls.Clear();
-            panelMenu.Controls.Add(new PerfilesComponent());
-        }
-
-        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelMenu.Controls.Clear();
-            panelMenu.Controls.Add(new ProductosComponent());
-        }
-
-        private void jerarquiaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelMenu.Controls.Clear();
-            panelMenu.Controls.Add(new JerarquiaComponent());
-        }
-
-        private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panelMenu.Controls.Clear();
-            panelMenu.Controls.Add(new VentasComponent());
         }
     }
 }

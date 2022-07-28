@@ -16,13 +16,21 @@ namespace VISTA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            frmInicio frmInicio = new frmInicio();
-            Application.Run(frmInicio);
-            if (frmInicio.successLogin)
+            bool salir = false;
+            while (!salir)
             {
-                Application.Run(new frmMenu());
+                frmInicio frmInicio = new frmInicio();
+                Application.Run(frmInicio);
+                if (frmInicio.successLogin)
+                {
+                    frmMenu menu = new frmMenu();
+                    Application.Run(menu);
+                }
+                else
+                {
+                    salir = true;
+                }
             }
-
         }
     }
 }

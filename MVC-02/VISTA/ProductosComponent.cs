@@ -87,6 +87,9 @@ namespace VISTA
             }
         }
 
-        
+        private void ProductosComponent_Paint(object sender, PaintEventArgs e)
+        {
+            ListarProductos();
+        }
     }
 }

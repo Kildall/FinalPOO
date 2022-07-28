@@ -183,5 +183,10 @@ namespace VISTA
             ListarSupSub();
             ActualizarListBoxs(empleado.GetEmpleado());
         }
+
+        private void JerarquiaComponent_Paint(object sender, PaintEventArgs e)
+        {
+            ListarEmpleados();
+        }
     }
 }

@@ -133,5 +133,10 @@ namespace VISTA
             frmJerarquia jerarquia = new frmJerarquia(ListaEmpleados[e.RowIndex].GetEmpleado());
             jerarquia.Show();
         }
+
+        private void EmpleadosComponent_Paint(object sender, PaintEventArgs e)
+        {
+            ListarEmpleados();
+        }
     }
 }
