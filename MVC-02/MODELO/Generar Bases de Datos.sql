@@ -689,7 +689,7 @@ INSERT INTO FormularioSet (nombre) VALUES ('frmJerarquia'); --7
 
     --Productos
     INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Agregar Producto', 'btnAgregarProducto', 2);
-    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Vender Producto', 'btnVenderProducto', 2);
+    INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Modificar Producto', 'btnModificarProducto', 2);
     INSERT INTO PermisoSet (nombre, nombreSistema, Formulario_Id) VALUES ('Eliminar Producto', 'btnEliminarProducto', 2);
 
 	--Usuarios

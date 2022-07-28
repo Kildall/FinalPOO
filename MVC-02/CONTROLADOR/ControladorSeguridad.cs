@@ -108,6 +108,11 @@ namespace CONTROLADOR
         {
             SeguridadContext.GetInstancia().Container.SaveChanges();
         }
+        public void EliminarUsuario(Usuario usuario)
+        {
+            SeguridadContext.GetInstancia().Container.UsuarioSet.Remove(usuario);
+            SeguridadContext.GetInstancia().Container.SaveChanges();
+        }
 
         #endregion
 
@@ -181,12 +186,6 @@ namespace CONTROLADOR
                 }
             }
             return false;
-        }
-
-        public void EliminarUsuario(Usuario usuario)
-        {
-            SeguridadContext.GetInstancia().Container.UsuarioSet.Remove(usuario);
-            SeguridadContext.GetInstancia().Container.SaveChanges();
         }
 
         public List<string> GetPermisosByFormulario(string form)
