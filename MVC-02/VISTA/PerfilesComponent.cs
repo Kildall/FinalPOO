@@ -31,8 +31,7 @@ namespace VISTA
             var permisos = ControladorSeguridad.GetInstancia().GetPermisosByFormulario("frmPerfiles");
             foreach (var control in GetButtonControls(this))
             {
-                var permiso = permisos.FirstOrDefault(x => x == control.Name);
-                if (permiso != null)
+                if (permisos.Contains(control.Name))
                 {
                     control.Enabled = true;
                 }

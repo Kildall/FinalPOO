@@ -23,11 +23,11 @@ namespace VISTA
             var permisos = ControladorSeguridad.GetInstancia().GetPermisosByFormulario("frmClientes");
             foreach (var control in GetButtonControls(this))
             {
-                var permiso = permisos.FirstOrDefault(x => x == control.Name);
-                if (permiso != null)
+                if (permisos.Contains(control.Name))
                 {
                     control.Enabled = true;
-                } else
+                }
+                else
                 {
                     control.Enabled = false;
                 }
@@ -80,7 +80,7 @@ namespace VISTA
             if (dvgClientes.SelectedRows.Count > 0)
             {
                 indice = dvgClientes.SelectedRows[0].Index;
-            }       
+            }
         }
 
         private ClienteDataGrid ClienteSeleccionado()
@@ -105,7 +105,7 @@ namespace VISTA
         {
             if (ClienteSeleccionado() == null) return;
             Cliente cliente = ClienteSeleccionado().GetCliente();
-     
+
             ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
             ListarClientes();
         }
