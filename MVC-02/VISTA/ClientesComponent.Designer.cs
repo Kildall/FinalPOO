@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbxClientes = new System.Windows.Forms.GroupBox();
+            this.gbClientes = new System.Windows.Forms.GroupBox();
             this.btnEliminarCliente = new System.Windows.Forms.Button();
             this.btnModificarCliente = new System.Windows.Forms.Button();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
@@ -38,29 +38,29 @@
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.dvgClientes = new System.Windows.Forms.DataGridView();
-            this.gbxClientes.SuspendLayout();
+            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.gbClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadCliente)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
-            // gbxClientes
+            // gbClientes
             // 
-            this.gbxClientes.Controls.Add(this.btnEliminarCliente);
-            this.gbxClientes.Controls.Add(this.btnModificarCliente);
-            this.gbxClientes.Controls.Add(this.btnAgregarCliente);
-            this.gbxClientes.Controls.Add(this.txtTelCliente);
-            this.gbxClientes.Controls.Add(this.nudEdadCliente);
-            this.gbxClientes.Controls.Add(this.txtNombreCliente);
-            this.gbxClientes.Controls.Add(this.lblTelefono);
-            this.gbxClientes.Controls.Add(this.lblEdad);
-            this.gbxClientes.Controls.Add(this.lblNombre);
-            this.gbxClientes.Location = new System.Drawing.Point(15, 146);
-            this.gbxClientes.Name = "gbxClientes";
-            this.gbxClientes.Size = new System.Drawing.Size(321, 212);
-            this.gbxClientes.TabIndex = 0;
-            this.gbxClientes.TabStop = false;
-            this.gbxClientes.Text = "Clientes";
+            this.gbClientes.Controls.Add(this.btnEliminarCliente);
+            this.gbClientes.Controls.Add(this.btnModificarCliente);
+            this.gbClientes.Controls.Add(this.btnAgregarCliente);
+            this.gbClientes.Controls.Add(this.txtTelCliente);
+            this.gbClientes.Controls.Add(this.nudEdadCliente);
+            this.gbClientes.Controls.Add(this.txtNombreCliente);
+            this.gbClientes.Controls.Add(this.lblTelefono);
+            this.gbClientes.Controls.Add(this.lblEdad);
+            this.gbClientes.Controls.Add(this.lblNombre);
+            this.gbClientes.Location = new System.Drawing.Point(15, 146);
+            this.gbClientes.Name = "gbClientes";
+            this.gbClientes.Size = new System.Drawing.Size(321, 212);
+            this.gbClientes.TabIndex = 0;
+            this.gbClientes.TabStop = false;
+            this.gbClientes.Text = "Clientes";
             // 
             // btnEliminarCliente
             // 
@@ -102,6 +102,11 @@
             // nudEdadCliente
             // 
             this.nudEdadCliente.Location = new System.Drawing.Point(57, 76);
+            this.nudEdadCliente.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
             this.nudEdadCliente.Name = "nudEdadCliente";
             this.nudEdadCliente.Size = new System.Drawing.Size(148, 20);
             this.nudEdadCliente.TabIndex = 4;
@@ -109,6 +114,7 @@
             // txtNombreCliente
             // 
             this.txtNombreCliente.Location = new System.Drawing.Point(57, 35);
+            this.txtNombreCliente.MaxLength = 50;
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(247, 20);
             this.txtNombreCliente.TabIndex = 3;
@@ -140,35 +146,37 @@
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
-            // dvgClientes
+            // dgvClientes
             // 
-            this.dvgClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dvgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgClientes.Location = new System.Drawing.Point(355, 15);
-            this.dvgClientes.Name = "dvgClientes";
-            this.dvgClientes.Size = new System.Drawing.Size(619, 498);
-            this.dvgClientes.TabIndex = 1;
-            this.dvgClientes.SelectionChanged += new System.EventHandler(this.dvgClientes_SelectionChanged);
+            this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientes.Location = new System.Drawing.Point(355, 15);
+            this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.Size = new System.Drawing.Size(619, 498);
+            this.dgvClientes.TabIndex = 1;
+            this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgClientes_CellDoubleClick);
+            this.dgvClientes.SelectionChanged += new System.EventHandler(this.dvgClientes_SelectionChanged);
             // 
             // ClientesComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dvgClientes);
-            this.Controls.Add(this.gbxClientes);
+            this.Controls.Add(this.dgvClientes);
+            this.Controls.Add(this.gbClientes);
             this.Name = "ClientesComponent";
             this.Size = new System.Drawing.Size(990, 529);
-            this.gbxClientes.ResumeLayout(false);
-            this.gbxClientes.PerformLayout();
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ClientesComponent_Paint);
+            this.gbClientes.ResumeLayout(false);
+            this.gbClientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdadCliente)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbxClientes;
+        private System.Windows.Forms.GroupBox gbClientes;
         private System.Windows.Forms.NumericUpDown nudEdadCliente;
         private System.Windows.Forms.TextBox txtNombreCliente;
         private System.Windows.Forms.Label lblTelefono;
@@ -178,6 +186,6 @@
         private System.Windows.Forms.Button btnEliminarCliente;
         private System.Windows.Forms.Button btnModificarCliente;
         private System.Windows.Forms.Button btnAgregarCliente;
-        private System.Windows.Forms.DataGridView dvgClientes;
+        private System.Windows.Forms.DataGridView dgvClientes;
     }
 }

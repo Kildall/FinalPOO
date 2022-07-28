@@ -14,11 +14,12 @@ namespace VISTA
 {
     public partial class EmpleadosComponent : UserControl
     {
-        List<Empleado> ListaEmpleados = new List<Empleado>();
+        List<EmpleadoDataGrid> ListaEmpleados = new List<EmpleadoDataGrid>();
         List<Categoria> ListaCategorias = new List<Categoria>();
         int categoriaSeleccionada; //Indice
         int indiceEmpleado;
-        Categoria categoria = new Categoria();
+        EmpleadoDataGrid empleado = null;
+
 
 
         public EmpleadosComponent()
@@ -26,6 +27,36 @@ namespace VISTA
             InitializeComponent();
             ListarEmpleados();
             MostrarCategorias();
+            var permisos = ControladorSeguridad.GetInstancia().GetPermisosByFormulario("frmEmpleados");
+            foreach (var control in GetButtonControls(this))
+            {
+                if (permisos.Contains(control.Name))
+                {
+                    control.Enabled = true;
+                }
+                else
+                {
+                    if (control.Name == "btnModificarEmpleado")
+                    {
+                        dgvEmpleados.CellDoubleClick -= dgvEmpleados_CellDoubleClick;
+                    }
+                    control.Enabled = false;
+                }
+            }
+        }
+        //Usar recursion para obtener todos los hijos de un control
+        private List<Control> GetButtonControls(Control padre)
+        {
+            List<Control> controles = new List<Control>();
+            //Caso base es el caso en donde no haya hijos ya que no entra al foreach
+            foreach (Control c in padre.Controls)
+            {
+                controles.AddRange(GetButtonControls(c));
+                if (c is Button)
+                    controles.Add(c);
+            }
+            //En el caso base, devuelve la lista vacia, si no, devuelve los controles
+            return controles;
         }
 
         public void ListarEmpleados()
@@ -33,12 +64,10 @@ namespace VISTA
             dgvEmpleados.DataSource = null;
             ListaEmpleados = ControladorEmpresa.GetInstancia().GetEmpleados();
             dgvEmpleados.DataSource = ListaEmpleados;
-            dgvEmpleados.Columns.Remove("Empresa");
-            dgvEmpleados.Columns.Remove("Superior");
-            dgvEmpleados.Columns.Remove("Subordinados");
         }
 
-        public void MostrarCategorias() //Muestra las categorias en el ComboBox
+        //Muestra las categorias en el ComboBox
+        public void MostrarCategorias()
         {
             ListaCategorias = ControladorEmpresa.GetInstancia().GetCategorias();
 
@@ -46,14 +75,7 @@ namespace VISTA
             foreach (Categoria x in ListaCategorias)    // Agrego las categorias al ComboBox
             {
                 cbxCategoria.Items.Add(x.nombre);
-            }      
-        }
-
-
-        //Asigna la categoria seleccionada
-        private void cbxCategoria_SelectionChangeCommitted(object sender, EventArgs e) 
-        {
-            categoriaSeleccionada = cbxCategoria.SelectedIndex;
+            }
         }
 
         //Asigna el empleado seleccionado en el dgv
@@ -65,7 +87,7 @@ namespace VISTA
             }
         }
 
-        public Empleado EmpleadoSeleccionado() //Devuelve el Empleado seleccionado en el dgv
+        public EmpleadoDataGrid EmpleadoSeleccionado() //Devuelve el Empleado seleccionado en el dgv
         {
             return ListaEmpleados.ElementAt(indiceEmpleado);
         }
@@ -73,16 +95,41 @@ namespace VISTA
         //AGREGAR EMPLEADO
         private void btnAgregarEmpl_Click(object sender, EventArgs e)
         {
-            Empleado empleado = new Empleado() //Se construye un empleado
+            //Validaciones para agregar Empleado
+
+            if (String.IsNullOrEmpty(txtNombreEmp.Text) || !txtNombreEmp.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El nombre ingresado es inválido.");
+                return;
+            }
+
+            if (nudEdadEmp.Value <= 0)
+            {
+                MessageBox.Show("La edad ingresada es inválida.");
+                return;
+            }
+
+            if (nudSalarioEmp.Value <= 0)
+            {
+                MessageBox.Show("El salario ingresado es inválido.");
+                return;
+            }
+
+            if (cbxCategoria.SelectedIndex <= -1)
+            {
+                MessageBox.Show("La categoria seleccionada es inválida.");
+                return;
+            }
+
+            EmpleadoDataGrid empleado = new EmpleadoDataGrid(new Empleado()
             {
                 nombre = txtNombreEmp.Text,
-                edad = nudEdadEmp.Text,
-                salario = txtSalarioEmp.Text
-            };
+                edad = int.Parse(nudEdadEmp.Text),
+                salario = (int)(long)(nudEdadEmp.Value),
+                Categoria = ListaCategorias.ElementAt(categoriaSeleccionada),
+                Empresa = ControladorEmpresa.GetInstancia().GetEmpresaFromSession()
+            });
 
-            empleado.Categoria = ListaCategorias.ElementAt(categoriaSeleccionada);
-
-            empleado.Empresa = ControladorEmpresa.GetInstancia().GetEmpresa(); //Asigna la Empresa al empleado            
             ControladorEmpresa.GetInstancia().AgregarEmpleado(empleado);
             ListarEmpleados();
         }
@@ -90,30 +137,65 @@ namespace VISTA
         //MODIFICAR EMPLEADO
         private void btnModificarEmpl_Click(object sender, EventArgs e)
         {
-            Empleado empleado = EmpleadoSeleccionado();
-            empleado.nombre = txtNombreEmp.Text;
-            empleado.edad = nudEdadEmp.Text;
-            empleado.salario = txtSalarioEmp.Text;
+            if (empleado == null) { MessageBox.Show("Seleccione un empleado."); return; };
+            empleado.GetEmpleado().nombre = txtNombreEmp.Text;
+            empleado.GetEmpleado().edad = int.Parse(nudEdadEmp.Text);
+            empleado.GetEmpleado().salario = (int)(long)(nudEdadEmp.Value);
 
-            empleado.Categoria = ListaCategorias.ElementAt(categoriaSeleccionada);
+            empleado.GetEmpleado().Categoria = ListaCategorias.ElementAt(cbxCategoria.SelectedIndex);
 
             ControladorEmpresa.GetInstancia().ModificarEmpleado(empleado);
             ListarEmpleados();
+
+            btnAgregarEmpleado.Enabled = true;
+            btnEliminarEmpleado.Enabled = true;
+            empleado = null;
+
+            LimpiarCampos();
         }
 
         //ELIMINAR EMPLEADO
         private void btnEliminarEmpl_Click(object sender, EventArgs e)
         {
-            Empleado empleado = EmpleadoSeleccionado();
+            EmpleadoDataGrid empleado = EmpleadoSeleccionado();
 
-            ControladorEmpresa.GetInstancia().EliminarEmpleado(empleado);
+            if (empleado == null) { MessageBox.Show("Seleccione un empleado."); return; };
+
+            if (
+                MessageBox.Show($"Desea eliminar el Empleado: {empleado.Nombre}",
+                "Eliminar empleado", MessageBoxButtons.OKCancel) == DialogResult.OK
+                )
+            {
+                ControladorEmpresa.GetInstancia().EliminarEmpleado(empleado);
+                ListarEmpleados();
+                LimpiarCampos();
+            }
+        }
+
+        private void EmpleadosComponent_Paint(object sender, PaintEventArgs e)
+        {
             ListarEmpleados();
+        }
+
+        private void LimpiarCampos()
+        {
+            txtNombreEmp.Text = null;
+            nudEdadEmp.Value = 0;
+            nudSalarioEmp.Value = 0;
+            cbxCategoria.Text = null;
         }
 
         private void dgvEmpleados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmJerarquia jerarquia = new frmJerarquia(ListaEmpleados[e.RowIndex]);
-            jerarquia.Show();
+            empleado = ListaEmpleados.ElementAt(indiceEmpleado);
+
+            txtNombreEmp.Text = empleado.Nombre;
+            nudEdadEmp.Value = empleado.Edad;
+            nudSalarioEmp.Value = empleado.Salario;
+            cbxCategoria.Text = empleado.Categoria;
+
+            btnAgregarEmpleado.Enabled = false;
+            btnEliminarEmpleado.Enabled = false;
         }
     }
 }

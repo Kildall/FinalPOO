@@ -74,12 +74,6 @@
     <Compile Include="frmInicio.Designer.cs">
       <DependentUpon>frmInicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmJerarquia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmJerarquia.Designer.cs">
-      <DependentUpon>frmJerarquia.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,8 +92,68 @@
     <Compile Include="frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSeleccionarEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarEmpleado.Designer.cs">
+      <DependentUpon>frmSeleccionarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeleccionarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarProducto.Designer.cs">
+      <DependentUpon>frmSeleccionarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeleccionarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarCliente.Designer.cs">
+      <DependentUpon>frmSeleccionarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeleccionarFormulario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarFormulario.Designer.cs">
+      <DependentUpon>frmSeleccionarFormulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeleccionarPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionarPermisos.Designer.cs">
+      <DependentUpon>frmSeleccionarPermisos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilesComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PerfilesComponent.Designer.cs">
+      <DependentUpon>PerfilesComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductosComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductosComponent.Designer.cs">
+      <DependentUpon>ProductosComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuariosComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsuariosComponent.Designer.cs">
+      <DependentUpon>UsuariosComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JerarquiaComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JerarquiaComponent.Designer.cs">
+      <DependentUpon>JerarquiaComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentasComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VentasComponent.Designer.cs">
+      <DependentUpon>VentasComponent.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClientesComponent.resx">
       <DependentUpon>ClientesComponent.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,9 +162,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInicio.resx">
       <DependentUpon>frmInicio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmJerarquia.resx">
-      <DependentUpon>frmJerarquia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -121,6 +172,27 @@
     <EmbeddedResource Include="frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarEmpleado.resx">
+      <DependentUpon>frmSeleccionarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarProducto.resx">
+      <DependentUpon>frmSeleccionarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarCliente.resx">
+      <DependentUpon>frmSeleccionarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarFormulario.resx">
+      <DependentUpon>frmSeleccionarFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionarPermisos.resx">
+      <DependentUpon>frmSeleccionarPermisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilesComponent.resx">
+      <DependentUpon>PerfilesComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductosComponent.resx">
+      <DependentUpon>ProductosComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,7 +201,17 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UsuariosComponent.resx">
+      <DependentUpon>UsuariosComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JerarquiaComponent.resx">
+      <DependentUpon>JerarquiaComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentasComponent.resx">
+      <DependentUpon>VentasComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -153,6 +235,12 @@
       <Project>{83d8404a-d25c-40ef-bff4-b4a77def290d}</Project>
       <Name>MODELO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1251076.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1250934.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -14,70 +14,163 @@ namespace VISTA
 {
     public partial class ClientesComponent : UserControl
     {
-        private List<Cliente> ListaClientes = new List<Cliente>();
+        private List<ClienteDataGrid> ListaClientes = new List<ClienteDataGrid>();
         int indice;
+        ClienteDataGrid cliente = null;
         public ClientesComponent()
         {
             InitializeComponent();
             ListarClientes();
+            var permisos = ControladorSeguridad.GetInstancia().GetPermisosByFormulario("frmClientes");
+            foreach (var control in GetButtonControls(this))
+            {
+                if (permisos.Contains(control.Name))
+                {
+                    control.Enabled = true;
+                }
+                else
+                {
+                    if(control.Name == "btnModificarCliente")
+                    {
+                        dgvClientes.CellDoubleClick -= dvgClientes_CellDoubleClick;
+                    }
+                    control.Enabled = false;
+                }
+            }
+        }
+
+
+        //Usar recursion para obtener todos los hijos de un control
+        private List<Control> GetButtonControls(Control padre)
+        {
+            List<Control> controles = new List<Control>();
+            //Caso base es el caso en donde no haya hijos ya que no entra al foreach
+            foreach (Control c in padre.Controls)
+            {
+                controles.AddRange(GetButtonControls(c));
+                if (c is Button)
+                    controles.Add(c);
+            }
+            //En el caso base, devuelve la lista vacia, si no, devuelve los controles
+            return controles;
         }
 
 
         private void ListarClientes() //Lista los clientes en el DataGridView
         {
-            dvgClientes.DataSource = null;
+            dgvClientes.DataSource = null;
             ListaClientes = ControladorEmpresa.GetInstancia().GetClientes();
-            dvgClientes.DataSource = ListaClientes;
-            dvgClientes.Columns.Remove("Empresa");
+            dgvClientes.DataSource = ListaClientes;
         }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)    //Agrega un cliente
         {
-            Cliente cliente = new Cliente() //Construyo un cliente
+            //Validaciones para Agregar Empleado
+
+            if (String.IsNullOrEmpty(txtNombreCliente.Text) || !txtNombreCliente.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El nombre ingresado es inválido.");
+                return;
+            }
+
+            if (nudEdadCliente.Value <= 0)
+            {
+                MessageBox.Show("La edad ingresada es inválida.");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtTelCliente.Text) || !txtTelCliente.Text.ToCharArray().All(x => char.IsDigit(x)) ||
+                txtTelCliente.Text.Length > 13)
+            {
+                MessageBox.Show("El teléfono ingresado no es válido.");
+                return;
+            }
+
+            ClienteDataGrid cliente = new ClienteDataGrid(new Cliente()
             {
                 nombre = txtNombreCliente.Text,
-                edad = nudEdadCliente.Text,
+                edad = int.Parse(nudEdadCliente.Text),
                 telefono = txtTelCliente.Text,
-            };
-
-            //Asigna la empresa al cliente
-            cliente.Empresa = ControladorEmpresa.GetInstancia().GetEmpresa();
+                Empresa = ControladorEmpresa.GetInstancia().GetEmpresaFromSession()
+            });
 
             ControladorEmpresa.GetInstancia().AgregarCliente(cliente);
             ListarClientes();
+
+            LimpiarCampos();
 
         }
 
         private void dvgClientes_SelectionChanged(object sender, EventArgs e)
         {
-            if (dvgClientes.SelectedRows.Count > 0)
+            if (dgvClientes.SelectedRows.Count > 0)
             {
-                indice = dvgClientes.SelectedRows[0].Index;
-            }       
+                indice = dgvClientes.SelectedRows[0].Index;
+            }
         }
 
-        private Cliente ClienteSeleccionado()
+        private ClienteDataGrid ClienteSeleccionado()
         {
+            if (indice == -1) return null;
             return ListaClientes.ElementAt(indice);
         }
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            Cliente cliente = ClienteSeleccionado();
-            cliente.nombre = txtNombreCliente.Text;
-            cliente.edad = nudEdadCliente.Text;
-            cliente.telefono = txtTelCliente.Text;
+            if (cliente == null) { MessageBox.Show("Seleccione un cliente.");  return; } 
+            cliente.GetCliente().nombre = txtNombreCliente.Text;
+            cliente.GetCliente().edad = int.Parse(nudEdadCliente.Text);
+            cliente.GetCliente().telefono = txtTelCliente.Text;
 
             ControladorEmpresa.GetInstancia().ModificarCliente(cliente);
             ListarClientes();
+            LimpiarCampos();
+
+            btnAgregarCliente.Enabled = true;
+            btnEliminarCliente.Enabled = true;
+            cliente = null;
         }
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
-            Cliente cliente = ClienteSeleccionado();
-     
-            ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
+            if (ClienteSeleccionado() == null) return;
+            ClienteDataGrid cliente = ClienteSeleccionado();
+
+            if (
+                MessageBox.Show($"Desea eliminar el Cliente: {cliente.Nombre}",
+                "Eliminar cliente", MessageBoxButtons.OKCancel) == DialogResult.OK
+                )
+            {
+                ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
+                ListarClientes();
+                LimpiarCampos();
+            }
+        }
+
+        private void ClientesComponent_Paint(object sender, PaintEventArgs e)
+        {
             ListarClientes();
+        }
+
+        //Llena los campos al hacer doble clic para modificar fácilmente
+        private void dvgClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            LimpiarCampos();
+
+            btnAgregarCliente.Enabled = false;
+            btnEliminarCliente.Enabled = false;
+
+            cliente = ListaClientes.ElementAt(e.RowIndex);
+
+            txtNombreCliente.Text = cliente.Nombre;
+            nudEdadCliente.Value = cliente.Edad;
+            txtTelCliente.Text = cliente.Telefono;
+        }
+        private void LimpiarCampos()
+        {
+            txtNombreCliente.Text = null;
+            nudEdadCliente.Value = 0;
+            txtTelCliente.Text = null;
         }
     }
 }

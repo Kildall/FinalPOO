@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MODELO;
+using MODELO.Seguridad;
 
 namespace CONTROLADOR
 {
     public class ControladorEmpresa
     {
         private static ControladorEmpresa _instancia; //Una instancia del controlador
-
-        private ControladorEmpresa() { }    //Constructor privado
+        public int empresa_id { get; set; }
+        private ControladorEmpresa() //Constructor privado
+        {
+        }
 
         //Obtiene la instancia
         public static ControladorEmpresa GetInstancia()
@@ -19,77 +22,154 @@ namespace CONTROLADOR
             if (_instancia == null)
             {
                 _instancia = new ControladorEmpresa();
+
             }
             return _instancia;
         }
 
+        #region Ventas
+        public List<VentaDataGrid> GetVentas()
+        {
+            List<VentaDataGrid> listaVentas = new List<VentaDataGrid>();
+            foreach (var venta in EmpresaContext.GetInstancia().GetContainer.Ventas.Where(x => x.Empresa.Id == empresa_id))
+                listaVentas.Add(new VentaDataGrid(venta));
+
+            return listaVentas;
+        }
+
+        public void AgregarVenta(VentaDataGrid venta)
+        {
+            venta.GetVentas().Empresa = GetEmpresaFromSession();
+            venta.GetVentas().Productos.cantidad = venta.GetVentas().Productos.cantidad - venta.GetVentas().cantidad;
+            EmpresaContext.GetInstancia().GetContainer.Ventas.Add(venta.GetVentas());
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+
+        public void EliminarVenta(VentaDataGrid venta)
+        {
+            venta.GetVentas().Productos.cantidad = venta.GetVentas().Productos.cantidad + venta.GetVentas().cantidad;
+            EmpresaContext.GetInstancia().GetContainer.Ventas.Remove(venta.GetVentas());
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+        #endregion
+
+        #region Categorias
+        public List<Categoria> GetCategorias()
+        {
+            Usuario usuario = ControladorSeguridad.GetInstancia().usuarioLogueado;
+            return EmpresaContext.GetInstancia().GetContainer.Categorias.Where(x => x.Empresa.Id == usuario.Id).ToList();
+        }
+        #endregion
+
         #region Clientes
-        public void AgregarCliente(Cliente cliente)
+        public void AgregarCliente(ClienteDataGrid cliente)
         {
-            EmpresaContext.GetInstancia().GetContainer.Clientes.Add(cliente);
+            EmpresaContext.GetInstancia().GetContainer.Clientes.Add(cliente.GetCliente());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void EliminarCliente(Cliente cliente)
+        public void EliminarCliente(ClienteDataGrid cliente)
         {
-            EmpresaContext.GetInstancia().GetContainer.Clientes.Remove(cliente);
+            EmpresaContext.GetInstancia().GetContainer.Clientes.Remove(cliente.GetCliente());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void ModificarCliente(Cliente cliente)
+        public void ModificarCliente(ClienteDataGrid cliente)
         {
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
         //Devuelve una lista de clientes (todos los que tiene la empresa)
-        public List<Cliente> GetClientes()
+        public List<ClienteDataGrid> GetClientes()
         {
-            return EmpresaContext.GetInstancia().GetContainer.Clientes.ToList();
+            List<ClienteDataGrid> listaClientes = new List<ClienteDataGrid>();
+            foreach (var cliente in EmpresaContext.GetInstancia().GetContainer.Clientes.Where(x => x.Empresa.Id == empresa_id))
+                listaClientes.Add(new ClienteDataGrid(cliente));
+
+            return listaClientes;
         }
 
         #endregion Clientes
 
         #region Empleados
 
-        public void AgregarEmpleado(Empleado empleado)
+        public void AgregarEmpleado(EmpleadoDataGrid empleado)
         {
-            EmpresaContext.GetInstancia().GetContainer.Empleados.Add(empleado);
+            EmpresaContext.GetInstancia().GetContainer.Empleados.Add(empleado.GetEmpleado());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void ModificarEmpleado(Empleado empleado)
+        public void ModificarEmpleado(EmpleadoDataGrid empleado)
         {
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
-        public void EliminarEmpleado(Empleado empleado)
+        public void EliminarEmpleado(EmpleadoDataGrid empleado)
         {
-            EmpresaContext.GetInstancia().GetContainer.Empleados.Remove(empleado);
+            EmpresaContext.GetInstancia().GetContainer.Empleados.Remove(empleado.GetEmpleado());
             EmpresaContext.GetInstancia().GetContainer.SaveChanges();
         }
 
         //Devuelve una lista de empleados
-        public List<Empleado> GetEmpleados()
+        public List<EmpleadoDataGrid> GetEmpleados()
         {
-            return EmpresaContext.GetInstancia().GetContainer.Empleados.ToList();
-        }
+            List<EmpleadoDataGrid> listaEmpleados = new List<EmpleadoDataGrid>();
+            foreach (var empleado in EmpresaContext.GetInstancia().GetContainer.Empleados.Where(x => x.Empresa.Id == empresa_id))
+                listaEmpleados.Add(new EmpleadoDataGrid(empleado));
 
-        public List<Categoria> GetCategorias()
-        {
-            return EmpresaContext.GetInstancia().GetContainer.Categorias.ToList();
+            return listaEmpleados;
         }
 
         #endregion Empleados
 
-        public Empresa GetEmpresa()
+        #region Empresas
+        public List<EmpresaDataGrid> GetEmpresas()
         {
-            //Devuelve la primera empresa (indice 1), osea la unica empresa}
-            Empresa resultado = EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == 1);
-            if (resultado == null){
-                EmpresaContext.GetInstancia().GetContainer.Empresa.Add(new Empresa() { nombre = "franco se la come" });
-                EmpresaContext.GetInstancia().GetContainer.SaveChanges();
-            }
-            return EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == 1);
+            List<EmpresaDataGrid> listaEmpresas = new List<EmpresaDataGrid>();
+            foreach (var empresas in EmpresaContext.GetInstancia().GetContainer.Empresa)
+                listaEmpresas.Add(new EmpresaDataGrid(empresas));
+
+            return listaEmpresas;
         }
+        public Empresa GetEmpresaFromSession()
+        {
+            return EmpresaContext.GetInstancia().GetContainer.Empresa.First(x => x.Id == empresa_id);
+
+        }
+        public Empresa GetEmpresaById(int id)
+        {
+            return EmpresaContext.GetInstancia().GetContainer.Empresa.FirstOrDefault(x => x.Id == id);
+        }
+
+
+        #endregion
+
+        #region Productos
+        public List<ProductoDataGrid> GetProductos()
+        {
+            List<ProductoDataGrid> listaProductos = new List<ProductoDataGrid>();
+            foreach (var producto in EmpresaContext.GetInstancia().GetContainer.Productos.Where(x => x.Empresa.Id == empresa_id).ToList())
+                listaProductos.Add(new ProductoDataGrid(producto));
+
+            return listaProductos;
+        }
+
+        public void AgregarProducto(ProductoDataGrid producto)
+        {
+            EmpresaContext.GetInstancia().GetContainer.Productos.Add(producto.GetProductos());
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+
+        public void EliminarProducto(ProductoDataGrid producto)
+        {
+            EmpresaContext.GetInstancia().GetContainer.Productos.Remove(producto.GetProductos());
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+
+        public void ModificarProducto(ProductoDataGrid producto)
+        {
+            EmpresaContext.GetInstancia().GetContainer.SaveChanges();
+        }
+        #endregion
     }
 }
