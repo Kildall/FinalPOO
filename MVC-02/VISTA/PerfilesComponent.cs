@@ -138,6 +138,7 @@ namespace VISTA
         {
             if (creandoPerfil)
             {
+                //Validaciones faltantes
                 ControladorSeguridad.GetInstancia().AgregarPerfil(new Perfil()
                 {
                     nombre = tbNombre.Text,

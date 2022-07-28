@@ -63,6 +63,7 @@ namespace VISTA
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            //Validaciones faltantes (Cantidad)
             venta.GetVentas().cantidad = int.Parse(tbCantidad.Text);
             venta.GetVentas().total = venta.GetVentas().Productos.precio * int.Parse(tbCantidad.Text);
             ControladorEmpresa.GetInstancia().AgregarVenta(venta);

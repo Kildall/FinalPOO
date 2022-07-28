@@ -58,6 +58,7 @@ namespace VISTA
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            //Validaciones faltantes
             Productos producto = new Productos()
             {
                 nombre = txtNombre.Text,

@@ -106,6 +106,7 @@ namespace VISTA
             this.btnEliminarUsuario.TabIndex = 14;
             this.btnEliminarUsuario.Text = "Eliminar Usuario";
             this.btnEliminarUsuario.UseVisualStyleBackColor = true;
+            this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
             // 
             // cbEmpresa
             // 
@@ -203,6 +204,7 @@ namespace VISTA
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(112, 23);
+            this.tbNombre.MaxLength = 50;
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(170, 20);
             this.tbNombre.TabIndex = 0;

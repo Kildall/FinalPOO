@@ -99,6 +99,7 @@ namespace VISTA
 
         private void btnModificarUsuario_Click(object sender, EventArgs e)
         {
+            //Validaciones faltantes
             Usuario usu = usuarioSeleccionado.GetUsuario();
             usu.nombre = tbNombre.Text;
             usu.apellido = tbApellido.Text;
@@ -158,6 +159,24 @@ namespace VISTA
         private void UsuariosComponent_Paint(object sender, PaintEventArgs e)
         {
             ActualizarListaUsuarios();
+        }
+
+        private void btnEliminarUsuario_Click(object sender, EventArgs e)
+        {
+            if (usuarioSeleccionado == null || usuarioSeleccionado.GetUsuario() == ControladorSeguridad.GetInstancia().usuarioLogueado) return;
+            if(MessageBox.Show($"Seguro quiere eliminar el usuario {usuarioSeleccionado.Nombre} {usuarioSeleccionado.Apellido}?"
+                , "Eliminar Usuario", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                ControladorSeguridad.GetInstancia().EliminarUsuario(usuarioSeleccionado.GetUsuario());
+                ActualizarListaUsuarios();
+                tbNombre.Text = null;
+                tbApellido.Text = null;
+                tbDNI.Text = null;
+                tbEmail.Text = null;
+                cbEmpresa.SelectedItem = null;
+                cbPerfiles.SelectedItem = null;
+            }
+                
         }
     }
 }

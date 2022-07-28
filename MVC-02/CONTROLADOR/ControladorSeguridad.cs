@@ -182,6 +182,13 @@ namespace CONTROLADOR
             }
             return false;
         }
+
+        public void EliminarUsuario(Usuario usuario)
+        {
+            SeguridadContext.GetInstancia().Container.UsuarioSet.Remove(usuario);
+            SeguridadContext.GetInstancia().Container.SaveChanges();
+        }
+
         public List<string> GetPermisosByFormulario(string form)
         {
             return usuarioLogueado.Perfil.Permisos.Where(x => x.Formulario.nombre == form).Select(x => x.nombreSistema).ToList();
