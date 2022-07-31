@@ -154,27 +154,19 @@ namespace VISTA
         {
             if (ClienteSeleccionado() == null) return;
             ClienteDataGrid cliente = ClienteSeleccionado();
-
+            if (cliente.GetCliente().Ventas.Count > 0)
+            {
+                MessageBox.Show("El cliente no puede ser eliminado porque tiene ventas.");
+                return;
+            }
             if (
                 MessageBox.Show($"Desea eliminar el Cliente: {cliente.Nombre}",
                 "Eliminar cliente", MessageBoxButtons.OKCancel) == DialogResult.OK
                 )
             {
-
-                try
-                {
-                    ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
-                    ListarClientes();
-                    LimpiarCampos();
-                }
-                catch (Exception)
-                {
-
-                    MessageBox.Show("No se puede eleminar el cliente." +
-                        " Por favor elimine las ventas relacionadas con este cliente para eliminarlo",
-                        "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-               
+                ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
+                ListarClientes();
+                LimpiarCampos();
             }
         }
 
@@ -186,14 +178,14 @@ namespace VISTA
         //Llena los campos al hacer doble clic para modificar fácilmente
         private void dvgClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
 
             if (e.RowIndex < 0)
             {
                 MessageBox.Show("Seleccione un cliente.");
                 return;
             }
-            
+
             LimpiarCampos();
 
             btnAgregarCliente.Enabled = false;
