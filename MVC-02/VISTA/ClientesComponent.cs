@@ -30,7 +30,7 @@ namespace VISTA
                 }
                 else
                 {
-                    if(control.Name == "btnModificarCliente")
+                    if (control.Name == "btnModificarCliente")
                     {
                         dgvClientes.CellDoubleClick -= dvgClientes_CellDoubleClick;
                     }
@@ -117,7 +117,26 @@ namespace VISTA
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            if (cliente == null) { MessageBox.Show("Seleccione un cliente.");  return; } 
+            if (String.IsNullOrEmpty(txtNombreCliente.Text) || !txtNombreCliente.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El nombre ingresado es inválido.");
+                return;
+            }
+
+            if (nudEdadCliente.Value <= 0)
+            {
+                MessageBox.Show("La edad ingresada es inválida.");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtTelCliente.Text) || !txtTelCliente.Text.ToCharArray().All(x => char.IsDigit(x)) ||
+                txtTelCliente.Text.Length > 13)
+            {
+                MessageBox.Show("El teléfono ingresado no es válido.");
+                return;
+            }
+
+            if (cliente == null) { MessageBox.Show("Seleccione un cliente."); return; }
             cliente.GetCliente().nombre = txtNombreCliente.Text;
             cliente.GetCliente().edad = int.Parse(nudEdadCliente.Text);
             cliente.GetCliente().telefono = txtTelCliente.Text;
@@ -141,9 +160,21 @@ namespace VISTA
                 "Eliminar cliente", MessageBoxButtons.OKCancel) == DialogResult.OK
                 )
             {
-                ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
-                ListarClientes();
-                LimpiarCampos();
+
+                try
+                {
+                    ControladorEmpresa.GetInstancia().EliminarCliente(cliente);
+                    ListarClientes();
+                    LimpiarCampos();
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("No se puede eleminar el cliente." +
+                        " Por favor elimine las ventas relacionadas con este cliente para eliminarlo",
+                        "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+               
             }
         }
 
@@ -155,6 +186,14 @@ namespace VISTA
         //Llena los campos al hacer doble clic para modificar fácilmente
         private void dvgClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+
+            if (e.RowIndex < 0)
+            {
+                MessageBox.Show("Seleccione un cliente.");
+                return;
+            }
+            
             LimpiarCampos();
 
             btnAgregarCliente.Enabled = false;

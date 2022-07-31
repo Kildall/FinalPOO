@@ -108,18 +108,6 @@ namespace VISTA
                 MessageBox.Show("Seleccione un usuario.");
                 return;
             }
-            
-            if (!ValidateEmail(tbEmail.Text))
-            {
-                MessageBox.Show("El mail ingresado es inválido.");
-                return;
-            }
-
-            if (tbEmail.Text != usuarioSeleccionado.EMail && ControladorSeguridad.GetInstancia().ExisteEmail(tbEmail.Text))
-            {
-                MessageBox.Show("El mail ingresado ya existe.");
-                return;
-            }
 
             if (String.IsNullOrEmpty(tbNombre.Text) || !tbNombre.Text.ToCharArray().All(x => char.IsLetter(x)))
             {
@@ -138,6 +126,19 @@ namespace VISTA
                 MessageBox.Show("El DNI ingresado es inválido.");
                 return;
             }
+
+            if (!ValidateEmail(tbEmail.Text))
+            {
+                MessageBox.Show("El mail ingresado es inválido.");
+                return;
+            }
+
+            if (tbEmail.Text != usuarioSeleccionado.EMail && ControladorSeguridad.GetInstancia().ExisteEmail(tbEmail.Text))
+            {
+                MessageBox.Show("El mail ingresado ya existe.");
+                return;
+            }
+
 
             Usuario usu = usuarioSeleccionado.GetUsuario();
             usu.nombre = tbNombre.Text;

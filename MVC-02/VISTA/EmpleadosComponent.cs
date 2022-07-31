@@ -16,7 +16,6 @@ namespace VISTA
     {
         List<EmpleadoDataGrid> ListaEmpleados = new List<EmpleadoDataGrid>();
         List<Categoria> ListaCategorias = new List<Categoria>();
-        int categoriaSeleccionada; //Indice
         int indiceEmpleado;
         EmpleadoDataGrid empleado = null;
 
@@ -121,12 +120,13 @@ namespace VISTA
                 return;
             }
 
+
             EmpleadoDataGrid empleado = new EmpleadoDataGrid(new Empleado()
             {
                 nombre = txtNombreEmp.Text,
                 edad = int.Parse(nudEdadEmp.Text),
-                salario = (int)(long)(nudEdadEmp.Value),
-                Categoria = ListaCategorias.ElementAt(categoriaSeleccionada),
+                salario = (int)(long)(nudSalarioEmp.Value),
+                Categoria = ListaCategorias.ElementAt(cbxCategoria.SelectedIndex),
                 Empresa = ControladorEmpresa.GetInstancia().GetEmpresaFromSession()
             });
 
@@ -137,6 +137,30 @@ namespace VISTA
         //MODIFICAR EMPLEADO
         private void btnModificarEmpl_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(txtNombreEmp.Text) || !txtNombreEmp.Text.ToCharArray().All(x => char.IsLetter(x)))
+            {
+                MessageBox.Show("El nombre ingresado es inválido.");
+                return;
+            }
+
+            if (nudEdadEmp.Value <= 0)
+            {
+                MessageBox.Show("La edad ingresada es inválida.");
+                return;
+            }
+
+            if (nudSalarioEmp.Value <= 0)
+            {
+                MessageBox.Show("El salario ingresado es inválido.");
+                return;
+            }
+
+            if (cbxCategoria.SelectedIndex <= -1)
+            {
+                MessageBox.Show("La categoria seleccionada es inválida.");
+                return;
+            }
+
             if (empleado == null) { MessageBox.Show("Seleccione un empleado."); return; };
             empleado.GetEmpleado().nombre = txtNombreEmp.Text;
             empleado.GetEmpleado().edad = int.Parse(nudEdadEmp.Text);
@@ -166,9 +190,21 @@ namespace VISTA
                 "Eliminar empleado", MessageBoxButtons.OKCancel) == DialogResult.OK
                 )
             {
-                ControladorEmpresa.GetInstancia().EliminarEmpleado(empleado);
-                ListarEmpleados();
-                LimpiarCampos();
+                try
+                {
+                    ControladorEmpresa.GetInstancia().EliminarEmpleado(empleado);
+                    ListarEmpleados();
+                    LimpiarCampos();
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("No se puede eleminar el empleado." +
+                        " Por favor elimine las ventas relacionadas con este empleado para eliminarlo",
+                        "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
             }
         }
 
@@ -187,6 +223,12 @@ namespace VISTA
 
         private void dgvEmpleados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+            {
+                MessageBox.Show("Seleccione un cliente.");
+                return;
+            }
+
             empleado = ListaEmpleados.ElementAt(indiceEmpleado);
 
             txtNombreEmp.Text = empleado.Nombre;
