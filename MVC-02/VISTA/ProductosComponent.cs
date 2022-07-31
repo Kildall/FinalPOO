@@ -127,6 +127,24 @@ namespace VISTA
 
         private void btnModProducto_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtNombre.Text) || !txtNombre.Text.ToCharArray().All(x => char.IsLetterOrDigit(x)))
+            {
+                MessageBox.Show("El nombre del producto ingresado es inválido.");
+                return;
+            }
+
+            if (nudCantidad.Value <= 0)
+            {
+                MessageBox.Show("La cantidad ingresada es inválida.");
+                return;
+            }
+
+            if (nudPrecio.Value <= 0)
+            {
+                MessageBox.Show("El precio ingresado es inválido.");
+                return;
+            }
+
             if (producto == null) { MessageBox.Show("Seleccione un producto."); return; }
             producto.GetProductos().nombre = txtNombre.Text;
             producto.GetProductos().precio = (int)nudPrecio.Value;
