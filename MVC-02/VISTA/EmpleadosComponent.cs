@@ -185,26 +185,20 @@ namespace VISTA
 
             if (empleado == null) { MessageBox.Show("Seleccione un empleado."); return; };
 
+            if (empleado.GetEmpleado().Ventas.Count > 0)
+            {
+                MessageBox.Show("No se puede eliminar el empleado porque tiene ventas.");
+                return;
+            }
+
             if (
                 MessageBox.Show($"Desea eliminar el Empleado: {empleado.Nombre}",
                 "Eliminar empleado", MessageBoxButtons.OKCancel) == DialogResult.OK
                 )
             {
-                try
-                {
-                    ControladorEmpresa.GetInstancia().EliminarEmpleado(empleado);
-                    ListarEmpleados();
-                    LimpiarCampos();
-                }
-                catch (Exception)
-                {
-
-                    MessageBox.Show("No se puede eleminar el empleado." +
-                        " Por favor elimine las ventas relacionadas con este empleado para eliminarlo",
-                        "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-
+                ControladorEmpresa.GetInstancia().EliminarEmpleado(empleado);
+                ListarEmpleados();
+                LimpiarCampos();
             }
         }
 
