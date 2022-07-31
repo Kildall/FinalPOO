@@ -38,7 +38,7 @@ namespace VISTA
                         panelMenu.Controls.Add(form.Value);
                     };
                     menuStrip1.Items.Add(item);
-                    
+
                 }
             }
             var logoutItem = new ToolStripMenuItem("Cerrar Sesion");
@@ -50,7 +50,8 @@ namespace VISTA
             };
             logoutItem.Alignment = ToolStripItemAlignment.Right;
             menuStrip1.Items.Add(logoutItem);
-         
+            if (menuStrip1.Items.Count > 1)
+                panelMenu.Controls.Add(formularios["frm" + menuStrip1.Items[0].Text]);
         }
     }
 }

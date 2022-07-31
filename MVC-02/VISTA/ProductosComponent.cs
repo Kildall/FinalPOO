@@ -108,6 +108,12 @@ namespace VISTA
 
             producto = listaProductos.ElementAt(indice);
 
+            if(producto.GetProductos().Ventas.Count > 0)
+            {
+                MessageBox.Show("No se puede eliminar el producto porque tiene ventas.");
+                return;
+            }
+
             if (
                 MessageBox.Show($"Desea eliminar el producto: {producto.Nombre}",
                 "Eliminar producto", MessageBoxButtons.OKCancel) == DialogResult.OK
